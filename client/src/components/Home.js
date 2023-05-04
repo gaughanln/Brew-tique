@@ -2,6 +2,12 @@ import React from 'react';
 // import Header from './Header' 
 import homeImage from './'
 
+// TODO 
+// Create onclicks
+// pathing
+// CSS
+// link image
+
 function Home() {
   return (
 <>
