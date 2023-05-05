@@ -7,7 +7,7 @@ function Header({ currentPage, handlePageChange }) {
   return (
     <>
       <nav className="navbar sticky-top navbar- pt-3 ">
-        {/* company name logo in nav bar - If it isn't on the home page, this will appear */}
+        {/* company name logo in nav bar - If it isn't on the home page, the brewtique logo will appear */}
         <div className="navbar-brand">
           {currentPage !== "Home" && (
             <img
@@ -20,6 +20,7 @@ function Header({ currentPage, handlePageChange }) {
           )}
         </div>
 
+ {/* beans in nav bar - If it is on the home page only, beans will appear */}
         <div className="navbar-brand">
           {currentPage === "Home" && (
             <img
