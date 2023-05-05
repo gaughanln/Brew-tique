@@ -1,17 +1,29 @@
 import React from "react";
-import headerName from "";
-import beans from "";
-import cart from "";
+import brewtiqueSmall from "../assets/brewtiqueSmall.png";
+import beans from "../assets/beans.png";
+import cart from "../assets/cart.png";
 
 function Header({ currentPage, handlePageChange }) {
   return (
     <>
       <nav className="navbar sticky-top navbar- pt-3 ">
-        {/* company name logo in nav bar */}
+        {/* company name logo in nav bar - If it isn't on the home page, this will appear */}
         <div className="navbar-brand">
           {currentPage !== "Home" && (
             <img
-              src={headerName}
+              src={brewtiqueSmall}
+              className="header-logo"
+              width="300"
+              height="125"
+              alt="brewtique logo"
+            />
+          )}
+        </div>
+
+        <div className="navbar-brand">
+          {currentPage === "Home" && (
+            <img
+              src={beans}
               className="header-logo"
               width="300"
               height="125"
@@ -21,6 +33,7 @@ function Header({ currentPage, handlePageChange }) {
         </div>
 
         <ul className="nav justify-content-center ">
+          
           {/* home */}
           <li className="nav-item ">
             <a
