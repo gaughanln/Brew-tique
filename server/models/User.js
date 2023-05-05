@@ -1,12 +1,20 @@
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
 
+// TODO changed username to firstName, lastName
+
 const userSchema = new Schema({
-  username: {
+  firstName: {
     type: String,
     required: true,
-    unique: true,
-    trim: true,
+    unique: false,
+    // trim: true,
+  },
+  lastName: {
+    type: String,
+    required: true,
+    unique: false,
+    // trim: true,
   },
   email: {
     type: String,
@@ -20,6 +28,8 @@ const userSchema = new Schema({
     minlength: 5,
   },
 });
+
+// TODO we need to hash the password information-does this do that? 
 
 userSchema.pre('save', async function (next) {
   if (this.isNew || this.isModified('password')) {
