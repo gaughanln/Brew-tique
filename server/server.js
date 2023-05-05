@@ -1,6 +1,7 @@
 const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
 const path = require('path');
+const { authMiddleware } = require('./utils/auth');
 
 const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
@@ -10,18 +11,19 @@ const app = express();
 const server = new ApolloServer({
   typeDefs,
   resolvers,
+  context: authMiddleware,
 });
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, '../client/build')));
-}
+// if (process.env.NODE_ENV === 'production') {
+//   app.use(express.static(path.join(__dirname, '../client/build')));
+// }
 
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '../client/build/index.html'));
-});
+// app.get('/', (req, res) => {
+//   res.sendFile(path.join(__dirname, '../client/build/index.html'));
+// });
 
 // TODO I copied this over from the MERN mini project. Not sure if we'll use typeDefs or Resolvers. May need updating.
 
@@ -39,6 +41,7 @@ const startApolloServer = async (typeDefs, resolvers) => {
   };
   
 // Call the async function to start the server
+<<<<<<< HEAD
 <<<<<<< Updated upstream
   startApolloServer(typeDefs, resolvers);
  
@@ -47,3 +50,8 @@ const startApolloServer = async (typeDefs, resolvers) => {
   
 // :)
 >>>>>>> Stashed changes
+=======
+  startApolloServer();
+  
+// :)
+>>>>>>> 089229ebc589a72f15c54621d4cac02565839d39
