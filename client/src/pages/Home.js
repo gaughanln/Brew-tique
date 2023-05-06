@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 import homePhoto from "../assets/homePhoto.png";
+import brewtiqueLarge from "../assets/brewtiqueLarge.png";
 
 // TODO
 // pathing
@@ -8,31 +9,26 @@ import homePhoto from "../assets/homePhoto.png";
 // handle page change needs updating
 
 function Home() {
-  
-
-  console.log("is this showing up?");
   return (
     <>
+      <div className="row home valign-wrapper">
+        <div class="col s6 center-align welcome">
 
-      <h1> Brewtique</h1>
-      <p>
-        At Brewtique, we specialize in finding and curating the best niche
-        coffee from around the world, so you can experience something new and
-        exciting each month
-      </p>
+          <img src={brewtiqueLarge} className="brew-large" alt="Cup of coffee" />
+          <p className ="home-text">
+            At Brewtique, we specialize in finding and curating the best niche
+            coffee from around the world, so you can experience something new and
+            exciting each month
+          </p>
 
+          <Link
+            className="btn-large btn-home" to="/products" > Shop now! </Link>
+        </div>
 
-      <Link
-        className="nav-link rounded-pill"to="/products" > Shop </Link>
-
-{/* <a
-        className="nav-link rounded-pill"
-        href="#about"
-        onClick={() => handlePageChange("about")}
-      > How it works </a> */}
-   
-
-      <img src={homePhoto} alt="Cup of coffee" />
+        <div class="col s6 center-align">
+          <img src={homePhoto} className ="home-photo" alt="Cup of coffee" />
+        </div>
+      </div>
     </>
   );
 }
