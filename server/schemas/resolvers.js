@@ -30,8 +30,19 @@ const resolvers = {
             const user = await User.create({ firstName, lastName, email, password });
             const token = signToken(user);
             return { token, user };
+        },
+        updateUser: async (parent, { firstName, lastName, email, password }, context) => {
+            if (context.user) {
+                const updatedUser = await User.findOneAndUpdate(
+                    { _id: context.user._id },
+                    { $set: { firstName, lastName, email, password } },
+                    { new: true }
+                ).select('-__v -password');
+                return updatedUser;
         }
-    }
+        throw new AuthenticationError('Not logged in');
+    },
+},
 };
 
 module.exports = resolvers;
