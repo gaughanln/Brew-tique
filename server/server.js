@@ -14,19 +14,16 @@ const server = new ApolloServer({
   context: authMiddleware,
 });
 
-// TODO with this line commented out I get the CANNOT GET/ error
-// app.use('/public', express.static('public'));  
-
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 
-// TODO with this line commented out I get the CANNOT GET/ error
-app.use(express.static(path.join(__dirname, '../client/public/index.html')));
-
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '../client/build')));
+}
 
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '../client/public/index.html'));
+  res.sendFile(path.join(__dirname, '../client/build/index.html'));
 });
 
 // TODO I copied this over from the MERN mini project. Not sure if we'll use typeDefs or Resolvers. May need updating.
