@@ -7,16 +7,16 @@ import {
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-// import './App.css';
+import './App.css';
 
 import Home from './pages/Home';
 // import CreateUser from './pages/CreateUser';
 // import Login from './pages/Login';
 // import Cart from './components/Cart';
 import Footer from './components/Footer';
-import Header from './components/Footer';
+import Header from './components/Header';
 // import Products from './components/Products';
-// import User from './components/User';
+import User from './components/User';
 // import { Cart, Footer, Header, Products, User } from './components';
 
 // / Construct our main GraphQL API endpoint
@@ -46,22 +46,23 @@ const client = new ApolloClient({
 function App() {
 
 
-// rendering the components
+  // rendering the components
   return (
-    
-    <ApolloProvider client = {client}>
+
+    <ApolloProvider client={client}>
       <Router>
-<main>
-<Header />
-<Routes>
-  <Route path='/' element= {<Home />} />
-  {/* <Route path='/cart' element= {<Cart />} /> */}
-</Routes>
-<Footer />
-</main>
+        <main>
+          <Header />
+          <Routes>
+            <Route path='/' element={<Home />} />
+            {/* <Route path='/cart' element= {<Cart />} /> */}
+            <Route path='/myaccount' element= {<User />} />
+          </Routes>
+          <Footer />
+        </main>
 
       </Router>
-         
+
     </ApolloProvider >
   );
 }

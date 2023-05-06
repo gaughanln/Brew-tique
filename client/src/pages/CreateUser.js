@@ -33,7 +33,7 @@ function CreateUser() {
         console.error(error);
       });
   };
-
+// TODO update this to reflect firstName + lastName
   return (
     <div>
       <h1>Create User</h1>
