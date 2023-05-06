@@ -1,5 +1,5 @@
 import React from "react";
-import Header from '../components/Header'
+import { Link } from 'react-router-dom';
 import homePhoto from "../assets/homePhoto.png";
 
 // TODO
@@ -7,8 +7,8 @@ import homePhoto from "../assets/homePhoto.png";
 // CSS
 // handle page change needs updating
 
-function Home({ handlePageChange }) {
-    const handlePageChange = (page) => setCurrentPage(page);
+function Home() {
+  
 
   console.log("is this showing up?");
   return (
@@ -21,11 +21,9 @@ function Home({ handlePageChange }) {
         exciting each month
       </p>
 
-      <a
-        className="nav-link rounded-pill"
-        href="#products"
-        onClick={() => handlePageChange("Products")}
-      > Shop </a>
+
+      <Link
+        className="nav-link rounded-pill"to="/products" > Shop </Link>
 
 {/* <a
         className="nav-link rounded-pill"
