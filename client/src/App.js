@@ -45,6 +45,9 @@ const client = new ApolloClient({
 
 function App() {
 
+// TODO update naming of my account. Maybe user profile? Fix all pathing on it when done
+
+// not sure if path='/myaccount/:userId' will work yet or if it's needed
 
   // rendering the components
   return (
@@ -56,7 +59,11 @@ function App() {
           <Routes>
             <Route path='/' element={<Home />} />
             {/* <Route path='/cart' element= {<Cart />} /> */}
-            <Route path='/myaccount' element= {<User />} />
+            {/* <Route path='/login' element= {<Login />} /> */}
+            {/* <Route path='/signup' element= {<CreateUser />} /> */}
+            {/* <Route path='/products' element= {<Products />} /> */}
+            <Route path='/myaccount' element={<User />} />
+              {/* <Route path='/myaccount/:userId' element= {<Cart />} /> */}
           </Routes>
           <Footer />
         </main>
