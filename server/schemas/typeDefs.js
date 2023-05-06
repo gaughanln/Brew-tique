@@ -1,7 +1,5 @@
 const { gql } = require('apollo-server-express');
 
-// TODO update the mutation to read first name and last name. 
-
 const typeDefs = gql`
     type User {
         _id: ID
@@ -18,7 +16,8 @@ const typeDefs = gql`
     }
     type Mutation {
         login(email: String!, password: String!): Auth
-        addUser(username: String!, email: String!, password: String!): Auth
+        addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
+        updateUser(firstName: String, lastName: String, email: String, password: String): User
     }
 `;
 
