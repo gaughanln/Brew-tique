@@ -1,4 +1,6 @@
 const { AuthenticationError } = require('apollo-server-express');
+const User = require('../models/User');
+const signToken = require('../utils/auth');
 
 const resolvers = {
     Query: {
@@ -21,6 +23,11 @@ const resolvers = {
             if (!correctPw) {
                 throw new AuthenticationError('Incorrect credentials');
             }
+            const token = signToken(user);
+            return { token, user };
+        },
+        addUser: async (parent, { firstName, lastName, email, password }) => {
+            const user = await User.create({ firstName, lastName, email, password });
             const token = signToken(user);
             return { token, user };
         }
