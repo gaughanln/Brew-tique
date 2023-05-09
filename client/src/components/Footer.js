@@ -12,6 +12,7 @@ const Footer = () => {
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac
               velit non sapien rhoncus imperdiet.
             </p>
+            
           </div>
 
           <div class="col l4 offset-l2 s12">
