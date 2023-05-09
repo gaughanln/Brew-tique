@@ -1,18 +1,22 @@
 const mongoose = require('mongoose');
 const Coffee = require('../models/Coffee');
 const coffees = require('./coffeeData');
+const users = require('./user');
+const User = require ('../models/User')
+require('dotenv').config({path: '../.env'});
 
-mongoose.connect('mongodb://localhost:27017/coffee-shop', {
+
+mongoose.connect(process.env.MONGODB_URI || "testing", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
 
 async function seedDB() {
   try {
-    await Coffee.deleteMany({});
+    await User.deleteMany({});
     console.log('Deleted old data');
 
-    await Coffee.insertMany(coffees);
+    await User.insertMany(users);
     console.log('Inserted new data');
 
     mongoose.connection.close();
