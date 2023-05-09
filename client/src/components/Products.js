@@ -1,66 +1,49 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-// import { ADD_TO_CART, UPDATE_CART_QUANTITY } from '../utils/actions';
+import React, { useState } from 'react';
 
-const ProductPage = () => {
-  const [product, setProduct] = useState(null);
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const response = await fetch('/data/products.json');
-  //       const data = await response.json();
-  //       setProduct(data);
-  //     } catch (error) {
-  //       console.error(error);
-  //     }
-  //   };
-  //   fetchData();
-  // }, []);
+const Products = () => {
+  const [cart, setCart] = useState([]);
 
-  // const { cart } = state;
+  const addToCart = (product) => {
+    setCart([...cart, product]);
+  }
 
-  // const addToCart = () => {
-  //   const itemInCart = cart.find((cartItem) => cartItem._id === _id)
-  //   if (itemInCart) {
-  //     dispatch({
-  //       type: UPDATE_CART_QUANTITY,
-  //       _id: _id,
-  //       purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1
-  //     });
-  //     idbPromise('cart', 'put', {
-  //       ...itemInCart,
-  //       purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1
-  //     });
-  //   } else {
-  //     dispatch({
-  //       type: ADD_TO_CART,
-  //       product: { ...item, purchaseQuantity: 1 }
-  //     });
-  //     idbPromise('cart', 'put', { ...item, purchaseQuantity: 1 });
-  //   }
-  // }
+  const products = [
+    {
+      id: 1,
+      name: 'Light Roast',
+      price: 10.99,
+      image: '',
+    },
+    {
+      id: 2,
+      name: 'Medium Roast',
+      price: 10.99,
+      image: '',
+    },
+    {
+      id: 3,
+      name: 'Ultra Premium "you need this in your life" Dark Roast',
+      price: 30.99,
+      image: '',
+    }
+  ];
 
   return (
-  <div className="container my-1">
-    <Link to="/">
-        ← Back to Products
-    </Link>
-    {product ? (
-        <div className="card mb-3">
-            <h2 className="card-header">{product.name}</h2>
-            <div className="card-body">
-                <p>{product.description}</p>
-                <p className="card-text">
-                    <strong>Price:</strong>
-                    ${product.price}{' '}
-                    {/* <button className="btn btn-primary" onClick={addToCart}>Add to cart</button> */}
-                </p>
-            </div>
-        </div>
-    ) : null}
+    <div>
+      <h2>Products</h2>
+      <ul>
+        {products.map((product) => (
+          <li key={product.id}>
+            <img src={product.image} alt={product.name} />
+            <h3>{product.name}</h3>
+            <p>{product.price}</p>
+            <button onClick={() => addToCart(product)}>Add to Cart</button>
+          </li>
+        ))}
+      </ul>
     </div>
-    );
+  );
 };
 
-export default ProductPage;
+export default Products;
