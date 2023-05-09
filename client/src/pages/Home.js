@@ -1,40 +1,34 @@
 import React from "react";
-import Header from '../components/Header'
+import { Link } from 'react-router-dom';
 import homePhoto from "../assets/homePhoto.png";
+import brewtiqueLarge from "../assets/brewtiqueLarge.png";
 
 // TODO
 // pathing
 // CSS
 // handle page change needs updating
 
-function Home({ handlePageChange }) {
-    const handlePageChange = (page) => setCurrentPage(page);
-
-  console.log("is this showing up?");
+function Home() {
   return (
     <>
+      <div className="row home valign-wrapper">
+        <div class="col s6 center-align welcome">
 
-      <h1> Brewtique</h1>
-      <p>
-        At Brewtique, we specialize in finding and curating the best niche
-        coffee from around the world, so you can experience something new and
-        exciting each month
-      </p>
+          <img src={brewtiqueLarge} className="brew-large" alt="Cup of coffee" />
+          <p className ="home-text">
+            At Brewtique, we specialize in finding and curating the best niche
+            coffee from around the world, so you can experience something new and
+            exciting each month
+          </p>
 
-      <a
-        className="nav-link rounded-pill"
-        href="#products"
-        onClick={() => handlePageChange("Products")}
-      > Shop </a>
+          <Link
+            className="btn-large btn-home" to="/products" > Shop now! </Link>
+        </div>
 
-{/* <a
-        className="nav-link rounded-pill"
-        href="#about"
-        onClick={() => handlePageChange("about")}
-      > How it works </a> */}
-   
-
-      <img src={homePhoto} alt="Cup of coffee" />
+        <div class="col s6 center-align">
+          <img src={homePhoto} className ="home-photo" alt="Cup of coffee" />
+        </div>
+      </div>
     </>
   );
 }
