@@ -28,6 +28,8 @@ app.get('/', (req, res) => {
 
 // TODO I copied this over from the MERN mini project. Not sure if we'll use typeDefs or Resolvers. May need updating.
 
+
+
 // Create a new instance of an Apollo server with the GraphQL schema
 const startApolloServer = async (typeDefs, resolvers) => {
   await server.start();
@@ -43,5 +45,5 @@ const startApolloServer = async (typeDefs, resolvers) => {
   
 // Call the async function to start the server
 
-  startApolloServer();
+  startApolloServer(typeDefs, resolvers);
   

@@ -1,20 +1,43 @@
 import React, { useState } from 'react';
 import cheers from '../assets/cheers.png'
 import { Link } from 'react-router-dom';
+import { gql, useQuery } from '@apollo/client';
 
+ const GET_USERS = gql`
+ query GetUsers {
+  users {
+    id
+    firstName
+    lastName
+    email
+  }
+}
+ `;
 
 function User() {
-  const [userInfo, setUserInfo] = useState({
-    name: {
-      firstName: '',
-      lastName: ''
-    },
-    email: 'gaughanln@yahoo.com',
-    address: 'Houston'
-  });
 
-  const [editing, setEditing] = useState(false);
-  const [nameEditable, setNameEditable] = useState(false);
+  const {loading, error, data} = useQuery(GET_USERS)
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error.message}</p>;
+
+ 
+
+  
+  // const [userInfo, setUserInfo] = useState({
+  //   name: {
+  //     firstName: '',
+  //     lastName: ''
+  //   },
+  //   email: 'gaughanln@yahoo.com',
+  //   address: 'Houston'
+  // });
+
+  // const [editing, setEditing] = useState(false);
+  // const [nameEditable, setNameEditable] = useState(false);
+
+// fetch data fromt he database using graphql api
+  
   //TODO
   // make input boxes NOT editable until the pencil is clicked
   // TODO ensure the information gets saved back to the database and it updates
@@ -22,8 +45,17 @@ function User() {
 
   return (
 
+
+    
     <>
-      <div className="row user valign-wrapper">
+
+{data.users.map((user) => (
+    <li key={user.id}>
+      {user.firstName} {user.lastName}
+    </li>
+  ))}
+
+      {/* <div className="row user valign-wrapper">
         <div class="col s6 ">
           <span className="myaccount-text">
             <h1> My Account <Link>
@@ -39,13 +71,13 @@ function User() {
             <h3 className ="user-text"> Name </h3>
             <div class="input-field col s6">
           <input placeholder="Placeholder" id="first_name" value={`${userInfo.name.firstName}`} type="text" class="validate"/>
-          <label for="first_name">First Name</label>
+          <label for="first_name"></label>
         </div>
         <div class="input-field col s6">
           <input id="last_name" 
           value={`${userInfo.name.lastName}`} type="text" class="validate"/>
-          <label for="last_name">Last Name</label>
-        </div>
+          <label for="last_name" placeholder = "last name" ></label>
+        </div> */}
            
             {/* <input
               type="text"
@@ -64,7 +96,7 @@ function User() {
               }}
             /> */}
 
-
+{/* 
             <h3 className ="user-text"> Email </h3>
 
             <h3 className ="user-text"> Shipping Address </h3>
@@ -72,14 +104,14 @@ function User() {
             <h3 className ="user-text"> Subscription History </h3>
             <p> Nothing yet, better get to shopping! </p>
           </span>
-        </div>
+        </div> */}
 
 
-
+{/* 
         <div class="col s6 center-align">
           <img src={cheers} className="cheers-photo" alt="Cup of coffee" />
         </div>
-      </div>
+      </div> */}
     </>
   );
 }

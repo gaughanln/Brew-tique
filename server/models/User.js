@@ -27,6 +27,10 @@ const userSchema = new Schema({
     required: true,
     minlength: 5,
   },
+  // TODO
+  // address:{
+
+  // }
 });
 
 // TODO we need to hash the password information-does this do that? 
