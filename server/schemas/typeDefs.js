@@ -6,13 +6,32 @@ const typeDefs = gql`
         firstName: String!
         lastName: String!
         email: String!
+        address: [Address]
     }
-    type Query {
-        me: User
+    type Address {
+        userId: ID! 
+        street: String!
+        city: String!
+        state: String!
+        zip: String!
+        country: String!
+    }
+    type Coffee {
+        _id: ID!
+        name: String!
+        image: String!
+        location: String!
+        roast: String!
+        description: String!
+        price: Float!
     }
     type Auth {
         token: ID!
         user: User
+    }
+    type Query {
+        me: User
+        getProducts: [Coffee]
     }
     type Mutation {
         login(email: String!, password: String!): Auth
