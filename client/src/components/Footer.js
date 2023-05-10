@@ -9,8 +9,8 @@ const Footer = () => {
           <div class="col l6 s12">
             <h5 class="footer-text">About Us</h5>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac
-              velit non sapien rhoncus imperdiet.
+             We are Brew-tique, a small batch coffee roaster based in Houston, Texas. We specialize in 
+             finding and curating the best niche coffee from around the world, so you can experience something new and exciting each month.
             </p>
             
           </div>

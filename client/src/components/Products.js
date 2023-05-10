@@ -1,14 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 
-const Products = () => {
-  const [cart, setCart] = useState([]);
-
-  const addToCart = (product) => {
-    setCart([...cart, product]);
-  }
-
-  const products = [
+const getProducts = () => {
+  return ({
+    data:[
     {
       id: 1,
       name: 'Light Roast',
@@ -27,21 +22,41 @@ const Products = () => {
       price: 30.99,
       image: '',
     }
-  ];
+  ], loading: false})
+}
+
+
+
+const Products = (props) => {
+const {cart, setCart} = props;
+const {data, loading} = getProducts(); //replace this with the graphQl query
+const [products, setProducts] = useState([])
+ useEffect(() => {
+  if (!loading) {
+    setProducts(data)
+  }})
+
+
+  const addToCart = (product) => {
+    setCart([...cart, product]);
+  }
+
+
+
 
   return (
     <div>
       <h2>Products</h2>
-      <ul>
+      <div style={{display:"flex"}}>
         {products.map((product) => (
-          <li key={product.id}>
+          <div key={product.id} style={{border: "1px solid black", margin: "0px 14px"}}>
             <img src={product.image} alt={product.name} />
             <h3>{product.name}</h3>
             <p>{product.price}</p>
             <button onClick={() => addToCart(product)}>Add to Cart</button>
-          </li>
+          </div>
         ))}
-      </ul>
+     </div>
     </div>
   );
 };

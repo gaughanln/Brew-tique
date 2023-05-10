@@ -4,13 +4,13 @@ class Cart extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      cartItems: [], // array of items in the cart
+      // cartItems: [], // array of items in the cart //not messing your stuff up
     };
   }
 
   render() {
-    const { cartItems } = this.state;
-
+    // const { cartItems } = this.state;
+    const { cart: cartItems} = this.props; // the props is taking the item from the shop menu and lifting it to the parent and then sending it to the cart
     return (
       <div>
         <h1>Cart</h1>
