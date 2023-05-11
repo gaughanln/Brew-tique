@@ -23,6 +23,14 @@ const coffees = [
     description: 'A bold and earthy coffee with a heavy body and low acidity.',
     price: 13.99,
   },
+  {
+    name: 'Blonde Piñon',
+    image: '../src/assets/pinon.png',
+    location: 'New Mexico',
+    roast: 'Dark',
+    description: 'A bold and earthy coffee with a heavy body and low acidity.',
+    price: 13.99,
+  },
 ];
 
 module.exports = coffees;
