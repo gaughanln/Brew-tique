@@ -111,6 +111,9 @@ function User() {
         <div class="col s6 center-align">
           <img src={cheers} className="cheers-photo" alt="Cup of coffee" />
         </div>
+
+        <Link
+            className="btn-large waves-effect  green-btn" to="/products" > Shop now! </Link>
       </div>
     </>
   );

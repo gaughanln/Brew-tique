@@ -83,7 +83,7 @@ const Login = (props) => {
             </div>
 
             <button
-              className="waves-effect  btn-large login-btn"
+              className="waves-effect  btn-large brown-btn"
               style={{ cursor: 'pointer' }}
               type="submit"
             >

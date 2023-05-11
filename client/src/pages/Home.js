@@ -24,7 +24,7 @@ function Home() {
           </p>
 
           <Link
-            className="btn-large btn-home" to="/products" > Shop now! </Link>
+            className="btn-large waves-effect  clay-btn" to="/products" > Shop now! </Link>
         </div>
 
         <div class="col s6 center-align">
