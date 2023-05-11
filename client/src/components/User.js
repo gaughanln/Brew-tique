@@ -1,18 +1,10 @@
 import React, { useState } from "react";
 import cheers from "../assets/cheers.png";
 import { Link } from "react-router-dom";
-import { gql, useQuery } from "@apollo/client";
-
-const GET_USERS = gql`
-  query GetUsers($email: String) {
-    users(filter: { email: $email }) {
-      _id
-      firstName
-      lastName
-      email
-    }
-  }
-`;
+import { gql, useQuery, useMutation } from "@apollo/client";
+import { GET_USERS } from "../utils/queries";
+// TODO: Uncomment this when you're ready
+// import { ADD_ADDRESS } from "../utils/mutations";
 
 // TODO 
 // LINK the pencil to edit the input fields
