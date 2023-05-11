@@ -1,15 +1,16 @@
 import { gql } from '@apollo/client';
 
+// TODO update usern to firstname lastname
 export const LOGIN_USER = gql`
-mutation loginUser($email: String!, $password: String!) {
-  login(email: $email, password: $password) {
-    token
-    user {
-      email
-      password
+  mutation login($email: String!, $password: String!) {
+    login(email: $email, password: $password) {
+      token
+      user {
+        _id
+        username
+      }
     }
   }
-}
 `;
 
 const UPDATE_USER = gql`
@@ -21,19 +22,4 @@ const UPDATE_USER = gql`
       email
     }
   }
-`;
-
-export const ADD_ADDRESS = gql`
-mutation addAddress($userId: ID!, $street: String!, $city: String!, $state: String!, $zip: String!, $country: String!) {
-  addAddress(userId: $userId, street: $street, city: $city, state: $state, zip: $zip, country: $country) {
-    address {
-      userId
-      street
-      city
-      state
-      zip
-      country
-    }
-  }
-}
 `;

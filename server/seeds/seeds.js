@@ -6,7 +6,7 @@ const User = require ('../models/User')
 require('dotenv').config({path: '../.env'});
 
 
-mongoose.connect(process.env.REACT_APP_MONGODB_URI || "testing", {
+mongoose.connect(process.env.MONGODB_URI || "testing", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });

@@ -45,7 +45,7 @@ const resolvers = {
             }
             const users = await User.find(filterCriteria);
             return users;
-        },
+        }
     },
 
     Mutation: {
