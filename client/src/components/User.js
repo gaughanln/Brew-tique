@@ -2,6 +2,10 @@ import React, { useState } from "react";
 import cheers from "../assets/cheers.png";
 import { Link } from "react-router-dom";
 import { gql, useQuery } from "@apollo/client";
+import edit from '../assets/edit.png';
+import save from '../assets/save.png';
+
+
 
 const GET_USERS = gql`
   query GetUsers($email: String) {
@@ -16,10 +20,16 @@ const GET_USERS = gql`
 
 // TODO 
 // LINK the pencil to edit the input fields
-// Sort out the UseState to edit and save the input fields. Do we use mutations for this?
+// Sort out the UseState to edit and save the input fields. The button is changing images but now I need it to be functional. Do we use mutations for this?
 // add address option that will then save to the users data
 
+// do we need a validator?
+// const Validator = require('validator');
+
 function User() {
+  const [ imageSrc, setImageSrc ] = useState(edit);
+
+
   const { loading, error, data } = useQuery(GET_USERS, {
     variables: {
       email: "test@test.com", // replace with the email of the user you want to display, you can add a function to call that user based on the JWT token
@@ -30,6 +40,16 @@ function User() {
   if (error) return <p>Error: {error.message}</p>;
 
   const user = data && data.users && data.users[0];
+
+   const editSaveClick = () => {
+    const image = document.getElementById('edit-save');
+    if (imageSrc === edit) {
+      setImageSrc(save);
+    } else {
+      setImageSrc(edit);
+    }
+  };
+
 
   return (
     <>
@@ -44,13 +64,15 @@ function User() {
           <div class="col s6 ">
             <span className="myaccount-text" />
             <h1>
-              My Account 
+              My Account &nbsp;
               <Link>
                 <img
-                  src="https://cdn-icons-png.flaticon.com/512/2541/2541991.png"
+                  src={imageSrc}
                   width="40"
                   height="40"
-                  className="pencil-icon"
+                  onClick={editSaveClick}
+                  id="pencil-save"
+                  className="edit-icon"
                   alt="pencil icon"
                 />
               </Link>
@@ -81,7 +103,7 @@ function User() {
             </div>
 
             {/* email */}
-            <div class="input-field col s6">
+            <div class="input-field col12">
               <h3 className="user-text"> Email </h3>
 
               <input
@@ -93,24 +115,29 @@ function User() {
             </div>
 
 {/* address - update data input */}
-            <div class="input-field col s6">
+            <div class="input-field col12">
               <h3 className="user-text"> Shipping Address </h3>
 
               <input
                 id="email"
-                value={`${user.email}`}
+                value= "nothing yet!"
                 type="email"
                 class="validate"
               />
-              <p> none yet</p>
             </div>
+
+            <div class="input-field col">
+            <Link
+            className="btn-large waves-effect green-btn" to="/products" > Shop now! </Link>
+          </div>
           </div>
         )}
        
-
-        <div class="col s6 center-align">
+       {/* fix this photo placement */}
+        <div class="col s6 ">
           <img src={cheers} className="cheers-photo" alt="Cup of coffee" />
         </div>
+
       </div>
     </>
   );
