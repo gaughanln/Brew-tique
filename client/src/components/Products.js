@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from 'react';
+// TODO: Uncomment these when you're ready
+// import { useQuery } from '@apollo/react-hooks';
+// import { GET_PRODUCTS } from '../../utils/queries';
 
 
 const getProducts = () => {
