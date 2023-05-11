@@ -4,9 +4,9 @@ import homePhoto from "../assets/homePhoto.png";
 import brewtiqueLarge from "../assets/brewtiqueLarge.png";
 
 // TODO
-// pathing
-// CSS
-// handle page change needs updating
+
+// CSS - want header cream color for this page only
+// handle page change needs updating - does it though?
 
 
 

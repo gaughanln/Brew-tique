@@ -149,6 +149,10 @@ padding-bottom: 3%;
   margin-left: 50%;
 }
 
+.cheers-photo {
+  max-width: 80%;
+}
+
 .user {
   padding-top: 3%; 
 }

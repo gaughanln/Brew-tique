@@ -1,8 +1,8 @@
 import React from "react";
-import brewtiqueSmall from "../assets/brewtiqueSmall.png";
+// import brewtiqueSmall from "../assets/brewtiqueSmall.png";
 import beans from "../assets/beans.png";
 import cart from "../assets/cart.png";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 
 // TODO if time, add mobile collapse
