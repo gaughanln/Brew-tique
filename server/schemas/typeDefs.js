@@ -6,7 +6,6 @@ const typeDefs = gql`
         firstName: String!
         lastName: String!
         email: String!
-        password: String!
         address: [Address]
     }
     type Address {
@@ -31,14 +30,14 @@ const typeDefs = gql`
         user: User
     }
     input UserFilterInput {
-        firstName: String
-        lastName: String
-        email: String
+    firstName: String
+    lastName: String
+    email: String
     }
     type Query {
         me: User
-        users(filter: UserFilterInput): [User]
         getProducts: [Coffee]
+        users(filter: UserFilterInput): [User]
     }   
     type Mutation {
         login(email: String!, password: String!): Auth
