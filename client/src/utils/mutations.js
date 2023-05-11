@@ -16,15 +16,15 @@ mutation addUser($firstName: String!, $lastName: String!, $email: String!, $pass
 `;
 
 export const LOGIN_USER = gql`
-mutation loginUser($email: String!, $password: String!) {
-  login(email: $email, password: $password) {
-    token
-    user {
-      email
-      password
+  mutation login($email: String!, $password: String!) {
+    login(email: $email, password: $password) {
+      token
+      user {
+        _id
+        username
+      }
     }
   }
-}
 `;
 
 export const UPDATE_USER = gql`
@@ -36,19 +36,4 @@ export const UPDATE_USER = gql`
       email
     }
   }
-`;
-
-export const ADD_ADDRESS = gql`
-mutation addAddress($userId: ID!, $street: String!, $city: String!, $state: String!, $zip: String!, $country: String!) {
-  addAddress(userId: $userId, street: $street, city: $city, state: $state, zip: $zip, country: $country) {
-    address {
-      userId
-      street
-      city
-      state
-      zip
-      country
-    }
-  }
-}
 `;
