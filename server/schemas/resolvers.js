@@ -5,14 +5,26 @@ const signToken = require('../utils/auth');
 const resolvers = {
     Query: {
         me: async (parent, args, context) => {
-            if (context.user) {
-                const userData = await User.findOne({ _id: context.user._id })
-                    .select('-__v -password')
-                return userData;
+          if (context.user) {
+            try {
+              const userData = await User.findOne({ _id: context.user._id }).select('-__v -password');
+              return userData;
+            } catch (error) {
+              throw new Error('Failed to fetch user data');
             }
-            throw new AuthenticationError('Not logged in');
-        }
-    },
+          }
+          throw new AuthenticationError('Not logged in');
+        },
+        getProducts: async () => {
+          try {
+            const products = await Coffee.find();
+            return products;
+          } catch (error) {
+            console.log(error);
+            throw new Error('Failed to fetch products');
+          }
+        },
+      },
     Mutation: {
         login: async (parent, { email, password }) => {
             const user = await User.findOne({ email });
