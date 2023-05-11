@@ -165,11 +165,12 @@ padding-bottom: 3%;
 }
 
 .cheers-photo {
-  max-width: 80%;
+  width: 100%;
 }
 
 .user {
   padding-top: 3%; 
+  margin-left: 3%;
 }
 
 .user-text {
