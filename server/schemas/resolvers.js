@@ -1,5 +1,6 @@
 const { AuthenticationError } = require('apollo-server-express');
 const User = require('../models/User');
+const Coffee = require('../models/Coffee');
 const signToken = require('../utils/auth');
 const jwt = require('jsonwebtoken');
 
@@ -45,6 +46,10 @@ const resolvers = {
             }
             const users = await User.find(filterCriteria);
             return users;
+        },
+        getProducts: async (parent, args, context) => {
+            const products = await Coffee.find({});
+            return products;
         }
     },
 
