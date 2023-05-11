@@ -56,14 +56,15 @@ padding-bottom: 3%;
     box-shadow: 0 1px 0 0 rgb(222, 35, 213);
   }
 
-  .login-btn {
+  .brown-btn {
     background-color: var(--light-Brown);
     color: white;
     border-radius: 30px;
   }
 
-  .login-btn:hover {
+  .brown-btn:hover {
     background-color: var(--green);
+    font-weight: bolder;
   }
 
 .home {
@@ -80,10 +81,24 @@ padding-bottom: 3%;
   font-size: 22px;
 }
 
-.btn-home {
-  background-color: var(--clay);
+.clay-btn {
+  background-color: var(--peach);
   color: var(--green);
   font-weight: bolder;
+  border-radius: 30px;
+}
+.clay-btn:hover {
+  background-color: var(--clay);
+}
+
+.green-btn {
+  background-color: var(--green);
+  color: var(--clay);
+  font-weight: bolder;
+  border-radius: 30px;
+}
+.green-btn:hover {
+  background-color: var(--light-Brown);
 }
 
 .home-photo {
@@ -149,8 +164,13 @@ padding-bottom: 3%;
   margin-left: 50%;
 }
 
+.cheers-photo {
+  width: 100%;
+}
+
 .user {
   padding-top: 3%; 
+  margin-left: 3%;
 }
 
 .user-text {

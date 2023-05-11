@@ -1,117 +1,144 @@
-import React, { useState } from 'react';
-import cheers from '../assets/cheers.png'
-import { Link } from 'react-router-dom';
-import { gql, useQuery } from '@apollo/client';
+import React, { useState } from "react";
+import cheers from "../assets/cheers.png";
+import { Link } from "react-router-dom";
+import { gql, useQuery } from "@apollo/client";
+import edit from '../assets/edit.png';
+import save from '../assets/save.png';
 
- const GET_USERS = gql`
- query GetUsers {
-  users {
-    id
-    firstName
-    lastName
-    email
+
+
+const GET_USERS = gql`
+  query GetUsers($email: String) {
+    users(filter: { email: $email }) {
+      _id
+      firstName
+      lastName
+      email
+    }
   }
-}
- `;
+`;
+
+// TODO 
+// LINK the pencil to edit the input fields
+// Sort out the UseState to edit and save the input fields. The button is changing images but now I need it to be functional. Do we use mutations for this?
+// add address option that will then save to the users data
+
+// do we need a validator?
+// const Validator = require('validator');
 
 function User() {
+  const [ imageSrc, setImageSrc ] = useState(edit);
 
-  const {loading, error, data} = useQuery(GET_USERS)
+
+  const { loading, error, data } = useQuery(GET_USERS, {
+    variables: {
+      email: "test@test.com", // replace with the email of the user you want to display, you can add a function to call that user based on the JWT token
+    },
+  });
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
 
- 
+  const user = data && data.users && data.users[0];
 
-  
-  // const [userInfo, setUserInfo] = useState({
-  //   name: {
-  //     firstName: '',
-  //     lastName: ''
-  //   },
-  //   email: 'gaughanln@yahoo.com',
-  //   address: 'Houston'
-  // });
+   const editSaveClick = () => {
+    const image = document.getElementById('edit-save');
+    if (imageSrc === edit) {
+      setImageSrc(save);
+    } else {
+      setImageSrc(edit);
+    }
+  };
 
-  // const [editing, setEditing] = useState(false);
-  // const [nameEditable, setNameEditable] = useState(false);
-
-// fetch data fromt he database using graphql api
-  
-  //TODO
-  // make input boxes NOT editable until the pencil is clicked
-  // TODO ensure the information gets saved back to the database and it updates
-  // TODO when you click on the pencil to edit, it then turns into a save button
 
   return (
-
-
-    
     <>
+      <div className="row user ">
+        {user && (
+          // <ul>
+          //   <li>First name: {user.firstName}</li>
+          //   <li>Last name: {user.lastName}</li>
+          //   <li>Email: {user.email}</li>
+          // </ul>
 
-{data.users.map((user) => (
-    <li key={user.id}>
-      {user.firstName} {user.lastName}
-    </li>
-  ))}
-
-      {/* <div className="row user valign-wrapper">
-        <div class="col s6 ">
-          <span className="myaccount-text">
-            <h1> My Account <Link>
-              {editing ? "Save" :
-                <img src='https://cdn-icons-png.flaticon.com/512/2541/2541991.png'
+          <div class="col s6 ">
+            <span className="myaccount-text" />
+            <h1>
+              My Account &nbsp;
+              <Link>
+                <img
+                  src={imageSrc}
                   width="40"
                   height="40"
-                  className="pencil-icon"
-                  alt="pencil icon" />
-              }
-            </Link> </h1>
+                  onClick={editSaveClick}
+                  id="pencil-save"
+                  className="edit-icon"
+                  alt="pencil icon"
+                />
+              </Link>
+            </h1>
 
-            <h3 className ="user-text"> Name </h3>
             <div class="input-field col s6">
-          <input placeholder="Placeholder" id="first_name" value={`${userInfo.name.firstName}`} type="text" class="validate"/>
-          <label for="first_name"></label>
-        </div>
-        <div class="input-field col s6">
-          <input id="last_name" 
-          value={`${userInfo.name.lastName}`} type="text" class="validate"/>
-          <label for="last_name" placeholder = "last name" ></label>
-        </div> */}
-           
-            {/* <input
-              type="text"
-              id="name"
-              value={`${userInfo.name.firstName} ${userInfo.name.lastName}`}
-              disabled={!nameEditable}
-              onChange={e => {
-                const [firstName, lastName] = e.target.value.split(' ');
-                setUserInfo({
-                  ...userInfo,
-                  name: {
-                    firstName,
-                    lastName
-                  }
-                })
-              }}
-            /> */}
+              <h3 className="user-text"> First Name </h3>
 
-{/* 
-            <h3 className ="user-text"> Email </h3>
+              <input
+                placeholder="Placeholder"
+                id="first_name"
+                value={`${user.firstName}`}
+                type="text"
+                class="validate"
+              />
+            </div>
 
-            <h3 className ="user-text"> Shipping Address </h3>
+            {/* last name */}
+            <div class="input-field col s6">
+              <h3 className="user-text"> Last Name </h3>
 
-            <h3 className ="user-text"> Subscription History </h3>
-            <p> Nothing yet, better get to shopping! </p>
-          </span>
-        </div> */}
+              <input
+                id="last_name"
+                value={`${user.lastName}`}
+                type="text"
+                class="validate"
+              />
+            </div>
 
+            {/* email */}
+            <div class="input-field col12">
+              <h3 className="user-text"> Email </h3>
 
-{/* 
-        <div class="col s6 center-align">
+              <input
+                id="email"
+                value={`${user.email}`}
+                type="email"
+                class="validate"
+              />
+            </div>
+
+{/* address - update data input */}
+            <div class="input-field col12">
+              <h3 className="user-text"> Shipping Address </h3>
+
+              <input
+                id="email"
+                value= "nothing yet!"
+                type="email"
+                class="validate"
+              />
+            </div>
+
+            <div class="input-field col">
+            <Link
+            className="btn-large waves-effect green-btn" to="/products" > Shop now! </Link>
+          </div>
+          </div>
+        )}
+       
+       {/* fix this photo placement */}
+        <div class="col s6 ">
           <img src={cheers} className="cheers-photo" alt="Cup of coffee" />
         </div>
-      </div> */}
+
+      </div>
     </>
   );
 }

@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+// TODO remove username and just use first name and last name
+// Extra: add shipping address line but don't make it required - reference model
 function CreateUser() {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');

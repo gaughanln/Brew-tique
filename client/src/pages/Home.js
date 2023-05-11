@@ -4,9 +4,9 @@ import homePhoto from "../assets/homePhoto.png";
 import brewtiqueLarge from "../assets/brewtiqueLarge.png";
 
 // TODO
-// pathing
-// CSS
-// handle page change needs updating
+
+// CSS - want header cream color for this page only
+// handle page change needs updating - does it though?
 
 
 
@@ -24,7 +24,7 @@ function Home() {
           </p>
 
           <Link
-            className="btn-large btn-home" to="/products" > Shop now! </Link>
+            className="btn-large waves-effect  clay-btn" to="/products" > Shop now! </Link>
         </div>
 
         <div class="col s6 center-align">
