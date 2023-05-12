@@ -37,7 +37,7 @@ function CreateUser() {
   };
 // TODO update this to reflect firstName + lastName
   return (
-    <div>
+    <div className=" row login center-align">
       <h1>Create User</h1>
       <form onSubmit={handleSubmit}>
         <div>
@@ -67,7 +67,8 @@ function CreateUser() {
             onChange={(event) => setPassword(event.target.value)}
           />
         </div>
-        <button type="submit">Create User</button>
+        <br />
+        <button type="submit" className="btn-large waves-effect green-btn">Create User</button>
       </form>
     </div>
   );

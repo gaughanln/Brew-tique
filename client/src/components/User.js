@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import cheers from "../assets/cheers.png";
 import { Link } from "react-router-dom";
-import { gql, useQuery } from "@apollo/client";
+import { gql, useQuery, useMutation } from "@apollo/client";
 import edit from '../assets/edit.png';
 import save from '../assets/save.png';
 
-
+import { ADD_ADDRESS, GET_USERS } from "../utils/mutations";
 
 const GET_USERS = gql`
   query GetUsers($email: String) {
@@ -78,15 +78,14 @@ function User() {
               </Link>
             </h1>
 
+            {/* first name */}
             <div class="input-field col s6">
               <h3 className="user-text"> First Name </h3>
-
+              
               <input
-                placeholder="Placeholder"
                 id="first_name"
                 value={`${user.firstName}`}
                 type="text"
-                class="validate"
               />
             </div>
 
@@ -98,14 +97,13 @@ function User() {
                 id="last_name"
                 value={`${user.lastName}`}
                 type="text"
-                class="validate"
               />
             </div>
 
             {/* email */}
             <div class="input-field col12">
               <h3 className="user-text"> Email </h3>
-
+              
               <input
                 id="email"
                 value={`${user.email}`}
@@ -117,12 +115,10 @@ function User() {
 {/* address - update data input */}
             <div class="input-field col12">
               <h3 className="user-text"> Shipping Address </h3>
-
               <input
                 id="email"
                 value= "nothing yet!"
-                type="email"
-                class="validate"
+                type="text"
               />
             </div>
 
@@ -133,7 +129,7 @@ function User() {
           </div>
         )}
        
-       {/* fix this photo placement */}
+       {/* fix this photo */}
         <div class="col s6 ">
           <img src={cheers} className="cheers-photo" alt="Cup of coffee" />
         </div>

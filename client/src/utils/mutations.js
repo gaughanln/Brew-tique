@@ -37,3 +37,18 @@ export const UPDATE_USER = gql`
     }
   }
 `;
+
+export const ADD_ADDRESS = gql`
+mutation addAddress($userId: ID!, $street: String!, $city: String!, $state: String!, $zip: String!, $country: String!) {
+  addAddress(userId: $userId, street: $street, city: $city, state: $state, zip: $zip, country: $country) {
+    address {
+      userId
+      street
+      city
+      state
+      zip
+      country
+    }
+  }
+}
+`;
