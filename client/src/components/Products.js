@@ -10,6 +10,8 @@ import medium from "../assets/medium.png";
 // import { useQuery } from '@apollo/react-hooks';
 // import { GET_PRODUCTS } from '../../utils/queries';
 
+// added the images and more coffee data so we could get the look of it all - helps for styling. Delete once data is linked from the database.
+
 const getProducts = () => {
   return {
     data: [
@@ -27,6 +29,24 @@ const getProducts = () => {
       },
       {
         id: 3,
+        name: "Ultra Premium",
+        price: 30.99,
+        image: medium,
+      },
+      {
+        id: 4,
+        name: "Light Roast",
+        price: 10.99,
+        image: dreams,
+      },
+      {
+        id: 5,
+        name: "Medium Roast",
+        price: 10.99,
+        image: sundown,
+      },
+      {
+        id: 6,
         name: "Ultra Premium",
         price: 30.99,
         image: medium,
@@ -53,7 +73,7 @@ const Products = (props) => {
   return (
     <div>
       {/* <h2>Products</h2> */}
-      <div className="container  center-align">
+      <div className="container  center-align text-center">
         <img src={ontap} className="ontap" alt="Products" />
         <div className="row">
         <div className="products-text" >
@@ -69,7 +89,7 @@ const Products = (props) => {
                 alt={product.name}
                 height="300"
               />
-              <h3>{product.name}</h3>
+              <h3 className ="truncate">{product.name}</h3>
               <p>${product.price}</p>
               <button
                 className="waves-effect  btn-large brown-btn"

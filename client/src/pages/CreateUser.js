@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import signup from "../assets/signup.png";
 
 // TODO remove username and just use first name and last name
-// Extra: add shipping address line but don't make it required - reference model
+// Extra: add shipping address line but don't make it required - reference model. Needs to use the gql
 function CreateUser() {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');

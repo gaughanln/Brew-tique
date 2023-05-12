@@ -67,9 +67,9 @@ class Cart extends React.Component {
                 </div>
 
                 {/* submit button */}
-                <button className="waves-effect btn-large brown-btn checkout-btn ">
+                <a className="waves-effect btn-large brown-btn checkout-btn ">
                   Checkout
-                </button>
+                </a>
               </div>
             </div>
           </div>
