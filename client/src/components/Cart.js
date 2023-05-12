@@ -19,7 +19,7 @@ class Cart extends React.Component {
         {cartItems.length === 0 ? (
           <>
             <div className="row  valign-wrapper ">
-              <div class="col center-align ">
+              <div className="col center-align ">
                 <img src={oops} className="oops" alt="Your cart is empty" />
                 <br />
                 <Link
@@ -37,7 +37,7 @@ class Cart extends React.Component {
             <div className="row cards valign-wrapper center-align">
               {cartItems.map((item, index) => (
                 <a key={index}>
-                  <div class="col s6 center-align">
+                  <div className="col s6 center-align">
                     {/*  image */}
                     <img
                       src={item.image}
@@ -48,7 +48,7 @@ class Cart extends React.Component {
                   </div>
 
                   {/* name and price */}
-                  <div class="col s6 center-align">
+                  <div className="col s6 center-align">
                     <p className="cart-text">
                       {item.name} <br /> $ {item.price}
                     </p>
@@ -58,7 +58,7 @@ class Cart extends React.Component {
             </div>
             <div>
               <div className="row cards center-align">
-                <div class="col s6 center-align waves-effect  btn-large checkout-btn ">
+                <div className="col s6 center-align waves-effect  btn-large checkout-btn ">
                   {/* total */}
                   <strong>
                     Total: ${" "}

@@ -51,7 +51,7 @@ function User() {
       <div className="row user ">
         {user && (
       
-          <div class="col s6 ">
+          <div className="col s6 ">
             <span className="myaccount-text" />
             <div>
             <img src={myaccount} className="brew-large" alt="Cup of coffee" />
@@ -72,22 +72,22 @@ function User() {
 </div>
         
               {/* first name */}
-              <div class="input-field col s6">
+              <div className="input-field col s6">
               <h3 className="user-text"> Name </h3>
                 <p>{user.firstName} {user.lastName}</p>
               </div>
 
-              <div class="input-field col s6">
+              <div className="input-field col s6">
               <h3 className="user-text"> email </h3>
                 <p>{user.email}</p>
               </div>
 
-              <div class="input-field col s6">
+              <div className="input-field col s6">
               <h3 className="user-text"> Shipping Address </h3>
                 <p>No address on file</p>
               </div>
 
-            <div class="input-field col s6">
+            <div className="input-field col s6">
               <Link className="btn-large waves-effect green-btn" to="/products">
                 Shop now!
               </Link>
@@ -96,7 +96,7 @@ function User() {
         )}
 
         {/* fix this photo */}
-        <div class="col s6 ">
+        <div className="col s6 ">
           <img src={cheers} className="cheers-photo" alt="Cup of coffee" />
         </div>
       </div>
