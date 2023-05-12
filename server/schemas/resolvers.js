@@ -1,7 +1,7 @@
 const { AuthenticationError } = require('apollo-server-express');
 const User = require('../models/User');
 const Coffee = require('../models/Coffee');
-const signToken = require('../utils/auth');
+const {signToken} = require('../utils/auth');
 const jwt = require('jsonwebtoken');
 
 
@@ -23,11 +23,13 @@ const getUser = ({ token }) => {
 const resolvers = {
     Query: {
         me: async (parent, args, context) => {
-            const user = getUser(context);
-            if (!user) {
+            // const user = getUser(context);
+            if (!context.user) {
                 throw new AuthenticationError('Not logged in');
             }
-            const userData = await User.findOne({ _id: user.id }).select('-__v -password');
+            console.log("context", context);
+            const userData = await User.findOne({ _id: context.user._id }).select('-__v -password');
+            console.log(userData)
             return userData;
 
         },
@@ -68,7 +70,9 @@ const resolvers = {
         },
         addUser: async (parent, { firstName, lastName, email, password, isTestUser }) => {
             const user = await User.create({ firstName, lastName, email, password, isTestUser });
+            console.log('HELP!!')
             const token = signToken(user);
+            console.log('HELLO')
             return { token, user };
         },
 
