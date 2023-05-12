@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+// TODO remove username and just use first name and last name
+// Extra: add shipping address line but don't make it required - reference model
 function CreateUser() {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
@@ -33,9 +35,9 @@ function CreateUser() {
         console.error(error);
       });
   };
-
+// TODO update this to reflect firstName + lastName
   return (
-    <div>
+    <div className=" row login center-align">
       <h1>Create User</h1>
       <form onSubmit={handleSubmit}>
         <div>
@@ -65,7 +67,8 @@ function CreateUser() {
             onChange={(event) => setPassword(event.target.value)}
           />
         </div>
-        <button type="submit">Create User</button>
+        <br />
+        <button type="submit" className="btn-large waves-effect green-btn">Create User</button>
       </form>
     </div>
   );

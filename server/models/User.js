@@ -1,5 +1,5 @@
 const { Schema, model } = require('mongoose');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 // TODO changed username to firstName, lastName
 
@@ -27,6 +27,10 @@ const userSchema = new Schema({
     required: true,
     minlength: 5,
   },
+  // TODO
+  // address:{
+
+  // }
 });
 
 // TODO we need to hash the password information-does this do that? 

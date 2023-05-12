@@ -4,8 +4,114 @@
   --light-Brown: #b88364;
   --peach: #edd3c5;
   --clay: #ece7e3;
+  background-color: var(--peach);
 }
 
+body {
+  display: flex;
+  min-height: 100%;
+  min-width: 100%;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}
+/* .nav-wrapper {
+  background-color: var(--green);
+} */
+
+/* needs to be light for the home page only */
+nav {
+background-color: var(--green);
+padding-top: 1%;
+padding-bottom: 3%;
+}
+
+.nav-text {
+  font-weight: bolder;
+  color: var(--green);
+}
+
+.beans {
+  margin-left: 2%;
+}
+
+.welcome-back-photo {
+  max-width: 100%;
+}
+
+
+
+.login {
+  max-width: 40%;
+  padding-top: 5%;
+}
+ /* label color */
+ .input-field label {
+  color: var(--green);
+}
+/* WHY WON'T THIS WORK!? WTF */
+   /* label underline focus color */
+   .input-field input[type=password]:focus {
+    border-bottom: 1px solid rgb(70, 207, 28);
+    box-shadow: 0 1px 0 0 rgb(222, 35, 213);
+  }
+
+  .brown-btn {
+    background-color: var(--light-Brown);
+    color: white;
+    border-radius: 30px;
+  }
+
+  .brown-btn:hover {
+    background-color: var(--green);
+    font-weight: bolder;
+  }
+
+.home {
+ /* padding-top: 3%;  */
+ background-color: var(--green);
+}
+
+.welcome {
+  max-width: 100%;
+}
+
+.home-text {
+  color: var(--clay);
+  font-size: 22px;
+}
+
+.clay-btn {
+  background-color: var(--peach);
+  color: var(--green);
+  font-weight: bolder;
+  border-radius: 30px;
+}
+.clay-btn:hover {
+  background-color: var(--clay);
+}
+
+.green-btn {
+  background-color: var(--green);
+  color: var(--clay);
+  font-weight: bolder;
+  border-radius: 30px;
+}
+.green-btn:hover {
+  background-color: var(--light-Brown);
+}
+
+.home-photo {
+  /* max-height: 80%; */
+  max-width: 100%;
+    /* max-width: 100%; */
+}
+
+.brew-large {
+  max-width: 100%;
+}
 
 .product-page {
   display: flex;
@@ -54,11 +160,42 @@
   margin-left: 10px;
 }
 
+/* MY ACCOUNT PAGE */
+.myaccount-text {
+  color:#282c34;
+  margin-left: 50%;
+}
+
+.cheers-photo {
+  width: 100%;
+}
+
+.user {
+  padding-top: 3%; 
+  margin-left: 3%;
+}
+
+.user-text {
+  color: #282c34;
+  font-size: 22px;
+}
+
+/* FOOTER */
+
+/* why is this floating? */
+/* want it cream on the home page - is that possible? */
+footer {
+  background-color: var(--green) !important;
+  bottom: 0;
+  position: fixed;
+  min-width: 100%;
+}
+
+.foot {
+margin-bottom: 0;}
 
 
-
-
-/* .App {
+* .App {
   text-align: center;
 }
 
