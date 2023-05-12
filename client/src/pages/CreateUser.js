@@ -68,6 +68,8 @@ function CreateUser() {
           />
         </div>
         <br />
+
+        {/* TODO this button needs to push to another page */}
         <button type="submit" className="btn-large waves-effect green-btn">Create User</button>
       </form>
     </div>
