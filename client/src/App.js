@@ -77,5 +77,3 @@ const [cart, setCart] = useState([]);
 }
 
 export default App;
-
-

@@ -27,7 +27,7 @@ function User() {
 
   const { loading, error, data } = useQuery(GET_USERS, {
     variables: {
-      email: "", // replace with the email of the user you want to display, you can add a function to call that user based on the JWT token
+      email: "", // TODO: What all do we need here? replace with the email of the user you want to display, you can add a function to call that user based on the JWT token
     },
   });
 
@@ -49,12 +49,7 @@ function User() {
     <>
       <div className="row user ">
         {user && (
-          // <ul>
-          //   <li>First name: {user.firstName}</li>
-          //   <li>Last name: {user.lastName}</li>
-          //   <li>Email: {user.email}</li>
-          // </ul>
-
+      
           <div class="col s6 ">
             <span className="myaccount-text" />
             <h1>
@@ -97,28 +92,6 @@ function User() {
                 <label for="last_name"></label>
               </div>
             </div>
-
-            {/* first name */}
-            {/* <div class="input-field col s6">
-              <h3 className="user-text"> First Name </h3>
-              
-              <input
-                id="first_name"
-                value={`${user.firstName}`}
-                type="text"
-              />
-            </div> */}
-
-            {/* last name */}
-            {/* <div class="input-field col s6">
-              <h3 className="user-text"> Last Name </h3>
-
-              <input
-                id="last_name"
-                value={`${user.lastName}`}
-                type="text"
-              />
-            </div> */}
 
             {/* email */}
             <div class="input-field col12">
