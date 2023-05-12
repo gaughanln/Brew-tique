@@ -118,6 +118,17 @@ padding-bottom: 3%;
   max-width: 100%;
 }
 
+/* TODO center the image */
+.ontap {
+  max-width: 60%;
+  margin-top: 5%;
+}
+
+.signup {
+  margin-bottom: 8%;
+  max-width: 100%;
+}
+
 .product-page {
   display: flex;
   justify-content: space-between;

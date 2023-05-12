@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import signup from "../assets/signup.png";
 
 // TODO remove username and just use first name and last name
 // Extra: add shipping address line but don't make it required - reference model
@@ -38,9 +39,12 @@ function CreateUser() {
 // TODO update this to reflect firstName + lastName
   return (
     <div className=" row login center-align">
-      <h1>Create User</h1>
+      {/* <h1>Create User</h1> */}
+
+      <img src={signup} className="signup" alt="Signup" />
+
       <form onSubmit={handleSubmit}>
-        <div>
+        <div className="input-field col s12">
           <label htmlFor="username">Username:</label>
           <input
             type="text"
@@ -49,7 +53,7 @@ function CreateUser() {
             onChange={(event) => setUsername(event.target.value)}
           />
         </div>
-        <div>
+        <div className="input-field col s12">
           <label htmlFor="email">Email:</label>
           <input
             type="email"
@@ -58,7 +62,7 @@ function CreateUser() {
             onChange={(event) => setEmail(event.target.value)}
           />
         </div>
-        <div>
+        <div className="input-field col s12">
           <label htmlFor="password">Password:</label>
           <input
             type="password"

@@ -56,6 +56,20 @@ function Header() {
                 </NavLink>
               </li>
 
+                 {/* login */}
+                 <li>
+                <NavLink to="/login">
+                  Login
+                </NavLink>
+              </li>
+
+                 {/* HOME */}
+                 <li>
+                <NavLink to="/signup">
+                  Sign up
+                </NavLink>
+              </li>
+
               {/*MY ACCOUNT  */}
               <li>
                 <NavLink to="/myaccount">

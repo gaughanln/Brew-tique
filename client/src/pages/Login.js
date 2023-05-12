@@ -69,7 +69,7 @@ const Login = () => {
             <div className="row">
               <div className="input-field col s12">
                 <input id="email" type="email" className="validate"  />
-                <label for="email">Email </label>
+                <label htmlFor="email">Email </label>
               </div>
             </div>
 

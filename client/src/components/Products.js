@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import ontap from "../assets/ontap.png"
 
 // from stevie
 // import { useQuery } from '@apollo/react-hooks';
@@ -49,7 +50,10 @@ const [products, setProducts] = useState([])
 
   return (
     <div>
-      <h2>Products</h2>
+      {/* <h2>Products</h2> */}
+
+      <img src ={ontap} className="ontap" alt="Products" />
+
       <div style={{display:"flex"}}>
         {products.map((product) => (
           <div key={product.id} style={{border: "1px solid black", margin: "0px 14px"}}>
