@@ -6,6 +6,7 @@ const typeDefs = gql`
         firstName: String!
         lastName: String!
         email: String!
+        password: String!
         address: [Address]
     }
     type Address {
@@ -30,9 +31,9 @@ const typeDefs = gql`
         user: User
     }
     input UserFilterInput {
-    firstName: String
-    lastName: String
-    email: String
+        firstName: String
+        lastName: String
+        email: String
     }
     type Query {
         me: User
@@ -41,10 +42,9 @@ const typeDefs = gql`
     }   
     type Mutation {
         login(email: String!, password: String!): Auth
-        addUser(firstName: String!, lastName: String!, email: String!, password: String!, isTestUser: Boolean): Auth
+        addUser(firstName: String!, lastName: String!, email: String!, password: String!) : Auth
         updateUser(firstName: String, lastName: String, email: String, password: String): User
         addAddress(userId: ID!, street: String!, city: String!, state: String!, zip: String!, country: String!): User
-
     }
 `;
 

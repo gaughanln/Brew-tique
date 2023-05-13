@@ -9,7 +9,7 @@
 
 body {
   display: flex;
-  min-height: 100%;
+  height: 100vh;
   min-width: 100%;
   flex-direction: column;
 }
@@ -17,9 +17,8 @@ body {
 main {
   flex: 1 0 auto;
 }
-/* .nav-wrapper {
-  background-color: var(--green);
-} */
+
+/* NAV BAR */
 
 /* needs to be light for the home page only */
 nav {
@@ -37,45 +36,16 @@ padding-bottom: 3%;
   margin-left: 2%;
 }
 
-.welcome-back-photo {
-  max-width: 100%;
+
+
+/* TEXTS  */
+h3 {
+  font-size: large;
 }
 
-
-
-.login {
-  max-width: 40%;
-  padding-top: 5%;
-}
- /* label color */
- .input-field label {
-  color: var(--green);
-}
-/* WHY WON'T THIS WORK!? WTF */
-   /* label underline focus color */
-   .input-field input[type=password]:focus {
-    border-bottom: 1px solid rgb(70, 207, 28);
-    box-shadow: 0 1px 0 0 rgb(222, 35, 213);
-  }
-
-  .brown-btn {
-    background-color: var(--light-Brown);
-    color: white;
-    border-radius: 30px;
-  }
-
-  .brown-btn:hover {
-    background-color: var(--green);
-    font-weight: bolder;
-  }
-
-.home {
- /* padding-top: 3%;  */
- background-color: var(--green);
-}
-
-.welcome {
-  max-width: 100%;
+.user-text {
+  color: #282c34;
+  font-size: 22px;
 }
 
 .home-text {
@@ -83,6 +53,24 @@ padding-bottom: 3%;
   font-size: 22px;
 }
 
+.myaccount-text {
+  color:#282c34;
+  margin-left: 50%;
+}
+
+.cart-text {
+  color: #282c34;
+  font-size: 22px;
+}
+
+.products-text {
+  color: #282c34;  }
+
+
+
+
+
+/* BUTTONS */
 .clay-btn {
   background-color: var(--peach);
   color: var(--green);
@@ -103,20 +91,66 @@ padding-bottom: 3%;
   background-color: var(--light-Brown);
 }
 
+.brown-btn, .checkout-btn {
+  background-color: var(--light-Brown);
+  color: white;
+  border-radius: 30px;
+}
+
+.checkout-btn:hover {
+background-color: var(--light-Brown);  }
+
+.brown-btn:hover {
+  background-color: var(--green);
+  font-weight: bolder;
+}
+.add-to-cart-button {
+  width: 200px;
+  margin-right: 10px;
+}
+
+.favorite-button {
+  width: 200px;
+  margin-left: 10px;
+}
+
+
+
+
+
+/* PHOTOS */
+.welcome-back-photo {
+  max-width: 100%;
+}
+
+.cheers-photo {
+  width: 100%;
+  border-radius: 60% 40% 40% 20% / 70% 50% 30% 25%;
+}
+
 .home-photo {
   /* max-height: 80%; */
   max-width: 100%;
     /* max-width: 100%; */
 }
 
+.oops {
+  width: 60%;
+margin-top: 15%;
+padding-bottom: 10%;
+}
+
 .brew-large {
   max-width: 100%;
 }
 
-.product-page {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 30px;
+.products-img {
+  background-color: var(--green);
+  padding: 15%;
+  border-top-left-radius:50%;
+  border-top-right-radius: 50%;
+  border-bottom-left-radius: 2%;
+  border-bottom-right-radius: 2%;
 }
 
 .product-image-container {
@@ -129,6 +163,22 @@ padding-bottom: 3%;
   border-radius: 5px;
 }
 
+/* TODO center the image */
+.ontap {
+  max-width: 60%;
+  margin-top: 5%;
+}
+
+
+
+
+/* PRODUCTS + CART */
+.product-page {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+
 .product-details {
   flex: 2;
 }
@@ -136,6 +186,10 @@ padding-bottom: 3%;
 .product-name {
   font-size: 36px;
   margin-top: 0;
+}
+
+.products {
+  margin-top: 4%;
 }
 
 .product-description {
@@ -150,87 +204,79 @@ padding-bottom: 3%;
   margin-bottom: 20px;
 }
 
-.add-to-cart-button {
-  width: 200px;
-  margin-right: 10px;
+.inthecart {
+  background-color: var(--green);
+  padding: 10px;
+  border-radius: 50%;
+  color: #282c34;
 }
 
-.favorite-button {
-  width: 200px;
-  margin-left: 10px;
+.cart-header {
+  margin-top: 10%;
+  width: 80%;
 }
 
-/* MY ACCOUNT PAGE */
-.myaccount-text {
-  color:#282c34;
-  margin-left: 50%;
+.cards {
+  justify-content: center;
+  align-items: center;
 }
 
-.cheers-photo {
-  width: 100%;
-}
+
+
+
+/* PAGE SETTINGS */
+.home {
+  /* padding-top: 3%;  */
+  background-color: var(--green);
+  display: flex;
+ }
+ 
+ .welcome {
+   max-width: 100%;
+ }
+ 
+ .home-text {
+   color: var(--clay);
+   font-size: 22px;
+ }
+ 
+ .signup {
+   margin-bottom: 8%;
+   max-width: 100%;
+ }
 
 .user {
   padding-top: 3%; 
   margin-left: 3%;
 }
 
-.user-text {
-  color: #282c34;
-  font-size: 22px;
+.login {
+  max-width: 40%;
+  padding-top: 5%;
 }
 
-/* FOOTER */
+
+
+
+/* INPUT SETTINGS */
+ /* label color */
+ .input-field label {
+  color: var(--green);
+}
+
+
 
 /* why is this floating? */
 /* want it cream on the home page - is that possible? */
 footer {
   background-color: var(--green) !important;
+  margin-top: 2%;
   bottom: 0;
-  position: fixed;
-  min-width: 100%;
-}
-
-.foot {
-margin-bottom: 0;}
-
-
-* .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  height: 60px;   
+  /* position: fixed; */
+  /* min-width: 100%; */
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
-}
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 
-}

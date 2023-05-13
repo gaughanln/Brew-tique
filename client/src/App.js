@@ -13,7 +13,7 @@ import Home from './pages/Home';
 import CreateUser from './pages/CreateUser';
 import Login from './pages/Login';
 import Cart from './components/Cart';
-import Footer from './components/Footer';
+// import Footer from './components/Footer';
 import Header from './components/Header';
 import Products from './components/Products';
 import User from './components/User';
@@ -67,7 +67,7 @@ const [cart, setCart] = useState([]);
             <Route path='/myaccount' element={<User />} />
               {/* <Route path='/myaccount/:userId' element= {<Cart />} /> */}
           </Routes>
-          <Footer />
+          {/* <Footer /> */}
         </main>
 
       </Router>
@@ -77,5 +77,3 @@ const [cart, setCart] = useState([]);
 }
 
 export default App;
-
-
