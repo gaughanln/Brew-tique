@@ -3,8 +3,10 @@ import { Link } from 'react-router-dom';
 import ontap from "../assets/ontap.png";
 import dreams from "../assets/dreams.png";
 import sundown from "../assets/sundown.png";
-
-import medium from "../assets/medium.png";
+import ethiopian from "../assets/ethiopian.png";
+import sumatra from "../assets/sumatra.png";
+import colombian from "../assets/colombian.png";
+import pinon from "../assets/pinon.png";
 
 // from stevie
 // import { useQuery } from '@apollo/react-hooks';
@@ -19,19 +21,19 @@ const getProducts = () => {
         id: 1,
         name: "Light Roast",
         price: 10.99,
-        image: dreams,
+        image: sumatra,
       },
       {
         id: 2,
         name: "Medium Roast",
         price: 10.99,
-        image: sundown,
+        image: colombian,
       },
       {
         id: 3,
         name: "Ultra Premium",
         price: 30.99,
-        image: medium,
+        image: pinon,
       },
       {
         id: 4,
@@ -49,7 +51,7 @@ const getProducts = () => {
         id: 6,
         name: "Ultra Premium",
         price: 30.99,
-        image: medium,
+        image: ethiopian,
       },
     ],
     loading: false,
