@@ -1,24 +1,6 @@
 const { AuthenticationError } = require('apollo-server-express');
-const User = require('../models/User');
-const Coffee = require('../models/Coffee');
+const { User, Coffee } = require('../models');
 const {signToken} = require('../utils/auth');
-const jwt = require('jsonwebtoken');
-
-
-
-const getUser = ({ token }) => {
-    try {
-        if (token) {
-            //look into this .env variable token
-            return jwt.verify(token, process.env.JWT_SECRET);
-        }
-        return null;
-    } catch (err) {
-        return null;
-    }
-};
-
-
 
 const resolvers = {
     Query: {
@@ -66,8 +48,15 @@ const resolvers = {
                 throw new AuthenticationError('Incorrect credentials');
             }
             const token = signToken(user);
-            return { token, user };
+            return { token, user }; 
         },
+        logout: async (_, __, { req }) => {
+            if (req.session) {
+              req.session.destroy(); // Destroy the session to log out the user
+              return true; // Return true to indicate successful logout
+            }
+            throw new AuthenticationError('Not logged in');
+          },
         addUser: async (parent, { firstName, lastName, email, password }) => {
             const user = await User.create({ firstName, lastName, email, password });
             console.log('HELP!!')

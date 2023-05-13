@@ -1,5 +1,6 @@
 import ADD_USER from './actions';
 import LOGIN_USER from './actions';
+import LOGOUT_USER from './actions';
 import UPDATE_USER from './actions';
 import ADD_ADDRESS from './actions';
 import createId from './createId';
@@ -59,6 +60,12 @@ export default function reducer(state, action) {
       return {
         ...state,
         users: updatedUsers,
+      };
+    }
+    case LOGOUT_USER: {
+      return {
+        ...state,
+        loggedInUser: null,
       };
     }
     default:

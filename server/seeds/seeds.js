@@ -1,8 +1,7 @@
 const mongoose = require('mongoose');
-const Coffee = require('../models/Coffee');
+const { Coffee, User } = require('../models');
 const coffees = require('./coffeeData');
 const users = require('./user');
-const User = require ('../models/User')
 require('dotenv').config({path: '../.env'});
 
 
