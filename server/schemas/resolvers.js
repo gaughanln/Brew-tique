@@ -1,24 +1,6 @@
 const { AuthenticationError } = require('apollo-server-express');
-const User = require('../models/User');
-const Coffee = require('../models/Coffee');
+const { User, Coffee } = require('../models');
 const {signToken} = require('../utils/auth');
-const jwt = require('jsonwebtoken');
-
-
-
-const getUser = ({ token }) => {
-    try {
-        if (token) {
-            //look into this .env variable token
-            return jwt.verify(token, process.env.JWT_SECRET);
-        }
-        return null;
-    } catch (err) {
-        return null;
-    }
-};
-
-
 
 const resolvers = {
     Query: {
