@@ -2,14 +2,29 @@ import React from "react";
 // import brewtiqueSmall from "../assets/brewtiqueSmall.png";
 import beans from "../assets/beans.png";
 import cart from "../assets/cart.png";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import Auth from "../utils/auth";
-
-
 
 // TODO if time, add mobile collapse
 
 function Header() {
+
+  const navigate = useNavigate();
+
+  // how do we implement LOGOUT_USER mutation?
+
+  // const handleLogout = () => {
+  //   localStorage.removeItem("id_token");
+  //   navigate("/");
+  //   console.log("user has been logged out")
+
+  const logout = (event) => {
+    event.preventDefault();
+    Auth.logout();
+        console.log("user has been logged out")
+  };
+
+  
   return (
     <>
       <div className="navbar-fixed">
@@ -53,60 +68,43 @@ function Header() {
 
               {/* HOME */}
               <li>
-                <NavLink to="/">
-                  Home
-                </NavLink>
+                <NavLink to="/">Home</NavLink>
               </li>
 
               {/* login */}
               {!Auth.loggedIn() && (
-                <div>
-              <li>
-                <NavLink to="/login">
-                  Login
-                </NavLink>
-              </li>
+                <li>
+                  <NavLink to="/login">Login</NavLink>
+                </li>
+              )}
 
-          
-              <li>
-                <NavLink to="/signup">
-                  Sign up
-                </NavLink>
-              </li>
-              </div>
+              {/* signup */}
+              {!Auth.loggedIn() && (
+                <li>
+                  <NavLink to="/signup">Sign up</NavLink>
+                </li>
               )}
 
               {/*MY ACCOUNT  */}
               {Auth.loggedIn() && (
                 <li>
-                  <NavLink to="/myaccount">
-                    My Account
-                  </NavLink>
+                  <NavLink to="/myaccount">My Account</NavLink>
                 </li>
-              )}
-
+               )}
 
               {/* PRODUCTS  */}
               <li>
-                <NavLink to="/products">
-                  Shop
-                </NavLink>
+                <NavLink to="/products">Shop</NavLink>
               </li>
 
               {/* LOGOUT */}
-              {/* TODO update code to show if logged in only show the logged out button 
-              on click and useNavigate to send back to page once logged out */}
-
               {/* TODO ensure that when you click logout, the session ends */}
               {Auth.loggedIn() && (
-              <li>
-                <NavLink to="/">
-                  Logout
-                </NavLink>
-              </li>
-                )}
+                <li>
+                  <NavLink onClick={logout}>Logout</NavLink>                
+                </li>
+              )}
 
-              {/* CART */}
               <li>
                 <NavLink to="/cart">
                   <img
