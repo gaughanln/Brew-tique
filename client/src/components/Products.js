@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import ontap from "../assets/ontap.png";
+// import { useNavigate } from "react-router-dom";
+
 
 // import {dreams, sundown, ethiopian} from "../../client/src/assets";
 // import sundown from "../assets/sundown.png";
@@ -17,6 +19,8 @@ function Products(props) {
 
   const { loading, data } = useQuery(GET_PRODUCTS);
   if (loading) return <p>Loading...</p>;
+
+  // const navigate = useNavigate();
 
   const coffee = data?.getProducts || [];
 
@@ -42,20 +46,19 @@ function Products(props) {
                   <h3 className="truncate">{coffee.name}</h3>
                   <p>${coffee.price}</p>
 
-                  <button
+                  <Link 
                     className="waves-effect  btn-large brown-btn"
-                    onClick={() => addToCart(coffee)}
+                    onClick={() => addToCart(coffee)} to ="/cart"
                   >
                     Add to Cart
-                  </button>
+                  </Link>
                 </div>
               ))}
             </div>
           )}
 
           <Link className="btn-large waves-effect  green-btn" to="/cart">
-            {" "}
-            Checkout{" "}
+            Checkout
           </Link>
         </div>
       </div>

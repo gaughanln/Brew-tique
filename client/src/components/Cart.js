@@ -34,7 +34,7 @@ class Cart extends React.Component {
         ) : (
           <div>
            <img src={carttext} className="cart-header" alt="You've got great taste" />
-            <div className="row cards valign-wrapper center-align">
+            <div className="row  cards valign-wrapper center-align">
               {cartItems.map((item, index) => (
                 <a key={index}>
                   <div className="col s6 center-align">
@@ -58,7 +58,7 @@ class Cart extends React.Component {
             </div>
             <div>
               <div className="row cards center-align">
-                <div className="col s6 center-align waves-effect  btn-large checkout-btn ">
+                <div className="col s12 center-align waves-effect  btn-large checkout-btn ">
                   {/* total */}
                   <strong>
                     Total: ${" "}
@@ -70,6 +70,15 @@ class Cart extends React.Component {
                 <a className="waves-effect btn-large brown-btn checkout-btn ">
                   Checkout
                 </a>
+
+                <Link
+                  className="btn-large waves-effect  green-btn"
+                  to="/products"
+                >
+                  continue shopping
+                </Link>
+
+
               </div>
             </div>
           </div>

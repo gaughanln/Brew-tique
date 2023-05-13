@@ -23,7 +23,6 @@ main {
 /* needs to be light for the home page only */
 nav {
 background-color: var(--green);
-padding-top: 1%;
 padding-bottom: 3%;
 }
 
@@ -34,6 +33,7 @@ padding-bottom: 3%;
 
 .beans {
   margin-left: 2%;
+  padding-top: 1%;
 }
 
 
@@ -114,6 +114,9 @@ background-color: var(--light-Brown);  }
   margin-left: 10px;
 }
 
+/* .cart-btns {
+justify-content: space-evenly;
+} */
 
 
 
@@ -287,10 +290,11 @@ footer {
   margin-top: 2%;
   bottom: 0;
   height: 60px;   
-  /* position: fixed; */
-  /* min-width: 100%; */
-  justify-content: center;
+  position: fixed;
+  min-width: 100%;
+/* align-items: center; */
 }
+
 
 
 
