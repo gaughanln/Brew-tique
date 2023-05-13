@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import cheers from "../assets/cheers.png";
 import { Link } from "react-router-dom";
-import { gql, useQuery, useMutation } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import edit from "../assets/edit.png";
 import save from "../assets/save.png";
 import myaccount from "../assets/myaccount.png"
@@ -11,16 +11,12 @@ import myaccount from "../assets/myaccount.png"
 import { QUERY_ME } from "../utils/queries";
 
 // TODO
-// need to authenticate user with a token - pass in props?!
 
 // LINK the pencil to edit the input fields - looking more and more like future production 
 
 // Sort out the UseState to edit and save the input fields. The button is changing images but now I need it to be functional. Do we use mutations for this?
 
 // add address option that will then save to the users data?
-
-// do we need a validator?
-// const Validator = require('validator');
 
 function User() {
   // pencil / save images
