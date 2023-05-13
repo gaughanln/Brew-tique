@@ -14,7 +14,7 @@ function Home() {
   return (
     <>
       <div className="row home valign-wrapper">
-        <div class="col s6 center-align welcome">
+        <div className="col s6 center-align welcome">
 
           <img src={brewtiqueLarge} className="brew-large" alt="Cup of coffee" />
           <p className ="home-text">
@@ -27,7 +27,7 @@ function Home() {
             className="btn-large waves-effect  clay-btn" to="/products" > Shop now! </Link>
         </div>
 
-        <div class="col s6 center-align">
+        <div className="col s6 center-align">
           <img src={homePhoto} className ="home-photo" alt="Cup of coffee" />
         </div>
       </div>

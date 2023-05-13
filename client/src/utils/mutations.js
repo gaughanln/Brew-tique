@@ -2,8 +2,8 @@ import { gql } from '@apollo/client';
 
 
 export const ADD_USER = gql`
-mutation addUser($firstName: String!, $lastName: String!, $email: String!, $password: String!, $isTestUser: Boolean) {
-  addUser(firstName: $firstName, lastName: $lastName, email: $email, password: $password, isTestUser: $isTestUser) {
+mutation addUser($firstName: String!, $lastName: String!, $email: String!, $password: String!) {
+  addUser(firstName: $firstName, lastName: $lastName, email: $email, password: $password) {
     token
     user {
       firstName
@@ -21,9 +21,16 @@ export const LOGIN_USER = gql`
       token
       user {
         _id
-        username
+        email
+        password
       }
     }
+  }
+`;
+
+export const LOGOUT_USER = gql`
+  mutation logout {
+    logout
   }
 `;
 
@@ -36,4 +43,19 @@ export const UPDATE_USER = gql`
       email
     }
   }
+`;
+
+export const ADD_ADDRESS = gql`
+mutation addAddress($userId: ID!, $street: String!, $city: String!, $state: String!, $zip: String!, $country: String!) {
+  addAddress(userId: $userId, street: $street, city: $city, state: $state, zip: $zip, country: $country) {
+    address {
+      userId
+      street
+      city
+      state
+      zip
+      country
+    }
+  }
+}
 `;

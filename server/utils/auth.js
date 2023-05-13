@@ -1,9 +1,10 @@
 const jwt = require('jsonwebtoken');
+require('dotenv').config({path: '../.env'});
 
-const secret = 'mysecretssshhhhhhh';
+const secret = process.env.REACT_APP_JWT_SECRET;
 const expiration = '2h';
 
-const authMiddleware = ({ req }) => {
+function authMiddleware({ req })  {
   let token = req.body.token || req.query.token || req.headers.authorization;
 
   if (req.headers.authorization) {
@@ -20,12 +21,13 @@ const authMiddleware = ({ req }) => {
   } catch {
     console.log('Invalid token');
   }
-
   return req;
 };
 
-const signToken = ({ email, username, _id }) => {
-  const payload = { email, username, _id };
+
+
+function signToken ({ email, firstName, lastName, _id }) {
+  const payload = { email, firstName, lastName, _id };
   return jwt.sign({ data: payload }, secret, { expiresIn: expiration });
 };
 

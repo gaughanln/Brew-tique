@@ -1,64 +1,66 @@
-import React, { useEffect, useState } from 'react';
+import React from "react";
+import { Link } from "react-router-dom";
+import ontap from "../assets/ontap.png";
 
+// import {dreams, sundown, ethiopian} from "../../client/src/assets";
+// import sundown from "../assets/sundown.png";
+// import ethiopian from "../assets/ethiopian.png";
+// import sumatra from "../assets/sumatra.png";
+// import colombian from "../assets/colombian.png";
+// import pinon from "../assets/pinon.png";
 
-const getProducts = () => {
-  return ({
-    data:[
-    {
-      id: 1,
-      name: 'Light Roast',
-      price: 10.99,
-      image: '',
-    },
-    {
-      id: 2,
-      name: 'Medium Roast',
-      price: 10.99,
-      image: '',
-    },
-    {
-      id: 3,
-      name: 'Ultra Premium "you need this in your life" Dark Roast',
-      price: 30.99,
-      image: '',
-    }
-  ], loading: false})
-}
+import { GET_PRODUCTS } from "../utils/queries";
+import { useQuery } from "@apollo/client";
 
+function Products(props) {
+  const { cart, setCart } = props;
 
+  const { loading, data } = useQuery(GET_PRODUCTS);
+  if (loading) return <p>Loading...</p>;
 
-const Products = (props) => {
-const {cart, setCart} = props;
-const {data, loading} = getProducts(); //replace this with the graphQl query
-const [products, setProducts] = useState([])
- useEffect(() => {
-  if (!loading) {
-    setProducts(data)
-  }})
-
+  const coffee = data?.getProducts || [];
 
   const addToCart = (product) => {
     setCart([...cart, product]);
-  }
-
-
-
+  };
 
   return (
     <div>
-      <h2>Products</h2>
-      <div style={{display:"flex"}}>
-        {products.map((product) => (
-          <div key={product.id} style={{border: "1px solid black", margin: "0px 14px"}}>
-            <img src={product.image} alt={product.name} />
-            <h3>{product.name}</h3>
-            <p>{product.price}</p>
-            <button className="waves-effect  btn-large brown-btn" onClick={() => addToCart(product)}>Add to Cart</button>
-          </div>
-        ))}
-     </div>
+      <div className="container  center-align text-center">
+        <img src={ontap} className="ontap" alt="Products" />
+        <div className="row">
+          {coffee && (
+            <div className="products-text">
+              {coffee.map((coffee) => (
+                <div key={coffee.id} className="products col s12 m6 l4">
+                  <img
+                    src={coffee.image}
+                    className="products-img"
+                    alt={coffee.name}
+                    height="300"
+                  />
+                  <h3 className="truncate">{coffee.name}</h3>
+                  <p>${coffee.price}</p>
+
+                  <button
+                    className="waves-effect  btn-large brown-btn"
+                    onClick={() => addToCart(coffee)}
+                  >
+                    Add to Cart
+                  </button>
+                </div>
+              ))}
+            </div>
+          )}
+
+          <Link className="btn-large waves-effect  green-btn" to="/cart">
+            {" "}
+            Checkout{" "}
+          </Link>
+        </div>
+      </div>
     </div>
   );
-};
+}
 
 export default Products;

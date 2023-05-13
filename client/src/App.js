@@ -10,10 +10,10 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 
 import Home from './pages/Home';
-// import CreateUser from './pages/CreateUser';
+import CreateUser from './pages/CreateUser';
 import Login from './pages/Login';
 import Cart from './components/Cart';
-import Footer from './components/Footer';
+// import Footer from './components/Footer';
 import Header from './components/Header';
 import Products from './components/Products';
 import User from './components/User';
@@ -62,12 +62,12 @@ const [cart, setCart] = useState([]);
             <Route path='/' element={<Home />} />
             <Route path='/cart' element= {<Cart cart={cart} />} />
             <Route path='/login' element= {<Login />} />
-            {/* <Route path='/signup' element= {<CreateUser />} /> */}
+            <Route path='/signup' element= {<CreateUser />} />
             <Route path='/products' element= {<Products cart={cart} setCart={setCart} />} />
             <Route path='/myaccount' element={<User />} />
               {/* <Route path='/myaccount/:userId' element= {<Cart />} /> */}
           </Routes>
-          <Footer />
+          {/* <Footer /> */}
         </main>
 
       </Router>
@@ -77,5 +77,3 @@ const [cart, setCart] = useState([]);
 }
 
 export default App;
-
-

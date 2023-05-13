@@ -1,9 +1,9 @@
 const mongoose = require("mongoose");
-require('dotenv').config()
+require('dotenv').config({path: '../.env'});
 
 mongoose
   //figure out the REACT_APP_MONGODB_URI since .env variables are not working
-  .connect(process.env.REACT_APP_MONGODB_URI || "mongodb+srv://gaughanln:Project3@brewtique.vg0bfxn.mongodb.net", {
+  .connect(process.env.REACT_APP_MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     serverSelectionTimeoutMS: 5000,
