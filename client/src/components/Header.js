@@ -4,6 +4,7 @@ import beans from "../assets/beans.png";
 import cart from "../assets/cart.png";
 import { NavLink } from "react-router-dom";
 import Auth from "../utils/auth";
+import LogoutButton from "./LogoutButton";
 
 
 
@@ -76,6 +77,9 @@ function Header() {
               </div>
               )}
 
+              {/* LOGGED IN  and logout button maybe*/ }
+              {Auth.loggedIn() && <LogoutButton />}
+
               {/*MY ACCOUNT  */}
               {Auth.loggedIn() && (
                 <li>
@@ -98,13 +102,14 @@ function Header() {
               on click and useNavigate to send back to page once logged out */}
 
               {/* TODO ensure that when you click logout, the session ends */}
-              {Auth.loggedIn() && (
+              
+              {/* {Auth.loggedIn() && (
               <li>
                 <NavLink to="/">
                   Logout
                 </NavLink>
               </li>
-                )}
+                )} */}
 
               {/* CART */}
               <li>
