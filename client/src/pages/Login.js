@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import welcome from "../assets/welcome.png";
-
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../utils/mutations";
@@ -12,6 +12,7 @@ const Login = () => {
 
   const [formState, setFormState] = useState({ email: "", password: "" });
   const [login, { error, data }] = useMutation(LOGIN_USER);
+  const navigate = useNavigate();
 
   // update state based on form input changes
   const handleChange = (event) => {
@@ -24,6 +25,8 @@ const Login = () => {
     });
   };
 
+
+
   // submit form
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -35,6 +38,7 @@ const Login = () => {
 
       Auth.login(data.login.token);
       console.log("Login successful!");
+      navigate("/");
     } catch (e) {
       console.error(e);
     }
@@ -49,12 +53,7 @@ const Login = () => {
   return (
     <>
       <div className="row login center-align ">
-        {data ? (
-          <p>
-            Success! You may now head
-            <Link to="/">back to the homepage.</Link>
-          </p>
-        ) : (
+        
           <form className="col s12" >
             <img
               src={welcome}
@@ -67,9 +66,9 @@ const Login = () => {
                 <input
                   id="email"
                   type="email"
-                  className="validate"
                   value={formState.email}
                   onChange={handleChange}
+                  name="email"
                 />
                 <label htmlFor="email">Email </label>
               </div>
@@ -83,6 +82,7 @@ const Login = () => {
                   className="validate"
                   value={formState.password}
                   onChange={handleChange}
+                  name="password"
                 />
                 <label htmlFor="password">Password</label>
               </div>
@@ -97,11 +97,9 @@ const Login = () => {
               Submit
             </button>
           </form>
-        )}
+      
 
-        {error && (
-          <div className="my-3 p-3 bg-danger text-white">{error.message}</div>
-        )}
+ 
       </div>
     </>
   );

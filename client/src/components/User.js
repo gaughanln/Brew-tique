@@ -8,7 +8,7 @@ import myaccount from "../assets/myaccount.png"
 
 // import { ADD_ADDRESS } from "../utils/mutations";
 
-import { GET_USERS } from "../utils/queries";
+import { QUERY_ME } from "../utils/queries";
 
 // TODO
 // need to authenticate user with a token - pass in props?!
@@ -26,16 +26,11 @@ function User() {
   // pencil / save images
   const [imageSrc, setImageSrc] = useState(edit);
 
-  const { loading, error, data } = useQuery(GET_USERS, {
-    variables: {
-      email: "", // TODO: What all do we need here? replace with the email of the user you want to display, you can add a function to call that user based on the JWT token
-    },
-  });
+  const { loading, data } = useQuery(QUERY_ME);
 
   if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error.message}</p>;
 
-  const user = data && data.users && data.users[0];
+  const user = data?.me || {};
 
   const editSaveClick = () => {
     const image = document.getElementById("edit-save");
