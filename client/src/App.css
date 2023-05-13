@@ -129,7 +129,7 @@ background-color: var(--light-Brown);  }
 }
 
 .home-photo {
-  /* max-height: 80%; */
+  height: 80%;
   max-width: 100%;
     /* max-width: 100%; */
 }
@@ -242,6 +242,7 @@ border-radius: 5%;
   /* padding-top: 3%;  */
   background-color: var(--green);
   display: flex;
+  height: 100vh;
  }
  
  .welcome {
