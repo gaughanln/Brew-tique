@@ -3,6 +3,8 @@ import React from "react";
 import beans from "../assets/beans.png";
 import cart from "../assets/cart.png";
 import { NavLink } from "react-router-dom";
+import Auth from "../utils/auth";
+
 
 
 // TODO if time, add mobile collapse
@@ -56,26 +58,33 @@ function Header() {
                 </NavLink>
               </li>
 
-                 {/* login */}
-                 <li>
+              {/* login */}
+              {!Auth.loggedIn() && (
+                <div>
+              <li>
                 <NavLink to="/login">
                   Login
                 </NavLink>
               </li>
 
-                 {/* HOME */}
-                 <li>
+          
+              <li>
                 <NavLink to="/signup">
                   Sign up
                 </NavLink>
               </li>
+              </div>
+              )}
 
               {/*MY ACCOUNT  */}
-              <li>
-                <NavLink to="/myaccount">
-                  My Account
-                </NavLink>
-              </li>
+              {Auth.loggedIn() && (
+                <li>
+                  <NavLink to="/myaccount">
+                    My Account
+                  </NavLink>
+                </li>
+              )}
+
 
               {/* PRODUCTS  */}
               <li>
@@ -85,14 +94,17 @@ function Header() {
               </li>
 
               {/* LOGOUT */}
-              {/* TODO update code to show if logged in only show the logged out button */}
+              {/* TODO update code to show if logged in only show the logged out button 
+              on click and useNavigate to send back to page once logged out */}
 
               {/* TODO ensure that when you click logout, the session ends */}
+              {Auth.loggedIn() && (
               <li>
                 <NavLink to="/">
                   Logout
                 </NavLink>
               </li>
+                )}
 
               {/* CART */}
               <li>
