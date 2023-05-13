@@ -27,10 +27,7 @@ const userSchema = new Schema({
     required: true,
     minlength: 5,
   },
-  isTestUser: {
-    type: Boolean,
-    required: false
-  }
+ 
   
   // TODO
   // address:{
