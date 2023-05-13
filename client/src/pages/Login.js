@@ -34,10 +34,10 @@ const Login = () => {
       const { data } = await login({
         variables: { ...formState },
       });
-
+console.log(data);
       Auth.login(data.login.token);
       console.log("Login successful!");
-      navigate("/");
+      navigate("/myaccount");
     } catch (e) {
       console.error(e);
     }

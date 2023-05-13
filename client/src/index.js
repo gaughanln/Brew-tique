@@ -5,7 +5,6 @@ import App from "./App";
 import client from './apolloClient'; 
 import { ApolloProvider } from '@apollo/client';
 
-// import reportWebVitals from './reportWebVitals';
 
 
 
@@ -16,4 +15,4 @@ root.render(
   </ApolloProvider>
 );
 
-// reportWebVitals();
+

@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import cheers from "../assets/cheers.png";
-import { Link } from "react-router-dom";
+import { Link, useParams, Navigate } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import edit from "../assets/edit.png";
 import save from "../assets/save.png";
 import myaccount from "../assets/myaccount.png"
+
+import Auth from "../utils/auth";
 
 // import { ADD_ADDRESS } from "../utils/mutations";
 
@@ -22,11 +24,32 @@ function User() {
   // pencil / save images
   const [imageSrc, setImageSrc] = useState(edit);
 
+  const { email: userParam } = useParams();
+
+
   const { loading, data } = useQuery(QUERY_ME);
 
   if (loading) return <p>Loading...</p>;
 
   const user = data?.me || {};
+
+  if (Auth.loggedIn() && Auth.getProfile().data.email === userParam) {
+    return <Navigate to="/myaccount" />;
+  }
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (!user?.email) {
+    return (
+      <h4>
+        You need to be logged in to see this. Use the navigation links above to
+        sign up or log in!
+      </h4>
+    );
+  }
+  
 
   const editSaveClick = () => {
     const image = document.getElementById("edit-save");

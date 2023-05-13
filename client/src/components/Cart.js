@@ -15,7 +15,7 @@ class Cart extends React.Component {
     // const { cartItems } = this.state;
     const { cart: cartItems } = this.props; // the props is taking the item from the shop menu and lifting it to the parent and then sending it to the cart
     return (
-      <div>
+      <div className="container">
         {cartItems.length === 0 ? (
           <>
             <div className="row  valign-wrapper ">
@@ -58,27 +58,32 @@ class Cart extends React.Component {
             </div>
             <div>
               <div className="row cards center-align">
-                <div className="col s12 center-align waves-effect  btn-large checkout-btn ">
+                <div className="col s12 center-align cart-btns ">
                   {/* total */}
-                  <strong>
-                    Total: ${" "}
+                  <a className="waves-effect  btn-large checkout-btn">
+                    Total: $
                     {cartItems.reduce((acc, item) => acc + item.price, 0)}
-                  </strong>
-                </div>
+                  </a>
+              
+                  </div>
 
                 {/* submit button */}
+                <div className="col s12 center-align cart-btns ">
                 <a className="waves-effect btn-large brown-btn checkout-btn ">
                   Checkout
                 </a>
+                </div>
 
+                <div className="col s12 center-align cart-btns ">
                 <Link
                   className="btn-large waves-effect  green-btn"
                   to="/products"
                 >
                   continue shopping
                 </Link>
+              </div>
 
-
+            
               </div>
             </div>
           </div>
