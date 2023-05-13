@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import ontap from "../assets/ontap.png";
+
 // import { useNavigate } from "react-router-dom";
 
 
@@ -46,12 +47,15 @@ function Products(props) {
                   <h3 className="truncate">{coffee.name}</h3>
                   <p>${coffee.price}</p>
 
+
+
                   <Link 
                     className="waves-effect  btn-large brown-btn"
                     onClick={() => addToCart(coffee)} to ="/cart"
                   >
                     Add to Cart
                   </Link>
+
                 </div>
               ))}
             </div>
