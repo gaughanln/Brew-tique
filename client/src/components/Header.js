@@ -102,6 +102,8 @@ function Header() {
               on click and useNavigate to send back to page once logged out */}
 
               {/* TODO ensure that when you click logout, the session ends */}
+
+              {/* ignore this comment just need it to help push */}
               
               {/* {Auth.loggedIn() && (
               <li>
