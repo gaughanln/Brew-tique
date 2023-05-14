@@ -35,15 +35,24 @@ export const LOGOUT_USER = gql`
 `;
 
 export const UPDATE_USER = gql`
-  mutation updateUser($_id: ID!, $firstName: String!, $lastName: String!, $email: String!) {
-    updateUser(_id: $_id, input: { firstName: $firstName, lastName: $lastName, email: $email }) {
-      _id
-      firstName
-      lastName
-      email
-    }
+mutation updateUser($_id: ID!, $input: UserInput!) {
+  updateUser(_id: $_id, input: $input) {
+    _id
+    firstName
+    lastName
+    email
   }
+}
 `;
+
+// mutation updateUser($_id: ID!, $firstName: String!, $lastName: String!, $email: String!) {
+//   updateUser(_id: $_id, input: { firstName: $firstName, lastName: $lastName, email: $email }) {
+//     _id
+//     firstName
+//     lastName
+//     email
+//   }
+// }
 
 export const ADD_ADDRESS = gql`
 mutation addAddress($userId: ID!, $street: String!, $city: String!, $state: String!, $zip: String!, $country: String!) {

@@ -13,15 +13,16 @@ import { DELETE_USER, UPDATE_USER } from "../utils/mutations";
 import { QUERY_ME } from "../utils/queries";
 
 function User() {
-  // pencil / save images
+
+  // useState + useParams
   const [imageSrc, setImageSrc] = useState(edit);
   const { email: userParam } = useParams();
   const [confirmOpen, setConfirmOpen] = useState(false);
-
+// Mutations + Queries
   const { loading, data } = useQuery(QUERY_ME);
   const [deleteUser] = useMutation(DELETE_USER);
   const [updateUser] = useMutation(UPDATE_USER);
-
+// loading
   if (loading)
     return (
       <div class="preloader-wrapper big active">
@@ -40,7 +41,7 @@ function User() {
     );
 
   const user = data?.me || {};
-
+// initializing login
   if (Auth.loggedIn() && Auth.getProfile().data.email === userParam) {
     return <Navigate to="/myaccount" />;
   }
@@ -74,7 +75,7 @@ function User() {
       </div>
     );
   }
-
+// deleting the user profile
   const deleteUserBtn = async (event) => {
     event.preventDefault();
     const confirmed = window.confirm(
@@ -92,11 +93,11 @@ function User() {
       }
     }
   };
-
+// confirming deletion
   const showConfirm = () => {
     setConfirmOpen(true);
   };
-
+// editing the user information
   const editSaveClick = async () => {
     const image = document.getElementById("edit-save");
     if (imageSrc === edit) {
@@ -246,9 +247,5 @@ function User() {
 export default User;
 
 // FUTURE DEVELOPMENT
-
-// LINK the pencil to edit the input fields - looking more and more like future production
-
-// Sort out the UseState to edit and save the input fields. The button is changing images but now I need it to be functional. Do we use mutations for this?
 
 // add address option that will then save to the users data?
