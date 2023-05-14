@@ -64,15 +64,19 @@ const resolvers = {
             console.log('HELLO')
             return { token, user };
         },
-
-        updateUser: async (parent, { firstName, lastName, email, password }, context) => {
+        updateUser: async (parent, { input }, context) => {
             if (context.user) {
+                const { firstName, lastName, email } = input;
                 const update = {};
-                if (firstName) update.firstName = firstName;
-                if (lastName) update.lastName = lastName;
-                if (email) update.email = email;
-                if (password) update.password = password;
-
+                if (firstName) {
+                    update.firstName = firstName;
+                }
+                if (lastName) {
+                    update.lastName = lastName;
+                }
+                if (email) {
+                    update.email = email;
+                }   
                 const updatedUser = await User.findOneAndUpdate(
                     { _id: context.user._id },
                     { $set: update },
