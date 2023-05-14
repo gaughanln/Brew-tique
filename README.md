@@ -87,6 +87,7 @@ What did you learn while building this project? What challenges did you face and
 
 ## Tech Stack
 
+<p align="left">
 <img src="client/src/assets/javascript.svg" width="75" height="75" alt="JavaScript" />
 <img src="client/src/assets/css-3.svg" width="75" height="75" alt="CSS" />
 <img src="client/src/assets/mongodb-icon.svg" width="75" height="75" alt="MongoDB" />
@@ -95,7 +96,8 @@ What did you learn while building this project? What challenges did you face and
 <img src="client/src/assets/graphql.svg" width="75" height="75" alt="GraphQL" />
 <img src="client/src/assets/apollostack.svg" width="75" height="75" alt="Apollo" />
 <img src="client/src/assets/materializecss.svg" width="75" height="75" alt="Materialize" />
-
+</p>
+    
 ***
 
 ## Authors
