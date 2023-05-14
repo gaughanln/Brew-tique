@@ -314,13 +314,15 @@ footer {
   /* background-color: var(--green) !important; */
   margin-top: 2%;
   bottom: 0;
-  height: 60px;   
   position: fixed;
   min-width: 100%;
+
 /* align-items: center; */
 }
 
-/* toast */
+/* .about {
+  padding-left: 5%;
+} */
 
 
 
