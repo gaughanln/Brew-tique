@@ -143,6 +143,10 @@ margin-top: 1%;
 /* width: 50%; */
 }
 
+.btn-small:hover {
+  background-color: var(--green);
+}
+
 
 
 
@@ -262,6 +266,9 @@ border-radius: 5%;
   align-items: center;
 }
 
+.quantity {
+  margin: 8px;
+}
 
 
 
@@ -314,13 +321,15 @@ footer {
   /* background-color: var(--green) !important; */
   margin-top: 2%;
   bottom: 0;
-  height: 60px;   
   position: fixed;
   min-width: 100%;
+
 /* align-items: center; */
 }
 
-/* toast */
+/* .about {
+  padding-left: 5%;
+} */
 
 
 

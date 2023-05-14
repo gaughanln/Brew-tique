@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { Link } from "react-router-dom";
 import ontap from "../assets/ontap.png";
 import { toast } from "react-toastify";
@@ -11,17 +11,29 @@ function Products(props) {
   const { loading, data } = useQuery(GET_PRODUCTS);
   if (loading) return <p>Loading...</p>;
 
-  // const navigate = useNavigate();
-
   const coffee = data?.getProducts || [];
 
   const addToCart = (product) => {
-    setCart([...cart, product]);
-    toast.success("Added to your cart!")
+    const existingCartItem = cart.find(
+      (cartItem) => cartItem.id === product.id
+    );
+    if (existingCartItem) {
+      const updatedCartItems = cart.map((cartItem) => {
+        if (cartItem.id === product.id) {
+          return {
+            ...cartItem,
+            quantity: cartItem.quantity + 1,
+          };
+        }
+        return cartItem;
+      });
+      setCart(updatedCartItems);
+    } else {
+      setCart([...cart, { ...product, quantity: 1 }]);
+    }
+    toast.success("Added to your cart!");
   };
 
-
-  
   return (
     <div>
       <div className="container  center-align text-center">
@@ -40,7 +52,12 @@ function Products(props) {
                   <h3 className="truncate">{coffee.name}</h3>
                   <p>${coffee.price}</p>
 
-                  <button className="waves-effect  btn-large brown-btn" onClick={() => addToCart(coffee)}>Add to Cart</button>
+                  <button
+                    className="waves-effect  btn-large brown-btn"
+                    onClick={() => addToCart(coffee)}
+                  >
+                    Add to Cart
+                  </button>
                 </div>
               ))}
             </div>
@@ -56,11 +73,3 @@ function Products(props) {
 }
 
 export default Products;
-
-// add to cart linking to cart
-{/* <Link
-  className="waves-effect  btn-large brown-btn"
-  onClick={() => addToCart(coffee)} to="/cart"
->
-  Add to Cart
-</Link> */}

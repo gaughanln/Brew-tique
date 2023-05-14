@@ -13,14 +13,6 @@ import Auth from "../utils/auth";
 
 import { QUERY_ME } from "../utils/queries";
 
-// TODO
-
-// LINK the pencil to edit the input fields - looking more and more like future production
-
-// Sort out the UseState to edit and save the input fields. The button is changing images but now I need it to be functional. Do we use mutations for this?
-
-// add address option that will then save to the users data?
-
 function User() {
   // pencil / save images
   const [imageSrc, setImageSrc] = useState(edit);
@@ -122,3 +114,11 @@ function User() {
 }
 
 export default User;
+
+// FUTURE DEVELOPMENT
+
+// LINK the pencil to edit the input fields - looking more and more like future production
+
+// Sort out the UseState to edit and save the input fields. The button is changing images but now I need it to be functional. Do we use mutations for this?
+
+// add address option that will then save to the users data?
