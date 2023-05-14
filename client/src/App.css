@@ -5,6 +5,8 @@
   --peach: #edd3c5;
   --clay: #ece7e3;
   background-color: var(--peach);
+  display: flex;
+  flex-wrap: wrap;
 }
 
 body {
@@ -12,28 +14,48 @@ body {
   height: 100vh;
   min-width: 100%;
   flex-direction: column;
+  flex-wrap: wrap;
 }
 
 main {
   flex: 1 0 auto;
 }
 
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
 /* NAV BAR */
 
 /* needs to be light for the home page only */
 nav {
-background-color: var(--green);
-padding-top: 1%;
+/* background-color: var(--green); */
 padding-bottom: 3%;
 }
 
-.nav-text {
+ul li a {
   font-weight: bolder;
-  color: var(--green);
 }
 
 .beans {
   margin-left: 2%;
+  margin-top: 10px;
+  /* padding-top: 1%; */
+}
+
+.header-logo {
+  margin-left: 2%;
+  margin-top: 10px;
+
+}
+
+.cart-icon {
+width: 40px;
+height: 42px;
+margin-top: 8px;
 }
 
 
@@ -114,6 +136,12 @@ background-color: var(--light-Brown);  }
   margin-left: 10px;
 }
 
+.cart-btns {
+  display: flex;
+justify-content:space-around;
+margin-top: 1%;
+/* width: 50%; */
+}
 
 
 
@@ -135,7 +163,7 @@ background-color: var(--light-Brown);  }
 }
 
 .oops {
-  width: 60%;
+  width: 40%;
 margin-top: 15%;
 padding-bottom: 10%;
 }
@@ -245,9 +273,9 @@ border-radius: 5%;
   height: 100vh;
  }
  
- .welcome {
+ /* .welcome {
    max-width: 100%;
- }
+ } */
  
  .home-text {
    color: var(--clay);
@@ -283,14 +311,16 @@ border-radius: 5%;
 /* why is this floating? */
 /* want it cream on the home page - is that possible? */
 footer {
-  background-color: var(--green) !important;
+  /* background-color: var(--green) !important; */
   margin-top: 2%;
   bottom: 0;
   height: 60px;   
-  /* position: fixed; */
-  /* min-width: 100%; */
-  justify-content: center;
+  position: fixed;
+  min-width: 100%;
+/* align-items: center; */
 }
+
+/* toast */
 
 
 

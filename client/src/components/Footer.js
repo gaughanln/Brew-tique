@@ -1,12 +1,20 @@
 import React from "react";
+import {  useLocation } from "react-router-dom";
 
 // TODO I commented out the code because it's covering the page and CSS isn't acting right. Once we get all data flowing we can bring it back to work on fine details.
 
 const Footer = () => {
+          
+  const location = useLocation();
+
+
   return (
-    <footer className="page-footer">
-      <div className="container">
-        <div className="row">
+    <footer className="valign-wrapper"
+       style={{
+          background: useLocation().pathname !== "/" ? "#1b4235" : "#edd3c5",
+        }}>
+      {/* <div className="container">
+        <div className="row"> */}
 
           {/* <div className="col l6 s12">
             <h5 className="footer-text">About Us</h5>
@@ -41,13 +49,13 @@ const Footer = () => {
                 </a>
               </li>
           </div> */}
-        </div>
+        {/* </div>
         <div className="row">
-          <div className="col-12 mt-3 mb-2 text-center">
-            <p className="text-muted">&copy; 2023 Ecommerce, Inc. All rights reserved.</p>
-          </div>
+          <div className="col-12 mt-3 mb-2 text-center"> */}
+            <p className="text-muted text-center">&copy; 2023 Ecommerce, Inc. All rights reserved.</p>
+          {/* </div>
         </div>
-      </div>
+      </div> */}
     </footer>
   );
 };
