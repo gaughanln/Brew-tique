@@ -43,7 +43,6 @@ function Header() {
               src={useLocation().pathname === "/" ? beans : brewtiqueSmall}
               className={useLocation().pathname === "/" ? "beans" : "header-logo"}
               width={useLocation().pathname === "/" ? 80 : 225}
-              height={useLocation().pathname === "/" ? 50 : 50}
               alt={useLocation().pathname === "/" ? "Coffee Beans" : "brewtique logo"}
             />
 

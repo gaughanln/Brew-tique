@@ -9,7 +9,7 @@ const Footer = () => {
 
 
   return (
-    <footer className="page-footer valign-wrapper"
+    <footer className="valign-wrapper"
        style={{
           background: useLocation().pathname !== "/" ? "#1b4235" : "#edd3c5",
         }}>

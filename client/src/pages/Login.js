@@ -8,7 +8,6 @@ import { LOGIN_USER } from "../utils/mutations";
 import Auth from "../utils/auth";
 
 const Login = () => {
-
   const [formState, setFormState] = useState({ email: "", password: "" });
   const [login, { error, data }] = useMutation(LOGIN_USER);
   const [loginError, setLoginError] = useState(null);
@@ -24,8 +23,6 @@ const Login = () => {
       [name]: value,
     });
   };
-
-
 
   // submit form
   const handleFormSubmit = async (event) => {
@@ -54,8 +51,7 @@ const Login = () => {
   return (
     <>
       <div className="row login center-align ">
-
-        <form className="col s12" >
+        <form className="col s12">
           <img
             src={welcome}
             className="welcome-back-photo"
@@ -104,9 +100,6 @@ const Login = () => {
             Submit
           </button>
         </form>
-
-
-
       </div>
     </>
   );

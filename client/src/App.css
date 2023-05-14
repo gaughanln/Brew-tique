@@ -42,19 +42,20 @@ ul li a {
 
 .beans {
   margin-left: 2%;
-  margin-top: 3px;
+  margin-top: 10px;
   /* padding-top: 1%; */
 }
 
 .header-logo {
   margin-left: 2%;
-  margin-top: 5px;
+  margin-top: 10px;
 
 }
 
 .cart-icon {
-width: 30px;
-height: 30px;
+width: 40px;
+height: 42px;
+margin-top: 8px;
 }
 
 
@@ -139,6 +140,7 @@ background-color: var(--light-Brown);  }
   display: flex;
 justify-content:space-around;
 margin-top: 1%;
+/* width: 50%; */
 }
 
 
@@ -271,9 +273,9 @@ border-radius: 5%;
   height: 100vh;
  }
  
- .welcome {
+ /* .welcome {
    max-width: 100%;
- }
+ } */
  
  .home-text {
    color: var(--clay);

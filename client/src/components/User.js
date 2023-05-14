@@ -5,7 +5,7 @@ import { useQuery } from "@apollo/client";
 import edit from "../assets/edit.png";
 import save from "../assets/save.png";
 import oopsUser from "../assets/oopsUser.png";
-import myaccount from "../assets/myaccount.png"
+import myaccount from "../assets/myaccount.png";
 
 import Auth from "../utils/auth";
 
@@ -15,7 +15,7 @@ import { QUERY_ME } from "../utils/queries";
 
 // TODO
 
-// LINK the pencil to edit the input fields - looking more and more like future production 
+// LINK the pencil to edit the input fields - looking more and more like future production
 
 // Sort out the UseState to edit and save the input fields. The button is changing images but now I need it to be functional. Do we use mutations for this?
 
@@ -26,7 +26,6 @@ function User() {
   const [imageSrc, setImageSrc] = useState(edit);
 
   const { email: userParam } = useParams();
-
 
   const { loading, data } = useQuery(QUERY_ME);
 
@@ -45,27 +44,16 @@ function User() {
   if (!user?.email) {
     return (
       <div className="row  valign-wrapper ">
-              <div className="col center-align ">
-                <img src={oopsUser} className="oops" alt="You're not logged in!" />
-                <br />
-                <Link
-                  className="btn-large waves-effect  green-btn"
-                  to="/login"
-                >
-                  login
-                </Link>
-
-                <Link
-                  className="btn-large waves-effect  green-btn"
-                  to="/login"
-                >
-                  login
-                </Link>
-              </div>
-            </div>
+        <div className="col center-align ">
+          <img src={oopsUser} className="oops" alt="You're not logged in!" />
+          <br />
+          <Link className="btn-large waves-effect green-btn" to="/login">
+            login
+          </Link>
+        </div>
+      </div>
     );
   }
-  
 
   const editSaveClick = () => {
     const image = document.getElementById("edit-save");
@@ -80,13 +68,11 @@ function User() {
     <>
       <div className="row user ">
         {user && (
-      
           <div className="col s6 ">
             <span className="myaccount-text" />
             <div>
-            <img src={myaccount} className="brew-large" alt="Cup of coffee" />
-            
-        
+              <img src={myaccount} className="brew-large" alt="Cup of coffee" />
+
               <Link>
                 <img
                   src={imageSrc}
@@ -98,24 +84,25 @@ function User() {
                   alt="pencil icon"
                 />
               </Link>
-           
-</div>
-        
-              {/* first name */}
-              <div className="input-field col s6">
+            </div>
+
+            {/* first name */}
+            <div className="input-field col s6">
               <h3 className="user-text"> Name </h3>
-                <p>{user.firstName} {user.lastName}</p>
-              </div>
+              <p>
+                {user.firstName} {user.lastName}
+              </p>
+            </div>
 
-              <div className="input-field col s6">
+            <div className="input-field col s6">
               <h3 className="user-text"> email </h3>
-                <p>{user.email}</p>
-              </div>
+              <p>{user.email}</p>
+            </div>
 
-              <div className="input-field col s6">
+            <div className="input-field col s6">
               <h3 className="user-text"> Shipping Address </h3>
-                <p>No address on file</p>
-              </div>
+              <p>No address on file</p>
+            </div>
 
             <div className="input-field col s6">
               <Link className="btn-large waves-effect green-btn" to="/products">

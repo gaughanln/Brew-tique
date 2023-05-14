@@ -3,33 +3,28 @@ import signup from "../assets/signup.png";
 import {  useMutation } from "@apollo/client";
 import { useNavigate } from "react-router-dom";
 import Auth from "../utils/auth";
-
-
 import {ADD_USER} from '../utils/mutations'
 
-// TODO remove username and just use first name and last name
-// Extra: add shipping address line but don't make it required - reference model. Needs to use the gql
 function CreateUser() {
 
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
 const [addUser, {error, data}] = useMutation(ADD_USER);
 const navigate = useNavigate()
-
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    // Build the request body
+    // Building the request body
     const requestBody = {
       firstName,
       lastName,
       email,
       password,
     };
+
 try {
   const {data} = await addUser({
     variables: {...requestBody}
@@ -41,18 +36,16 @@ try {
   console.error(error)
   
 }
-   
   };
-// TODO update this to reflect firstName + lastName
+ 
   return (
     <div className=" row login center-align">
-      {/* <h1>Create User</h1> */}
 
       <img src={signup} className="signup" alt="Signup" />
 
       <form onSubmit={handleSubmit}>
         <div className="input-field col s12">
-          <label htmlFor="username">firstName:</label>
+          <label htmlFor="username">First Name:</label>
           <input
             type="text"
             id="username"
@@ -62,7 +55,7 @@ try {
         </div>
 
         <div className="input-field col s12">
-          <label htmlFor="username">lastName:</label>
+          <label htmlFor="username">Last Name:</label>
           <input
             type="text"
             id="username"
@@ -77,8 +70,12 @@ try {
             type="email"
             id="email"
             value={email}
+            class="validate"
+            
             onChange={(event) => setEmail(event.target.value)}
           />
+                    <span class="helper-text" data-error="Not a valid email address" ></span>
+
         </div>
         <div className="input-field col s12">
           <label htmlFor="password">Password:</label>
