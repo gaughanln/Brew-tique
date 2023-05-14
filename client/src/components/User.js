@@ -9,7 +9,7 @@ import myaccount from "../assets/myaccount.png";
 
 import Auth from "../utils/auth";
 
-import { DELETE_USER } from "../utils/mutations";
+import { DELETE_USER, UPDATE_USER } from "../utils/mutations";
 import { QUERY_ME } from "../utils/queries";
 
 function User() {
@@ -20,6 +20,7 @@ function User() {
 
   const { loading, data } = useQuery(QUERY_ME);
   const [deleteUser] = useMutation(DELETE_USER);
+  const [updateUser] = useMutation(UPDATE_USER);
 
   if (loading)
     return (
@@ -96,23 +97,46 @@ function User() {
     setConfirmOpen(true);
   };
 
-  const editSaveClick = () => {
+  const editSaveClick = async () => {
     const image = document.getElementById("edit-save");
     if (imageSrc === edit) {
       setImageSrc(save);
+
+      document.getElementById("firstName").disabled = false;
+      document.getElementById("lastName").disabled = false;
+      document.getElementById("email").disabled = false;
     } else {
       setImageSrc(edit);
+
+      document.getElementById("firstName").disabled = true;
+      document.getElementById("lastName").disabled = true;
+      document.getElementById("email").disabled = true;
+
+      // Get updated input values
+      const firstName = document.getElementById("firstName").value;
+      const lastName = document.getElementById("lastName").value;
+      const email = document.getElementById("email").value;
+
+      // Call updateUser mutation
+      try {
+        const { data } = await updateUser({
+          variables: { _id: user._id, firstName, lastName, email },
+        });
+        console.log("User updated successfully!", data);
+      } catch (error) {
+        console.error(error);
+      }
     }
   };
 
   return (
     <>
-      <div className="row user ">
+      <div className="row user valign-wrapper">
         {user && (
           <div className="col s6 ">
             <span className="myaccount-text" />
-            <div>
-              <img src={myaccount} className="brew-large" alt="Cup of coffee" />
+            <div className="valign-wrapper">
+              <img src={myaccount} className="my-account" alt="Cup of coffee" />
 
               <Link>
                 <img
@@ -129,20 +153,53 @@ function User() {
 
             {/* first name */}
             <div className="input-field col s6">
-              <h3 className="user-text"> Name </h3>
-              <p>
-                {user.firstName} {user.lastName}
-              </p>
-            </div>
+              <h3 className="user-text"> First Name </h3>
+              <input
+                id="firstName"
+                type="text"
+                className="validate"
+                defaultValue={user.firstName}
+                disabled
+              />
 
-            <div className="input-field col s6">
               <h3 className="user-text"> email </h3>
-              <p>{user.email}</p>
+              <input
+                id="email"
+                type="email"
+                className="validate"
+                defaultValue={user.email}
+                disabled
+              />
             </div>
 
             <div className="input-field col s6">
+              <h3 className="user-text"> Last Name </h3>
+              <input
+                id="lastName"
+                type="text"
+                className="validate"
+                defaultValue={user.lastName}
+                disabled
+              />
+
               <h3 className="user-text"> Shipping Address </h3>
-              <p>No address on file</p>
+              <input
+                id="email"
+                type="email"
+                className="validate"
+                defaultValue=""
+                disabled
+              />
+            </div>
+
+            <br/>
+
+            <div className="input-field col s6">
+              <button
+                className="btn-large waves-effect brown-btn"
+                onClick={showConfirm}>
+                Delete Account
+              </button>
             </div>
 
             <div className="input-field col s6">
@@ -151,28 +208,23 @@ function User() {
               </Link>
             </div>
 
-            <button
-  className="btn-large waves-effect green-btn"
-  onClick={showConfirm}
->
-  Delete Account
-</button>
-
             {confirmOpen && (
               <div>
                 <p>Are you sure you want to delete your account?</p>
                 <button
+                  className="
                   btn-large
                   waves-effect
-                  green-btn
+                  green-btn"
                   onClick={() => setConfirmOpen(false)}
                 >
                   Cancel
                 </button>
                 <button
+                  className="
                   btn-large
                   waves-effect
-                  green-btn
+                  brown-btn"
                   onClick={deleteUserBtn}
                 >
                   Delete Account
