@@ -9,7 +9,8 @@ const Footer = () => {
 
 
   return (
-    <footer className="valign-wrapper"
+    <footer className="valign-wrapp
+    er"
        style={{
           background: useLocation().pathname !== "/" ? "#1b4235" : "#edd3c5",
         }}>
@@ -18,8 +19,8 @@ const Footer = () => {
           <div className="col l6 s12 about">
             <h5>About Us</h5>
             <p>
-             A small batch coffee roaster based in Houston, Texas specializing in 
-             finding and curating the best niche coffee from around the world, so you can experience something new and exciting each month.
+             
+             Finding and curating the best niche coffee from around the world, so you can experience something new and exciting each month.
             </p>
             
           </div>

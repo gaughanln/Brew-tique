@@ -4,12 +4,29 @@ import oops from "../assets/oops.png";
 import carttext from "../assets/carttext.png";
 
 function Cart(props) {
-  const [cartItems, setCartItems] = useState(props.cart);
-  // const [quantityUpdated, setQuantityUpdated] = useState(false);
+  const token = localStorage.getItem("token"); // get the token from a cookie
+  const [cartItems, setCartItems] = useState(() => {
+    const cartData = sessionStorage.getItem(`cart-${token}`);
+    return cartData ? JSON.parse(cartData) : props.cart;
+  });
 
   useEffect(() => {
-    setCartItems(props.cart);
-  }, [props.cart]);
+    sessionStorage.setItem(`cart-${token}`, JSON.stringify(cartItems));
+  }, [cartItems, token]);
+
+  
+  // const [cartItems, setCartItems] = useState(() => {
+  //   const cartData = sessionStorage.getItem("cart");
+  //   return cartData ? JSON.parse(cartData) : props.cart;
+  // });
+
+
+  // useEffect(() => {
+  //   sessionStorage.setItem("cart", JSON.stringify(cartItems));
+  // }, [cartItems]);
+
+
+
 
   const incrementQuantity = (product) => {
     const itemIndex = cartItems.findIndex((item) => item.id === product.id);
@@ -24,7 +41,7 @@ function Cart(props) {
       setCartItems([...cartItems, newCartItem]);
     }
   };
-  
+
   const decrementQuantity = (product) => {
     const itemIndex = cartItems.findIndex((item) => item.id === product.id);
     if (itemIndex !== -1) {
@@ -65,42 +82,42 @@ function Cart(props) {
             alt="You've got great taste"
           />
           <div className="row  cards valign-wrapper center-align">
-          {cartItems.map((cartItem) => (
-  <div key={cartItem.id}>
-    <div className="col s6 center-align">
-      {/*  image */}
-      <img
-        src={cartItem.image}
-        className="inthecart"
-        height="200px"
-      />
-      <br />
-    </div>
+            {cartItems.map((cartItem) => (
+              <div key={cartItem.id}>
+                <div className="col s6 center-align">
+                  {/*  image */}
+                  <img
+                    src={cartItem.image}
+                    className="inthecart"
+                    height="200px"
+                  />
+                  <br />
+                </div>
 
-    {/* name and price */}
-    <div className="col s6 center-align">
-      <p className="cart-text">
-        {cartItem.name} <br /> $ {cartItem.price}
-      </p>
-    </div>
-    <div>
-      <button
-        className="waves-effect btn-small cart-btns green-btn"
-        onClick={() => incrementQuantity(cartItem)}
-      >
-        +
-      </button>
-      <span className="quantity">{cartItem.quantity}</span>
-      <button
-        className="waves-effect btn-small cart-btns green-btn"
-        onClick={() => decrementQuantity(cartItem)}
-        disabled={cartItem.quantity === 1}
-      >
-        -
-      </button>
-    </div>
-  </div>
-))}
+                {/* name and price */}
+                <div className="col s6 center-align">
+                  <p className="cart-text">
+                    {cartItem.name} <br /> $ {cartItem.price}
+                  </p>
+                </div>
+                <div>
+                  <button
+                    className="waves-effect btn-small cart-btns green-btn"
+                    onClick={() => incrementQuantity(cartItem)}
+                  >
+                    +
+                  </button>
+                  <span className="quantity">{cartItem.quantity}</span>
+                  <button
+                    className="waves-effect btn-small cart-btns green-btn"
+                    onClick={() => decrementQuantity(cartItem)}
+                    disabled={cartItem.quantity === 1}
+                  >
+                    -
+                  </button>
+                </div>
+              </div>
+            ))}
 
 
 

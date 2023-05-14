@@ -42,8 +42,19 @@ export const UPDATE_USER = gql`
       lastName
       email
     }
+
   }
+}
 `;
+
+// mutation updateUser($_id: ID!, $firstName: String!, $lastName: String!, $email: String!) {
+//   updateUser(_id: $_id, input: { firstName: $firstName, lastName: $lastName, email: $email }) {
+//     _id
+//     firstName
+//     lastName
+//     email
+//   }
+// }
 
 export const ADD_ADDRESS = gql`
 mutation addAddress($userId: ID!, $street: String!, $city: String!, $state: String!, $zip: String!, $country: String!) {
