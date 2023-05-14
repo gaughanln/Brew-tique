@@ -1,60 +1,45 @@
-import React from "react";
+import React, {useState} from "react";
 import { Link } from "react-router-dom";
 import oops from "../assets/oops.png";
 import carttext from "../assets/carttext.png";
 
-class Cart extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      cartItems: [],
-      quantityUpdated: false,
-    };
-  }
+function Cart(props) {
+  const [cartItems, setCartItems] = useState(props.cart);
+  const [quantityUpdated, setQuantityUpdated] = useState(false);
 
-  incrementQuantity = (product) => {
-    this.setState((prevState) => {
-      const cartItems = [...prevState.cartItems];
-      const index = cartItems.findIndex((item) => item.id === product.id);
-      if (index !== -1) {
-        cartItems[index] = {
-          ...cartItems[index],
-          quantity: cartItems[index].quantity + 1,
-        };
-        return { cartItems, quantityUpdated: true };
-      }
-      return null;
-    });
+
+  const incrementQuantity = (product) => {
+    const index = cartItems.findIndex((item) => item.id === product.id);
+    if (index !== -1) {
+      const newCartItems = [...cartItems];
+      newCartItems[index] = {
+        ...newCartItems[index],
+        quantity: newCartItems[index].quantity + 1,
+      };
+      setCartItems(newCartItems);
+      setQuantityUpdated(true);
+    }
   };
 
-  decrementQuantity = (product) => {
-    this.setState((prevState) => {
-      const cartItems = [...prevState.cartItems];
-      const index = cartItems.findIndex((item) => item.id === product.id);
-      if (index !== -1) {
-        cartItems[index] = {
-          ...cartItems[index],
-          quantity: cartItems[index].quantity - 1,
-        };
-        if (cartItems[index].quantity === 0) {
-          cartItems.splice(index, 1);
-        }
-        return { cartItems, quantityUpdated: true };
+  const decrementQuantity = (product) => {
+    const index = cartItems.findIndex((item) => item.id === product.id);
+    if (index !== -1) {
+      const newCartItems = [...cartItems];
+      newCartItems[index] = {
+        ...newCartItems[index],
+        quantity: newCartItems[index].quantity - 1,
+      };
+      if (newCartItems[index].quantity === 0) {
+        newCartItems.splice(index, 1);
       }
-      return null;
-    });
+      setCartItems(newCartItems);
+      setQuantityUpdated(true);
+    }
   };
 
 
-
-
-
-
-  render() {
-    // const { cartItems } = this.state;
-    const { cart: cartItems } = this.props; // the props is taking the item from the shop menu and lifting it to the parent and then sending it to the cart
-    return (
-      <div className="container">
+  return (
+    <div className="container">
         {cartItems.length === 0 ? (
           <>
             <div className="row  valign-wrapper ">
@@ -100,23 +85,25 @@ class Cart extends React.Component {
 
 
 
+                  <button
+                    className="waves-effect btn-small cart-btns green-btn"
+                    onClick={() => incrementQuantity(cartItem)}
+                  >
+                    +
+                  </button>
 
+                  {quantityUpdated ? (
+                    <span className="updated-quantity">{cartItem.quantity}</span>
+                  ) : (
+                    <span className="quantity">{cartItem.quantity}</span>
+                  )}
 
-                    <button  className="waves-effect  btn-small green-btn " onClick={() => this.incrementQuantity(cartItem)}>
-                      +
-                    </button>
-
-                    {cartItem.quantityUpdated ? (
-                      <span className="updated-quantity">
-                        {cartItem.quantity}
-                      </span>
-                    ) : (
-                      <span className =" quantity">{cartItem.quantity}</span>
-                    )}
-
-                    <button className="waves-effect  btn-small green-btn " onClick={() => this.decrementQuantity(cartItem)}>
-                      -
-                    </button>
+                  <button
+                    className="waves-effect btn-small cart-btns green-btn"
+                    onClick={() => decrementQuantity(cartItem)}
+                  >
+                    -
+                  </button>
                
         
 
@@ -134,7 +121,8 @@ class Cart extends React.Component {
                   {/* total */}
                   <a className="waves-effect  btn-large checkout-btn">
                     Total: $
-                    {cartItems.reduce((acc, item) => acc + item.price, 0)}
+                    {cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0)}
+
                   </a>
                 </div>
 
@@ -159,7 +147,7 @@ class Cart extends React.Component {
         )}
       </div>
     );
-  }
-}
+  };
+
 
 export default Cart;
