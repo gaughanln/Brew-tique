@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import cheers from "../assets/cheers.png";
 import { Link, useParams, Navigate } from "react-router-dom";
-import { useQuery } from "@apollo/client";
+import { useQuery, useMutation } from "@apollo/client";
 import edit from "../assets/edit.png";
 import save from "../assets/save.png";
 import oopsUser from "../assets/oopsUser.png";
@@ -9,30 +9,57 @@ import myaccount from "../assets/myaccount.png";
 
 import Auth from "../utils/auth";
 
-// import { ADD_ADDRESS } from "../utils/mutations";
-
+import { DELETE_USER } from "../utils/mutations";
 import { QUERY_ME } from "../utils/queries";
 
 function User() {
   // pencil / save images
   const [imageSrc, setImageSrc] = useState(edit);
-
   const { email: userParam } = useParams();
+  const [confirmOpen, setConfirmOpen] = useState(false);
 
   const { loading, data } = useQuery(QUERY_ME);
+  const [deleteUser] = useMutation(DELETE_USER);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading)
+    return (
+      <div class="preloader-wrapper big active">
+        <div class="spinner-layer spinner-blue-only">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div>
+          <div class="gap-patch">
+            <div class="circle"></div>
+          </div>
+          <div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
+        </div>
+      </div>
+    );
 
   const user = data?.me || {};
 
   if (Auth.loggedIn() && Auth.getProfile().data.email === userParam) {
     return <Navigate to="/myaccount" />;
   }
-
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div class="preloader-wrapper big active">
+        <div class="spinner-layer spinner-blue-only">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div>
+          <div class="gap-patch">
+            <div class="circle"></div>
+          </div>
+          <div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
+        </div>
+      </div>
+    );
   }
-
   if (!user?.email) {
     return (
       <div className="row  valign-wrapper ">
@@ -46,6 +73,28 @@ function User() {
       </div>
     );
   }
+
+  const deleteUserBtn = async (event) => {
+    event.preventDefault();
+    const confirmed = window.confirm(
+      "Are you sure you want to delete your account? This action cannot be undone."
+    );
+    if (confirmed) {
+      try {
+        const { data } = await deleteUser({
+          variables: { userId: user._id },
+        });
+        Auth.logout(data.deleteUser.token);
+        console.log("logout successful!");
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  };
+
+  const showConfirm = () => {
+    setConfirmOpen(true);
+  };
 
   const editSaveClick = () => {
     const image = document.getElementById("edit-save");
@@ -101,6 +150,35 @@ function User() {
                 Shop now!
               </Link>
             </div>
+
+            <button
+  className="btn-large waves-effect green-btn"
+  onClick={showConfirm}
+>
+  Delete Account
+</button>
+
+            {confirmOpen && (
+              <div>
+                <p>Are you sure you want to delete your account?</p>
+                <button
+                  btn-large
+                  waves-effect
+                  green-btn
+                  onClick={() => setConfirmOpen(false)}
+                >
+                  Cancel
+                </button>
+                <button
+                  btn-large
+                  waves-effect
+                  green-btn
+                  onClick={deleteUserBtn}
+                >
+                  Delete Account
+                </button>
+              </div>
+            )}
           </div>
         )}
 

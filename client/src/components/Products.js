@@ -17,22 +17,23 @@ function Products(props) {
     const existingCartItem = cart.find(
       (cartItem) => cartItem.id === product.id
     );
-    if (existingCartItem) {
-      const updatedCartItems = cart.map((cartItem) => {
-        if (cartItem.id === product.id) {
-          return {
-            ...cartItem,
-            quantity: cartItem.quantity + 1,
-          };
-        }
-        return cartItem;
-      });
-      setCart(updatedCartItems);
-    } else {
+    if (!existingCartItem) {
       setCart([...cart, { ...product, quantity: 1 }]);
+      toast.success("Added to your cart!");
+    } else {
+      const updatedCartItem = { ...existingCartItem, quantity: existingCartItem.quantity + 1 };
+      const updatedCart = cart.map((cartItem) => {
+        if (cartItem.id === product.id) {
+          return updatedCartItem;
+        } else {
+          return cartItem;
+        }
+      });
+      setCart(updatedCart);
+      toast.success("Item was added to your cart!");
     }
-    toast.success("Added to your cart!");
   };
+  
 
   return (
     <div>
