@@ -11,6 +11,7 @@ import Auth from "../utils/auth";
 
 import { DELETE_USER, UPDATE_USER } from "../utils/mutations";
 import { QUERY_ME } from "../utils/queries";
+// import { UPDATE_USER } from "../utils/actions";
 
 function User() {
 
@@ -22,7 +23,9 @@ function User() {
   const { loading, data } = useQuery(QUERY_ME);
   const [deleteUser] = useMutation(DELETE_USER);
   const [updateUser] = useMutation(UPDATE_USER);
+
 // loading
+
   if (loading)
     return (
       <div class="preloader-wrapper big active">
@@ -97,7 +100,9 @@ function User() {
   const showConfirm = () => {
     setConfirmOpen(true);
   };
+
 // editing the user information
+
   const editSaveClick = async () => {
     const image = document.getElementById("edit-save");
     if (imageSrc === edit) {
@@ -106,6 +111,7 @@ function User() {
       document.getElementById("firstName").disabled = false;
       document.getElementById("lastName").disabled = false;
       document.getElementById("email").disabled = false;
+
     } else {
       setImageSrc(edit);
 
@@ -126,9 +132,8 @@ function User() {
         console.log("User updated successfully!", data);
       } catch (error) {
         console.error(error);
-      }
     }
-  };
+  }};
 
   return (
     <>
@@ -154,6 +159,7 @@ function User() {
 
             {/* first name */}
             <div className="input-field col s6">
+
               <h3 className="user-text"> First Name </h3>
               <input
                 id="firstName"
@@ -209,11 +215,17 @@ function User() {
               </Link>
             </div>
 
+            <button
+  className="btn-large waves-effect brown-btn"
+  onClick={showConfirm}
+>
+  Delete Account
+</button>
+
             {confirmOpen && (
               <div>
                 <p>Are you sure you want to delete your account?</p>
-                <button
-                  className="
+                <button className ="
                   btn-large
                   waves-effect
                   green-btn"
@@ -221,6 +233,7 @@ function User() {
                 >
                   Cancel
                 </button>
+
                 <button
                   className="
                   btn-large
@@ -249,3 +262,4 @@ export default User;
 // FUTURE DEVELOPMENT
 
 // add address option that will then save to the users data?
+

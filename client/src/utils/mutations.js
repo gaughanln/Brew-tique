@@ -35,12 +35,14 @@ export const LOGOUT_USER = gql`
 `;
 
 export const UPDATE_USER = gql`
-mutation updateUser($_id: ID!, $input: UserInput!) {
-  updateUser(_id: $_id, input: $input) {
-    _id
-    firstName
-    lastName
-    email
+  mutation updateUser($_id: ID!, $firstName: String!, $lastName: String!, $email: String!) {
+    updateUser(input: { _id: $_id, firstName: $firstName, lastName: $lastName, email: $email }) {
+      _id
+      firstName
+      lastName
+      email
+    }
+
   }
 }
 `;
