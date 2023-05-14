@@ -4,6 +4,7 @@ import { Link, useParams, Navigate } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import edit from "../assets/edit.png";
 import save from "../assets/save.png";
+import oopsUser from "../assets/oopsUser.png";
 import myaccount from "../assets/myaccount.png"
 
 import Auth from "../utils/auth";
@@ -43,10 +44,25 @@ function User() {
 
   if (!user?.email) {
     return (
-      <h4>
-        You need to be logged in to see this. Use the navigation links above to
-        sign up or log in!
-      </h4>
+      <div className="row  valign-wrapper ">
+              <div className="col center-align ">
+                <img src={oopsUser} className="oops" alt="You're not logged in!" />
+                <br />
+                <Link
+                  className="btn-large waves-effect  green-btn"
+                  to="/login"
+                >
+                  login
+                </Link>
+
+                <Link
+                  className="btn-large waves-effect  green-btn"
+                  to="/login"
+                >
+                  login
+                </Link>
+              </div>
+            </div>
     );
   }
   

@@ -32,18 +32,29 @@ main {
 
 /* needs to be light for the home page only */
 nav {
-background-color: var(--green);
+/* background-color: var(--green); */
 padding-bottom: 3%;
 }
 
-.nav-text {
+ul li a {
   font-weight: bolder;
-  color: var(--green);
 }
 
 .beans {
   margin-left: 2%;
-  padding-top: 1%;
+  margin-top: 3px;
+  /* padding-top: 1%; */
+}
+
+.header-logo {
+  margin-left: 2%;
+  margin-top: 5px;
+
+}
+
+.cart-icon {
+width: 30px;
+height: 30px;
 }
 
 
@@ -298,7 +309,7 @@ border-radius: 5%;
 /* why is this floating? */
 /* want it cream on the home page - is that possible? */
 footer {
-  background-color: var(--green) !important;
+  /* background-color: var(--green) !important; */
   margin-top: 2%;
   bottom: 0;
   height: 60px;   
