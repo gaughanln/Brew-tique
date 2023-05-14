@@ -1,9 +1,10 @@
-import ADD_USER from './actions';
-import LOGIN_USER from './actions';
-import LOGOUT_USER from './actions';
-import UPDATE_USER from './actions';
-import ADD_ADDRESS from './actions';
-import DELETE_USER from './actions';
+import { 
+  ADD_USER, 
+  LOGIN_USER, 
+  UPDATE_USER, 
+  ADD_ADDRESS, 
+  DELETE_USER 
+} from './actions';
 import createId from './createId';
 
 
@@ -36,16 +37,12 @@ export default function reducer(state, action) {
       const userIndex = state.users.findIndex(
         (user) => user.id === action.payload.id
       );
-
-      const updatedUser = {
+      const updatedUser ={
         ...state.users[userIndex],
         ...action.payload,
       };
-
       const newUsersList = [...state.users];
-
       newUsersList[userIndex] = updatedUser;
-    
       return {
         ...state,
         users: newUsersList,
