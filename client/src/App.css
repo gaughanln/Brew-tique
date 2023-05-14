@@ -143,6 +143,10 @@ margin-top: 1%;
 /* width: 50%; */
 }
 
+.btn-small:hover {
+  background-color: var(--green);
+}
+
 
 
 
@@ -262,6 +266,9 @@ border-radius: 5%;
   align-items: center;
 }
 
+.quantity {
+  margin: 8px;
+}
 
 
 

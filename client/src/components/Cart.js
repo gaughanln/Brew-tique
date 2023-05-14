@@ -8,43 +8,42 @@ class Cart extends React.Component {
     super(props);
     this.state = {
       cartItems: [],
-      // quantityUpdated: false,
+      quantityUpdated: false,
     };
   }
 
-  // incrementQuantity = (product) => {
-  //   this.setState((prevState) => {
-  //     const cartItems = [...prevState.cartItems];
-  //     const index = cartItems.findIndex((item) => item.id === product.id);
-  //     if (index !== -1) {
-  //       cartItems[index] = {
-  //         ...cartItems[index],
-  //         quantity: cartItems[index].quantity + 1,
-  //       };
-  //       return { cartItems, quantityUpdated: true };
-  //     }
-  //     return null;
-  //   });
-  // };
+  incrementQuantity = (product) => {
+    this.setState((prevState) => {
+      const cartItems = [...prevState.cartItems];
+      const index = cartItems.findIndex((item) => item.id === product.id);
+      if (index !== -1) {
+        cartItems[index] = {
+          ...cartItems[index],
+          quantity: cartItems[index].quantity + 1,
+        };
+        return { cartItems, quantityUpdated: true };
+      }
+      return null;
+    });
+  };
 
-  // Update the decrementQuantity method to set quantityUpdated to true
-  // decrementQuantity = (product) => {
-  //   this.setState((prevState) => {
-  //     const cartItems = [...prevState.cartItems];
-  //     const index = cartItems.findIndex((item) => item.id === product.id);
-  //     if (index !== -1) {
-  //       cartItems[index] = {
-  //         ...cartItems[index],
-  //         quantity: cartItems[index].quantity - 1,
-  //       };
-  //       if (cartItems[index].quantity === 0) {
-  //         cartItems.splice(index, 1);
-  //       }
-  //       return { cartItems, quantityUpdated: true };
-  //     }
-  //     return null;
-  //   });
-  // };
+  decrementQuantity = (product) => {
+    this.setState((prevState) => {
+      const cartItems = [...prevState.cartItems];
+      const index = cartItems.findIndex((item) => item.id === product.id);
+      if (index !== -1) {
+        cartItems[index] = {
+          ...cartItems[index],
+          quantity: cartItems[index].quantity - 1,
+        };
+        if (cartItems[index].quantity === 0) {
+          cartItems.splice(index, 1);
+        }
+        return { cartItems, quantityUpdated: true };
+      }
+      return null;
+    });
+  };
 
 
 
@@ -103,7 +102,7 @@ class Cart extends React.Component {
 
 
 
-                    {/* <button onClick={() => this.incrementQuantity(cartItem)}>
+                    <button  className="waves-effect  btn-small green-btn " onClick={() => this.incrementQuantity(cartItem)}>
                       +
                     </button>
 
@@ -112,12 +111,12 @@ class Cart extends React.Component {
                         {cartItem.quantity}
                       </span>
                     ) : (
-                      <span>{cartItem.quantity}</span>
+                      <span className =" quantity">{cartItem.quantity}</span>
                     )}
 
-                    <button onClick={() => this.decrementQuantity(cartItem)}>
+                    <button className="waves-effect  btn-small green-btn " onClick={() => this.decrementQuantity(cartItem)}>
                       -
-                    </button> */}
+                    </button>
                
         
 
