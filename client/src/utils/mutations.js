@@ -59,3 +59,9 @@ mutation addAddress($userId: ID!, $street: String!, $city: String!, $state: Stri
   }
 }
 `;
+
+export const DELETE_USER = gql`
+  mutation deleteUser($userId: ID!) {
+    deleteUser(userId: $userId)
+  }
+`;

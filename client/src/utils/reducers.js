@@ -3,6 +3,7 @@ import LOGIN_USER from './actions';
 import LOGOUT_USER from './actions';
 import UPDATE_USER from './actions';
 import ADD_ADDRESS from './actions';
+import DELETE_USER from './actions';
 import createId from './createId';
 
 
@@ -61,6 +62,20 @@ export default function reducer(state, action) {
         ...state,
         users: updatedUsers,
       };
+    }
+    case DELETE_USER: {
+      const userIndex = state.users.findIndex(
+        (user) => user.id === action.payload
+      );
+      if (userIndex !== -1) {
+        const newUsersList = [...state.users];
+        newUsersList.splice(userIndex, 1);
+        return {
+          ...state,
+          users: newUsersList,
+        };
+      }
+      return state;
     }
     case LOGOUT_USER: {
       return {

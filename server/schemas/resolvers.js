@@ -103,6 +103,17 @@ const resolvers = {
             }
             throw new AuthenticationError('Not logged in');
         },
+        deleteUser: async (parent, { userId }, context) => {
+            if (context.user) {
+                if (context.user._id === userId) {
+                    await User.findByIdAndDelete(userId);
+                    return true;
+                } else {
+                    throw new AuthenticationError('You can only delete your own account');
+                }
+            }
+            throw new AuthenticationError('Not logged in');
+        }
     },
 };
 
