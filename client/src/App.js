@@ -19,6 +19,11 @@ import Products from './components/Products';
 import User from './components/User';
 // import { Cart, Footer, Header, Products, User } from './components';
 
+// toastify imports
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
 // / Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -45,27 +50,32 @@ const client = new ApolloClient({
 
 function App() {
 
-const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState([]);
 
-// TODO update naming of my account. Maybe user profile? Fix all pathing on it when done
+  // TODO update naming of my account. Maybe user profile? Fix all pathing on it when done
 
-// not sure if path='/myaccount/:userId' will work yet or if it's needed
+  // not sure if path='/myaccount/:userId' will work yet or if it's needed
 
   // rendering the components
   return (
 
     <ApolloProvider client={client}>
+      <ToastContainer />
+
       <Router>
+
         <main>
+
           <Header />
           <Routes>
             <Route path='/' element={<Home />} />
-            <Route path='/cart' element= {<Cart cart={cart} />} />
-            <Route path='/login' element= {<Login />} />
-            <Route path='/signup' element= {<CreateUser />} />
-            <Route path='/products' element= {<Products cart={cart} setCart={setCart} />} />
+            <Route path='/cart' element={<Cart cart={cart} />} />
+            <Route path='/login' element={<Login />} />
+            <Route path='/signup' element={<CreateUser />} />
+            <Route path='/products' element={<Products cart={cart} setCart={setCart} />} />
             <Route path='/myaccount' element={<User />} />
-              {/* <Route path='/myaccount/:userId' element= {<Cart />} /> */}
+
+            {/* <Route path='/myaccount/:userId' element= {<Cart />} /> */}
           </Routes>
           <Footer />
         </main>

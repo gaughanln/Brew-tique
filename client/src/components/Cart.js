@@ -11,6 +11,8 @@ class Cart extends React.Component {
     };
   }
 
+
+  
   render() {
     // const { cartItems } = this.state;
     const { cart: cartItems } = this.props; // the props is taking the item from the shop menu and lifting it to the parent and then sending it to the cart

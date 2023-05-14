@@ -1,17 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import ontap from "../assets/ontap.png";
-
-// import { useNavigate } from "react-router-dom";
-
-
-// import {dreams, sundown, ethiopian} from "../../client/src/assets";
-// import sundown from "../assets/sundown.png";
-// import ethiopian from "../assets/ethiopian.png";
-// import sumatra from "../assets/sumatra.png";
-// import colombian from "../assets/colombian.png";
-// import pinon from "../assets/pinon.png";
-
+import { toast } from "react-toastify";
 import { GET_PRODUCTS } from "../utils/queries";
 import { useQuery } from "@apollo/client";
 
@@ -27,8 +17,11 @@ function Products(props) {
 
   const addToCart = (product) => {
     setCart([...cart, product]);
+    toast.success("Added to your cart!")
   };
 
+
+  
   return (
     <div>
       <div className="container  center-align text-center">
@@ -47,15 +40,7 @@ function Products(props) {
                   <h3 className="truncate">{coffee.name}</h3>
                   <p>${coffee.price}</p>
 
-
-
-                  <Link 
-                    className="waves-effect  btn-large brown-btn"
-                    onClick={() => addToCart(coffee)} to ="/cart"
-                  >
-                    Add to Cart
-                  </Link>
-
+                  <button className="waves-effect  btn-large brown-btn" onClick={() => addToCart(coffee)}>Add to Cart</button>
                 </div>
               ))}
             </div>
@@ -71,3 +56,11 @@ function Products(props) {
 }
 
 export default Products;
+
+// add to cart linking to cart
+{/* <Link
+  className="waves-effect  btn-large brown-btn"
+  onClick={() => addToCart(coffee)} to="/cart"
+>
+  Add to Cart
+</Link> */}

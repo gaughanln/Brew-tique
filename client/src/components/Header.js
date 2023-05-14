@@ -1,15 +1,17 @@
 import React from "react";
-// import brewtiqueSmall from "../assets/brewtiqueSmall.png";
+import brewtiqueSmall from "../assets/brewtiqueSmall.png";
 import beans from "../assets/beans.png";
 import cart from "../assets/cart.png";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate, useLocation } from "react-router-dom";
 import Auth from "../utils/auth";
+import { toast } from "react-toastify";
 
 // TODO if time, add mobile collapse
 
 function Header() {
 
   const navigate = useNavigate();
+  const location = useLocation();
 
   // how do we implement LOGOUT_USER mutation?
 
@@ -21,91 +23,71 @@ function Header() {
   const logout = (event) => {
     event.preventDefault();
     Auth.logout();
-        console.log("user has been logged out")
+    toast.success("See ya later 👋🏼")
+    console.log("user has been logged out")
   };
 
-  
+
   return (
     <>
       <div className="navbar-fixed">
-        <nav>
-          {/* company name logo in nav bar - If it isn't on the home page, the brewtique logo will appear */}
-
-          {/* <div className="navbar-brand">
-          {currentPage !== "Home" && (
-            <img
-              src={}
-              className="header-logo"
-              width="300"
-              height="125"
-              alt="brewtique logo"
-            />
-          )}
-        </div> */}
+        <nav style={{
+          background: useLocation().pathname !== "/" ? "#1b4235" : "#edd3c5",
+          color: useLocation().pathname !== "/" ? "black" : "red"
+        }}>
 
           {/* beans in nav bar - If it is on the home page only, beans will appear */}
-          <div className="nav-wrapper ">
+          <div>
+        {/* header logos */}
             <img
-              src={beans}
-              className="beans"
-              width="80"
-              height="40"
-              alt="coffee beans"
+              src={useLocation().pathname === "/" ? beans : brewtiqueSmall}
+              className={useLocation().pathname === "/" ? "beans" : "header-logo"}
+              width={useLocation().pathname === "/" ? 80 : 225}
+              alt={useLocation().pathname === "/" ? "Coffee Beans" : "brewtique logo"}
             />
 
-            <ul className="right nav-text">
-              {/* BEANS */}
-              {/* TODO Make sure it is on the home page only */}
-              {/* <li className="nav-item ">
-              <img
-                src={beans}
-                className="header-logo"
-                width="80"
-                height="40"
-                alt="coffee beans"
-              />
-            </li> */}
-
-              {/* HOME */}
+            <ul className="right">
+        {/* HOME */}
               <li>
                 <NavLink to="/">Home</NavLink>
               </li>
 
-              {/* login */}
+        {/* login */}
               {!Auth.loggedIn() && (
                 <li>
                   <NavLink to="/login">Login</NavLink>
                 </li>
               )}
 
-              {/* signup */}
+        {/* signup */}
               {!Auth.loggedIn() && (
                 <li>
                   <NavLink to="/signup">Sign up</NavLink>
                 </li>
               )}
 
-              {/*MY ACCOUNT  */}
+        {/*MY ACCOUNT  */}
               {Auth.loggedIn() && (
                 <li>
                   <NavLink to="/myaccount">My Account</NavLink>
                 </li>
-               )}
+              )}
 
-              {/* PRODUCTS  */}
+        {/* PRODUCTS  */}
               <li>
                 <NavLink to="/products">Shop</NavLink>
               </li>
 
               {/* LOGOUT */}
-              {/* TODO ensure that when you click logout, the session ends */}
+        {/* TODO ensure that when you click logout, the session ends */}
               {Auth.loggedIn() && (
                 <li>
-                  <NavLink onClick={logout}>Logout</NavLink>                
+                  <NavLink onClick={logout}>Logout</NavLink>
                 </li>
               )}
 
               <li>
+              {location.pathname !== '/' && (
                 <NavLink to="/cart">
                   <img
                     src={cart}
@@ -115,7 +97,9 @@ function Header() {
                     alt="shopping cart"
                   />
                 </NavLink>
+                )}
               </li>
+
             </ul>
           </div>
         </nav>

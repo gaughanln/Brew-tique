@@ -32,18 +32,30 @@ main {
 
 /* needs to be light for the home page only */
 nav {
-background-color: var(--green);
+/* background-color: var(--green); */
 padding-bottom: 3%;
 }
 
-.nav-text {
+ul li a {
   font-weight: bolder;
-  color: var(--green);
 }
 
 .beans {
   margin-left: 2%;
-  padding-top: 1%;
+  margin-top: 10px;
+  /* padding-top: 1%; */
+}
+
+.header-logo {
+  margin-left: 2%;
+  margin-top: 10px;
+
+}
+
+.cart-icon {
+width: 40px;
+height: 42px;
+margin-top: 8px;
 }
 
 
@@ -128,6 +140,7 @@ background-color: var(--light-Brown);  }
   display: flex;
 justify-content:space-around;
 margin-top: 1%;
+/* width: 50%; */
 }
 
 
@@ -260,9 +273,9 @@ border-radius: 5%;
   height: 100vh;
  }
  
- .welcome {
+ /* .welcome {
    max-width: 100%;
- }
+ } */
  
  .home-text {
    color: var(--clay);
@@ -298,7 +311,7 @@ border-radius: 5%;
 /* why is this floating? */
 /* want it cream on the home page - is that possible? */
 footer {
-  background-color: var(--green) !important;
+  /* background-color: var(--green) !important; */
   margin-top: 2%;
   bottom: 0;
   height: 60px;   
@@ -307,6 +320,7 @@ footer {
 /* align-items: center; */
 }
 
+/* toast */
 
 
 
