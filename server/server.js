@@ -40,6 +40,9 @@ db.once('open', () => {
   })
 });
 
+server.listen({ port: parseInt(process.env.PORT || 4000, 10) }).then(({ url }) => {
+  console.log(`🚀  Server ready at ${url}`);
+});
 
 startApolloServer();
 
