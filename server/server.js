@@ -2,7 +2,7 @@ import express from 'express';
 import { ApolloServer } from '@apollo/server';
 import { startStandaloneServer } from '@apollo/server/standalone';
 import path from 'path';
-import { typeDefs, resolvers } from './schemas/index.js';
+const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection.js');
 const authMiddleware = require('./utils/auth.js');
 
