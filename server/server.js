@@ -16,8 +16,9 @@ const server = new ApolloServer({
   cache: "bounded"
 });
 
+const port = Number.parseInt(process.env.PORT || '4000');
 const { url } = await startStandloneServer(server, {
-  listen: { port: 4000 },
+  listen: { port },
 });
 
 app.use(express.urlencoded({ extended: true }));
