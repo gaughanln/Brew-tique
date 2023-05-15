@@ -27,9 +27,9 @@ const server = new ApolloServer({
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(express.static("client/build"));
 
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
   app.get('/*', function (req, res) {
     const index = path.join(__dirname, 'build', 'index.html');
     res.sendFile(index);
