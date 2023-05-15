@@ -18,6 +18,7 @@
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "materialize-css": "^1.0.0",
     "react-toastify": "^9.1.2"
   }
 }
