@@ -1,16 +1,35 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import oops from "../assets/oops.png";
-import carttext from '../assets/carttext.png'
+import carttext from "../assets/carttext.png";
 
-function Cart({ cart, setCart  }) {
+function Cart({ cart, setCart }) {
   const totalPrice = cart.reduce((acc, item) => acc + item.price, 0);
 
   const handleDelete = (itemToDelete) => {
     const updatedCart = cart.filter((item) => item.id !== itemToDelete);
     setCart(updatedCart);
   };
-  
+
+  const handleIncrement = (itemToUpdate) => {
+    const updatedCart = cart.map((item) => {
+      if (item.id === itemToUpdate.id) {
+        return { ...item, quantity: item.quantity + 1 };
+      }
+      return item;
+    });
+    setCart(updatedCart);
+  };
+
+  const handleDecrement = (itemToUpdate) => {
+    const updatedCart = cart.map((item) => {
+      if (item.id === itemToUpdate.id) {
+        return { ...item, quantity: Math.max(item.quantity - 1, 1) };
+      }
+      return item;
+    });
+    setCart(updatedCart);
+  };
 
   const token = localStorage.getItem("token"); // get the token from a cookie
   const [cartItems, setCartItems] = useState(() => {
@@ -18,13 +37,10 @@ function Cart({ cart, setCart  }) {
     return cartData ? JSON.parse(cartData) : cart;
   });
 
-
   useEffect(() => {
     sessionStorage.setItem(`cart-${token}`, JSON.stringify(cartItems));
     localStorage.setItem(`cart-${token}`, JSON.stringify(cartItems));
   }, [cartItems, token]);
-
- 
 
   return (
     <div className="container">
@@ -45,58 +61,87 @@ function Cart({ cart, setCart  }) {
         </>
       ) : (
         <div>
-          <img src={carttext} className="cart-header" alt="You've got great taste" />
-          <div className="row  cards valign-wrapper center-align">
-            {cart.map((item) => (
-              <a key={item.id}>
-                <div className="col s6 center-align">
+          <img
+            src={carttext}
+            className="cart-header center-align"
+            alt="You've got great taste"
+          />
+          {cart.map((item) => (
+            <div>
+              <div className="row valign-wrapper cards" key={item.id}>
+                <div className="col m4 center-align">
                   {/*  image */}
-                  <img
-                    src={item.image}
-                    className="inthecart"
-                    height="200px"
-                  />
+                  <img src={item.image} className="inthecart" height="200px" />
                   <br />
                 </div>
 
                 {/* name and price */}
-                <div className="col s6 center-align">
+                <div className="col  m4 center-align">
                   <p className="cart-text">
                     {item.name} <br /> $ {item.price}
-                  
                   </p>
-                  <button className ="waves-effect hoverable btn-small green-btn" onClick={() => handleDelete(item.id)}>🗑</button>
-
                 </div>
-              </a>
-            ))}
-          </div>
-          <div>
-            <div className="row cards center-align">
-              <div className="col s12 center-align cart-btns ">
-                {/* total */}
-                <a className="waves-effect  btn-large checkout-btn">
-                  Total: ${totalPrice}
-                </a>
-              </div>
+                <div className="col  m4 center-align">
+                  <div className="cart-quantity quantity-text">
+                    <p>Quantity</p>
+                    <a className="quantity-text quantity" onClick={() => handleDecrement(item)}>
+                      -
+                    </a>
+                    <span className="quantity-text">{item.quantity}</span>
+                    <a className="  quantity-text quantity " onClick={() => handleIncrement(item)}>
+                      +
+                    </a>
+                  </div>
 
-              {/* submit button */}
-              <div className="col s12 center-align cart-btns ">
-                <a className="waves-effect btn-large brown-btn checkout-btn ">
-                  Checkout
-                </a>
-              </div>
+                  <a className=" trash cart-btns" onClick={() => handleDelete(item.id)}>
+                    🗑
+                  </a>
+                </div>
 
-              <div className="col s12 center-align cart-btns ">
-                <Link
-                  className="btn-large waves-effect  green-btn"
-                  to="/products"
-                >
-                  continue shopping
-                </Link>
+              </div>
+              <div className="row">
+                <hr class="solid" />
               </div>
             </div>
+          ))}
+          <div>
+
+
+
+
+          <div className="row cart-btns center-align" >
+  <div className="col m4 s12">
+    <a className="waves-effect btn-large checkout-btn">
+      Total: ${totalPrice}
+    </a>
+    </div>
+
+
+  
+
+
+    <div className="col m4 s12">
+    <Link className="btn-large waves-effect green-btn" to="/products">
+      Continue Shopping
+    </Link>
+  </div>
+
+
+  <div className="col m4 s12">
+    <a className="waves-effect btn-large brown-btn checkout-btn ">
+      Checkout
+    </a>
+    </div>
+
+</div>
+
+
+
+
+
+
           </div>
+
         </div>
       )}
     </div>

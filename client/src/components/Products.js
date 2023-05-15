@@ -20,20 +20,32 @@ function Products(props) {
   const coffee = data?.getProducts || [];
 
   const addToCart = (product) => {
-    const item = { ...product, id: uuidv4() };
-    setCart([...cart, item]);
+    const existingItemIndex = cart.findIndex((item) => item.id === product.id);
+    if (existingItemIndex !== -1) {
+      const updatedCart = [...cart];
+      updatedCart[existingItemIndex] = {
+        ...updatedCart[existingItemIndex],
+        quantity: updatedCart[existingItemIndex].quantity + 1,
+      };
+      setCart(updatedCart);
+    } else {
+      const item = { ...product, id: uuidv4(), quantity: 1 };
+      setCart([...cart, item]);
+    }
     toast.success("☕️ Added to your cart!", {
-position: "top-center",
-autoClose: 1000,
-hideProgressBar: false,
-closeOnClick: true,
-pauseOnHover: true,
-draggable: true,
-progress: undefined,
-theme: "light",
-icon: false,
-})
+      position: "top-center",
+      autoClose: 1000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      icon: false,
+    });
   };
+  
+  
 
   
   return (
