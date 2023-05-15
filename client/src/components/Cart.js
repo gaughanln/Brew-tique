@@ -4,7 +4,7 @@ import oops from "../assets/oops.png";
 import carttext from "../assets/carttext.png";
 
 function Cart({ cart, setCart }) {
-  const totalPrice = cart.reduce((acc, item) => acc + item.price, 0);
+  const totalPrice = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
   const handleDelete = (itemToDelete) => {
     const updatedCart = cart.filter((item) => item.id !== itemToDelete);
@@ -112,7 +112,7 @@ function Cart({ cart, setCart }) {
           <div className="row cart-btns center-align" >
   <div className="col m4 s12">
     <a className="waves-effect btn-large checkout-btn">
-      Total: ${totalPrice}
+      Total: ${totalPrice.toFixed(2)}
     </a>
     </div>
 
