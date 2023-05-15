@@ -7,13 +7,10 @@ function Cart({ cart, setCart  }) {
   const totalPrice = cart.reduce((acc, item) => acc + item.price, 0);
 
   const handleDelete = (itemToDelete) => {
-    const updatedCart = cart.filter((item) => item.id !== itemToDelete.id);
+    const updatedCart = cart.filter((item) => item.id !== itemToDelete);
     setCart(updatedCart);
   };
   
-  
-  
-
 
   const token = localStorage.getItem("token"); // get the token from a cookie
   const [cartItems, setCartItems] = useState(() => {
@@ -68,7 +65,7 @@ function Cart({ cart, setCart  }) {
                     {item.name} <br /> $ {item.price}
                   
                   </p>
-                  <button onClick={() => handleDelete(item)}>delete</button>
+                  <button className ="waves-effect hoverable btn-small green-btn" onClick={() => handleDelete(item.id)}>🗑</button>
 
                 </div>
               </a>
