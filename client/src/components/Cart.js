@@ -41,8 +41,9 @@ function Cart({ cart, setCart }) {
   });
 
   useEffect(() => {
-    sessionStorage.setItem(`cart-${token}`, JSON.stringify(cartItems));
-    localStorage.setItem(`cart-${token}`, JSON.stringify(cartItems));
+    const cartData = JSON.stringify(cartItems);
+    sessionStorage.setItem(`cart-${token}`, cartData);
+    localStorage.setItem(`cart-${token}`, cartData);
   }, [cartItems, token]);
 
   return (
