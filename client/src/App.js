@@ -61,9 +61,9 @@ function App() {
 
     <ApolloProvider client={client}>
       <ToastContainer />
-
       <Router>
-        <main>
+        <div>
+        <main> 
           <Header />
           <Routes>
             <Route path='/' element={<Home />} />
@@ -74,8 +74,9 @@ function App() {
             <Route path='/myaccount' element={<User />} />
             {/* <Route path='/myaccount/:userId' element= {<Cart />} /> */}
           </Routes>
-          <Footer />
         </main>
+        <Footer />
+        </div>
       </Router>
     </ApolloProvider > 
   );

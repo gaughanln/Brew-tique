@@ -47,7 +47,7 @@ function Products(props) {
   
   return (
     <div>
-      <div className="container  center-align text-center">
+      <div className="container products-page center-align text-center">
         <img src={ontap} className="ontap" alt="Products" />
         <div className="row">
           {coffee && (
@@ -62,8 +62,9 @@ function Products(props) {
                   />
                   <h3 className="truncate">{coffee.name}</h3>
                   <p>${coffee.price}</p>
+                  <p>{coffee.description}</p>
 
-                  <button className="waves-effect  btn-large brown-btn" onClick={() => addToCart(coffee)}>Add to Cart</button>
+                  <button className="waves-effect btn-large brown-btn" onClick={() => addToCart(coffee)}>Add to Cart</button>
                 </div>
               ))}
             </div>

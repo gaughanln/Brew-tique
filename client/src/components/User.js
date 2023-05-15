@@ -136,9 +136,9 @@ function User() {
     <>
       <div className="row user valign-wrapper">
         {user && (
-          <div className="col s6 ">
+          <div className="col">
             <span className="myaccount-text" />
-            <div className="valign-wrapper">
+            <div >
               <img src={myaccount} className="my-account" alt="Cup of coffee" />
 
               <Link>
@@ -155,7 +155,7 @@ function User() {
             </div>
 
             {/* first name */}
-            <div className="input-field col s6">
+            <div className="input-field col ">
               <h3 className="user-text"> First Name </h3>
               <input
                 id="firstName"
@@ -175,7 +175,7 @@ function User() {
               />
             </div>
 
-            <div className="input-field col s6">
+            <div className="input-field col ">
               <h3 className="user-text"> Last Name </h3>
               <input
                 id="lastName"
@@ -197,7 +197,7 @@ function User() {
 
             <br />
 
-            <div className="input-field col s6">
+            <div className="input-field col s">
               <button
                 className="btn-large waves-effect brown-btn"
                 onClick={showConfirm}
@@ -206,7 +206,7 @@ function User() {
               </button>
             </div>
 
-            <div className="input-field col s6">
+            <div className="input-field col s">
               <Link className="btn-large waves-effect green-btn" to="/products">
                 Shop now!
               </Link>
@@ -235,12 +235,13 @@ function User() {
                 </button>
               </div>
             )}
+             
           </div>
         )}
 
         {/* fix this photo */}
-        <div className="col s6 ">
-          <img src={cheers} className="cheers-photo" alt="Cup of coffee" />
+        <div >
+          <img src={cheers} className="cheers-photo col " alt="Cup of coffee" />
         </div>
       </div>
     </>
