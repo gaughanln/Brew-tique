@@ -12,6 +12,8 @@ const Footer = () => {
     <footer className="valign-wrapper" style={{
           background: useLocation().pathname !== "/" ? "#1b4235" : "#edd3c5",
         }}>
+
+          <div id="content">
       <div className="row">
         <div className="col l6 s12 about">
           <h5>About Us</h5>
@@ -32,6 +34,11 @@ const Footer = () => {
             </p>
           </div>
         </div>
+        </div>
+
+
+
+
     </footer>
   );
 };

@@ -68,11 +68,12 @@ function Products(props) {
               ))}
             </div>
           )}
-
-          <Link className="btn-large waves-effect  green-btn" to="/cart">
+<br/>
+          
+        </div>
+        <Link className="btn-large waves-effect  green-btn" to="/cart">
             Checkout
           </Link>
-        </div>
       </div>
     </div>
   );
