@@ -15,8 +15,6 @@ function Products(props) {
   const { loading, data } = useQuery(GET_PRODUCTS);
   if (loading) return <p>Loading...</p>;
 
-  // const navigate = useNavigate();
-
   const coffee = data?.getProducts || [];
 
   const addToCart = (product) => {

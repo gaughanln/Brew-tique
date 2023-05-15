@@ -1,8 +1,6 @@
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcryptjs');
 
-// TODO changed username to firstName, lastName
-
 const userSchema = new Schema({
   firstName: {
     type: String,
@@ -29,13 +27,13 @@ const userSchema = new Schema({
   },
  
   
-  // TODO
+  // TODO add address information
   // address:{
 
   // }
 });
 
-// TODO we need to hash the password information-does this do that? 
+// hash password
 
 userSchema.pre('save', async function (next) {
   if (this.isNew || this.isModified('password')) {
