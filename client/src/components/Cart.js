@@ -4,7 +4,10 @@ import oops from "../assets/oops.png";
 import carttext from "../assets/carttext.png";
 
 function Cart({ cart, setCart }) {
-  const totalPrice = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
+  const totalPrice = cart.reduce(
+    (acc, item) => acc + item.price * item.quantity,
+    0
+  );
 
   const handleDelete = (itemToDelete) => {
     const updatedCart = cart.filter((item) => item.id !== itemToDelete);
@@ -84,20 +87,28 @@ function Cart({ cart, setCart }) {
                 <div className="col  m4 center-align">
                   <div className="cart-quantity quantity-text">
                     <p>Quantity</p>
-                    <a className="quantity-text quantity" onClick={() => handleDecrement(item)}>
+                    <a
+                      className="quantity-text quantity"
+                      onClick={() => handleDecrement(item)}
+                    >
                       -
                     </a>
                     <span className="quantity-text">{item.quantity}</span>
-                    <a className="  quantity-text quantity " onClick={() => handleIncrement(item)}>
+                    <a
+                      className="  quantity-text quantity "
+                      onClick={() => handleIncrement(item)}
+                    >
                       +
                     </a>
                   </div>
 
-                  <a className=" trash cart-btns" onClick={() => handleDelete(item.id)}>
+                  <a
+                    className=" trash cart-btns"
+                    onClick={() => handleDelete(item.id)}
+                  >
                     🗑
                   </a>
                 </div>
-
               </div>
               <div className="row">
                 <hr class="solid" />
@@ -105,43 +116,29 @@ function Cart({ cart, setCart }) {
             </div>
           ))}
           <div>
+            <div className="row cart-btns center-align">
+              <div className="col m4 s12">
+                <a className="waves-effect btn-large checkout-btn">
+                  Total: ${totalPrice.toFixed(2)}
+                </a>
+              </div>
 
+              <div className="col m4 s12">
+                <Link
+                  className="btn-large waves-effect green-btn"
+                  to="/products"
+                >
+                  Continue Shopping
+                </Link>
+              </div>
 
-
-
-          <div className="row cart-btns center-align" >
-  <div className="col m4 s12">
-    <a className="waves-effect btn-large checkout-btn">
-      Total: ${totalPrice.toFixed(2)}
-    </a>
-    </div>
-
-
-  
-
-
-    <div className="col m4 s12">
-    <Link className="btn-large waves-effect green-btn" to="/products">
-      Continue Shopping
-    </Link>
-  </div>
-
-
-  <div className="col m4 s12">
-    <a className="waves-effect btn-large brown-btn checkout-btn ">
-      Checkout
-    </a>
-    </div>
-
-</div>
-
-
-
-
-
-
+              <div className="col m4 s12">
+                <a className="waves-effect btn-large brown-btn checkout-btn ">
+                  Checkout
+                </a>
+              </div>
+            </div>
           </div>
-
         </div>
       )}
     </div>

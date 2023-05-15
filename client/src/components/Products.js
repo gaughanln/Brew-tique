@@ -25,7 +25,6 @@ function Products(props) {
     if (itemIndex === -1) {
       setCart([...cart, { ...item, quantity: 1 }]);
     } else {
-      
       const updatedCart = [...cart];
       updatedCart[itemIndex].quantity += 1;
       setCart(updatedCart);
@@ -69,11 +68,12 @@ function Products(props) {
               ))}
             </div>
           )}
-
-          <Link className="btn-large waves-effect  green-btn" to="/cart">
+<br/>
+          
+        </div>
+        <Link className="btn-large waves-effect  green-btn" to="/cart">
             Checkout
           </Link>
-        </div>
       </div>
     </div>
   );
@@ -81,10 +81,3 @@ function Products(props) {
 
 export default Products;
 
-// add to cart linking to cart
-{/* <Link
-  className="waves-effect  btn-large brown-btn"
-  onClick={() => addToCart(coffee)} to="/cart"
->
-  Add to Cart
-</Link> */}
