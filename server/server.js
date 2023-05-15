@@ -1,6 +1,6 @@
 const express = require('express');
-import { ApolloServer } from require('@apollo/server');
-import { startStandloneServer } from '@apollo/server/standalone';
+import { ApolloServer } from '@apollo/server';
+import { startStandaloneServer } from '@apollo/server/standalone';
 const path = require('path');
 const { authMiddleware } = require('./utils/auth');
 const { typeDefs, resolvers } = require('./schemas');
@@ -17,7 +17,7 @@ const server = new ApolloServer({
 });
 
 const port = Number.parseInt(process.env.PORT || '4000');
-const { url } = await startStandloneServer(server, {
+const { url } = await startStandaloneServer(server, {
   listen: { port },
 });
 
