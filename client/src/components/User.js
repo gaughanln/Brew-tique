@@ -221,12 +221,7 @@ function User() {
               </Link>
             </div>
 
-            <button
-  className="btn-large waves-effect brown-btn"
-  onClick={showConfirm}
->
-  Delete Account
-</button>
+       
 
             {confirmOpen && (
               <div>
