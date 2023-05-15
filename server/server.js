@@ -8,6 +8,8 @@ const db = require('./config/connection');
 const PORT = process.env.PORT || 3001;
 const app = express();
 
+app.set("port", PORT);
+
 const startApolloServer = async () => {
   await server.start();
   server.applyMiddleware({ app });
