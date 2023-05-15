@@ -6,10 +6,11 @@ const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
 
 const PORT = Number.parseInt(process.env.PORT) || 3001;
-const { url } = await startStandaloneServer(server, { listen: { PORT }})
+
 const app = express();
 
 const startApolloServer = async () => {
+  const { url } = await startStandaloneServer(server, { listen: { PORT }});
   await server.start();
   server.applyMiddleware({ app });
 };
