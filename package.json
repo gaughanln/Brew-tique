@@ -1,5 +1,5 @@
 {
-  "name": "Brew-time",
+  "name": "brew-time",
   "version": "1.0.0",
   "description": "",
   "main": "server/server.js",
@@ -8,8 +8,7 @@
     "develop": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
     "install": "cd server && npm i && cd ../client && npm i",
     "seed": "cd server && npm run seed",
-    "build": "cd client && npm run build",
-    "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build"
+    "build": "cd client && npm run build"
   },
   "keywords": [],
   "author": "",
