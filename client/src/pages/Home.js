@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
+
+// images
 import homePhoto from "../assets/homePhoto.png";
 import brewtiqueLarge from "../assets/brewtiqueLarge.png";
 
@@ -23,8 +25,7 @@ function Home() {
             and exciting each morning!
           </p>
           <Link className="btn-large waves-effect clay-btn" to="/products">
-            {" "}
-            Shop now!{" "}
+            Shop now!
           </Link>
         </div>
 

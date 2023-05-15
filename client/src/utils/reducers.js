@@ -3,7 +3,7 @@ import {
   LOGIN_USER, 
   UPDATE_USER, 
   ADD_ADDRESS, 
-  DELETE_USER 
+  DELETE_USER,
 } from './actions';
 import createId from './createId';
 
