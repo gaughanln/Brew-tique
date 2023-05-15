@@ -3,7 +3,7 @@ import { ApolloServer } from '@apollo/server';
 import { startStandaloneServer } from '@apollo/server/standalone';
 import path from 'path';
 import { typeDefs, resolvers } from './schemas/index.js';
-import db from './config/connection.js';
+const db = require('./config/connection.js');
 const authMiddleware = require('./utils/auth.js');
 
 const PORT = process.env.PORT || 3001;
