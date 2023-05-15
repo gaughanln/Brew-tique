@@ -7,7 +7,6 @@ const typeDefs = gql`
         lastName: String!
         email: String!
         password: String!
-        address: [Address]
     }
     type Address {
         userId: ID! 
@@ -36,9 +35,11 @@ const typeDefs = gql`
         email: String
     }
     input UpdateUserInput {
+        _id: ID!
         firstName: String
         lastName: String
         email: String
+        password: String
     }
     type Query {
         me: User
