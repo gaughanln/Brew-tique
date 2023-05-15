@@ -139,8 +139,6 @@ function User() {
         console.log("User updated successfully!", data);
       } catch (error) {
         console.error(error);
-      }
-      
     }
   };
 
@@ -223,11 +221,17 @@ function User() {
               </Link>
             </div>
 
+            <button
+  className="btn-large waves-effect brown-btn"
+  onClick={showConfirm}
+>
+  Delete Account
+</button>
+
             {confirmOpen && (
               <div>
                 <p>Are you sure you want to delete your account?</p>
-                <button
-                  className="
+                <button className ="
                   btn-large
                   waves-effect
                   green-btn"
