@@ -2,12 +2,67 @@ import express from 'express';
 import { ApolloServer } from '@apollo/server';
 import { startStandaloneServer } from '@apollo/server/standalone';
 import path from 'path';
-const { typeDefs, resolvers } = require('./schemas');
-const db = require('./config/connection.js');
-const authMiddleware = require('./utils/auth.js');
+import resolvers from './schemas/index.js';
+import { authMiddleware } from './utils/auth.js';
+import db from './config/connection.js';
 
 const PORT = process.env.PORT || 3001;
 const app = express();
+
+const typeDefs = `#graphql
+    type User {
+        _id: ID!
+        firstName: String!
+        lastName: String!
+        email: String!
+        password: String!
+        address: [Address]
+    }
+    type Address {
+        userId: ID! 
+        street: String!
+        city: String!
+        state: String!
+        zip: String!
+        country: String!
+    }
+    type Coffee {
+        _id: ID!
+        name: String!
+        image: String!
+        location: String!
+        roast: String!
+        description: String!
+        price: Float!
+    }
+    type Auth {
+        token: ID!
+        user: User
+    }
+    input UserFilterInput {
+        firstName: String
+        lastName: String
+        email: String
+    }
+    input UpdateUserInput {
+        firstName: String
+        lastName: String
+        email: String
+    }
+    type Query {
+        me: User
+        getProducts: [Coffee]
+        users(filter: UserFilterInput): [User]
+    }   
+    type Mutation {
+        login(email: String!, password: String!): Auth
+        logout: Boolean!
+        addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
+        updateUser(input: UpdateUserInput!): User
+        addAddress(userId: ID!, street: String!, city: String!, state: String!, zip: String!, country: String!): User
+        deleteUser(userId: ID!): Boolean
+    }
+`;
 
 const server = new ApolloServer({
   typeDefs,

@@ -1,4 +1,4 @@
-const User = require('./User');
-const Coffee = require('./Coffee');
+import User from './User.js';
+import Coffee from './Coffee.js';
 
-module.exports = { User, Coffee };
+export { User, Coffee };

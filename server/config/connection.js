@@ -1,5 +1,6 @@
-const mongoose = require("mongoose");
-require('dotenv').config({path: '../.env'});
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+dotenv.config({path: '../.env'});
 
 mongoose
   //figure out the REACT_APP_MONGODB_URI since .env variables are not working
@@ -10,4 +11,4 @@ mongoose
   })
   .catch((err) => console.log(err.reason));
 
-module.exports = mongoose.connection;
+export default mongoose.connection;
