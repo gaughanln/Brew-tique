@@ -20,17 +20,15 @@ function Products(props) {
   const coffee = data?.getProducts || [];
 
   const addToCart = (product) => {
-    const existingItemIndex = cart.findIndex((item) => item.id === product.id);
-    if (existingItemIndex !== -1) {
-      const updatedCart = [...cart];
-      updatedCart[existingItemIndex] = {
-        ...updatedCart[existingItemIndex],
-        quantity: updatedCart[existingItemIndex].quantity + 1,
-      };
-      setCart(updatedCart);
+    const item = { ...product, id: uuidv4(), quantity: 1 };
+    const itemIndex = cart.findIndex(cartItem => cartItem.name === item.name);
+    if (itemIndex === -1) {
+      setCart([...cart, { ...item, quantity: 1 }]);
     } else {
-      const item = { ...product, id: uuidv4(), quantity: 1 };
-      setCart([...cart, item]);
+      
+      const updatedCart = [...cart];
+      updatedCart[itemIndex].quantity += 1;
+      setCart(updatedCart);
     }
     toast.success("☕️ Added to your cart!", {
       position: "top-center",
