@@ -19,7 +19,17 @@ function Products(props) {
 
   const addToCart = (product) => {
     setCart([...cart, product]);
-    toast.success("Added to your cart!")
+    toast.success("☕️ Added to your cart!", {
+position: "top-center",
+autoClose: 1000,
+hideProgressBar: false,
+closeOnClick: true,
+pauseOnHover: true,
+draggable: true,
+progress: undefined,
+theme: "light",
+icon: false,
+})
   };
 
   

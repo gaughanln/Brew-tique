@@ -7,10 +7,11 @@ function Cart({ cart, setCart  }) {
   const totalPrice = cart.reduce((acc, item) => acc + item.price, 0);
 
   const handleDelete = (itemToDelete) => {
-    const updatedCart = cartItems.filter((item) => item.id !== itemToDelete.id);
-    setCartItems(updatedCart);
+    const updatedCart = cart.filter((item) => item.id !== itemToDelete.id);
     setCart(updatedCart);
   };
+  
+  
   
 
 
