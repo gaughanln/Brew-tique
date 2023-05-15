@@ -8,8 +8,6 @@ const db = require('./config/connection');
 const PORT = process.env.PORT || 3001;
 const app = express();
 
-app.set("port", PORT);
-
 const server = new ApolloServer({
   typeDefs,
   resolvers,
@@ -17,7 +15,7 @@ const server = new ApolloServer({
   cache: "bounded"
 });
 
-const port = Number.parseInt(process.env.PORT || 4000);
+const port = Number.parseInt(process.env.PORT || "4000");
 const { url } = await startStandaloneServer(server, { listen: port })
 
 app.use(express.urlencoded({ extended: true }));
