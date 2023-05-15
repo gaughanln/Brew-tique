@@ -1,42 +1,53 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import ontap from "../assets/ontap.png";
 import { toast } from "react-toastify";
 import { GET_PRODUCTS } from "../utils/queries";
 import { useQuery } from "@apollo/client";
+import { v4 as uuidv4 } from 'uuid';
+
 
 function Products(props) {
   const { cart, setCart } = props;
+  console.log(props.cart);
+  console.log(props.setCart);
 
   const { loading, data } = useQuery(GET_PRODUCTS);
   if (loading) return <p>Loading...</p>;
 
+  // const navigate = useNavigate();
+
   const coffee = data?.getProducts || [];
 
   const addToCart = (product) => {
-    const existingCartItem = cart.find(
-      (cartItem) => cartItem.id === product.id
-    );
-    if (!existingCartItem) {
-      setCart([...cart, { ...product, quantity: 1 }]);
-      toast.success("Added to your cart!");
-    } else {
-      const updatedCartItem = {
-        ...existingCartItem,
-        quantity: existingCartItem.quantity + 1,
+    const existingItemIndex = cart.findIndex((item) => item.id === product.id);
+    if (existingItemIndex !== -1) {
+      const updatedCart = [...cart];
+      updatedCart[existingItemIndex] = {
+        ...updatedCart[existingItemIndex],
+        quantity: updatedCart[existingItemIndex].quantity + 1,
       };
-      const updatedCart = cart.map((cartItem) => {
-        if (cartItem.id === product.id) {
-          return updatedCartItem;
-        } else {
-          return cartItem;
-        }
-      });
       setCart(updatedCart);
-      toast.success("Item was added to your cart!");
+    } else {
+      const item = { ...product, id: uuidv4(), quantity: 1 };
+      setCart([...cart, item]);
     }
+    toast.success("☕️ Added to your cart!", {
+      position: "top-center",
+      autoClose: 1000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      icon: false,
+    });
   };
+  
+  
 
+  
   return (
     <div>
       <div className="container  center-align text-center">
@@ -52,20 +63,10 @@ function Products(props) {
                     alt={coffee.name}
                     height="300"
                   />
-                  <h3 className="truncate product-title">{coffee.name}</h3>
-                  <p className="description">
-                    Sourced from {coffee.location}
-                    <br /> {coffee.description}
-                  </p>
-
+                  <h3 className="truncate">{coffee.name}</h3>
                   <p>${coffee.price}</p>
 
-                  <button
-                    className="waves-effect  btn-large brown-btn"
-                    onClick={() => addToCart(coffee)}
-                  >
-                    Add to Cart
-                  </button>
+                  <button className="waves-effect  btn-large brown-btn" onClick={() => addToCart(coffee)}>Add to Cart</button>
                 </div>
               ))}
             </div>
@@ -81,3 +82,11 @@ function Products(props) {
 }
 
 export default Products;
+
+// add to cart linking to cart
+{/* <Link
+  className="waves-effect  btn-large brown-btn"
+  onClick={() => addToCart(coffee)} to="/cart"
+>
+  Add to Cart
+</Link> */}
