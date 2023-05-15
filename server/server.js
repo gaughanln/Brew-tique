@@ -2,7 +2,7 @@ import express from 'express';
 import { ApolloServer } from '@apollo/server';
 import { startStandaloneServer } from '@apollo/server/standalone';
 import path from 'path';
-import { authMiddleware } from '../utils/auth';
+import { authMiddleware } from './utils/auth';
 import { typeDefs, resolvers } from './schemas';
 import db from './config/connection';
 
