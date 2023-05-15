@@ -5,7 +5,8 @@ const { authMiddleware } = require('./utils/auth');
 const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
 
-const PORT = process.env.PORT || 3001;
+const PORT = Number.parseInt(process.env.PORT) || 3001;
+const { url } = await startStandaloneServer(server, { listen: { PORT }})
 const app = express();
 
 const startApolloServer = async () => {
@@ -17,6 +18,7 @@ const server = new ApolloServer({
   typeDefs,
   resolvers,
   context: authMiddleware,
+  cache: "bounded",
   // context: ({ req }) => {
   //   // get the authorization token from the headers
   //   const token = req.headers.authorization || '';
