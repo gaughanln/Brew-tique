@@ -5,11 +5,15 @@ import { Link } from "react-router-dom";
 import homePhoto from "../assets/homePhoto.png";
 import brewtiqueLarge from "../assets/brewtiqueLarge.png";
 
+
 function Home() {
   return (
     <>
       <div className="row home valign-wrapper">
-        <div className="col s6 center-align ">
+
+
+
+        <div className="welcome">
           <img
             src={brewtiqueLarge}
             className="brew-large"
@@ -20,15 +24,21 @@ function Home() {
             coffee from around the world, so you can experience something new
             and exciting each morning!
           </p>
-
           <Link className="btn-large waves-effect clay-btn" to="/products">
             Shop now!
           </Link>
         </div>
 
-        <div className="col s6 center-align">
+
+
+
+        <div className="coffee-cup">
           <img src={homePhoto} className="home-photo" alt="Cup of coffee" />
         </div>
+
+
+
+
       </div>
     </>
   );
