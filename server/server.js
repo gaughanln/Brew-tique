@@ -1,4 +1,4 @@
-const express = require('express');
+import express from 'express';
 import { ApolloServer } from '@apollo/server';
 import { startStandaloneServer } from '@apollo/server/standalone';
 const path = require('path');
