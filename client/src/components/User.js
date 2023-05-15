@@ -21,17 +21,17 @@ function User() {
 // Mutations + Queries
   const { loading, data } = useQuery(QUERY_ME);
   const [deleteUser] = useMutation(DELETE_USER);
-  // const [updateUser] = useMutation(UPDATE_USER);
+  const [updateUser] = useMutation(UPDATE_USER);
 
-  const [updateUser, { updating, error }] = useMutation(UPDATE_USER, {
-    update: (cache, { data }) => {
-      cache.modify({
-        fields: {
-          user: () => data.updateUser,
-        },
-      });
-    },
-  });
+  // const [updateUser, { updating, error }] = useMutation(UPDATE_USER, {
+  //   update: (cache, { data }) => {
+  //     cache.modify({
+  //       fields: {
+  //         user: () => data.updateUser,
+  //       },
+  //     });
+  //   },
+  // });
 
 // loading
   if (loading)
@@ -140,7 +140,7 @@ function User() {
       } catch (error) {
         console.error(error);
     }
-  };
+  }};
 
   return (
     <>
