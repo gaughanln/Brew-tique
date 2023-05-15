@@ -34,7 +34,7 @@ const Login = () => {
       // console.log(data);
       Auth.login(data.login.token);
       console.log("Login successful!");
-      // want to add a toast here?
+      // TODO want to add a toast here?
       navigate("/myaccount");
     } catch (e) {
       console.error(e);

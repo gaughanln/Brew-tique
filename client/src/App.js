@@ -17,7 +17,6 @@ import Footer from './components/Footer';
 import Header from './components/Header';
 import Products from './components/Products';
 import User from './components/User';
-// import { Cart, Footer, Header, Products, User } from './components';
 
 // toastify imports
 import { ToastContainer } from 'react-toastify';
@@ -52,9 +51,7 @@ function App() {
 
   const [cart, setCart] = useState([]);
 
-  // TODO update naming of my account. Maybe user profile? Fix all pathing on it when done
-
-  // not sure if path='/myaccount/:userId' will work yet or if it's needed
+  // TODO not sure if path='/myaccount/:userId' will work yet or if it's needed
 
   // rendering the components
   return (

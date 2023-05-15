@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 require('dotenv').config({path: '../.env'});
 
 mongoose
-  //figure out the REACT_APP_MONGODB_URI since .env variables are not working
+  // uses the environment variable to connect to MongoDB Atlas
   .connect(process.env.REACT_APP_MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,

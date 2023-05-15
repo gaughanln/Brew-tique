@@ -7,8 +7,6 @@ import { ADD_USER } from "../utils/mutations";
 // images
 import signup from "../assets/signup.png";
 
-
-
 function CreateUser() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
