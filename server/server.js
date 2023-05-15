@@ -10,27 +10,15 @@ const app = express();
 
 app.set("port", PORT);
 
-const startApolloServer = async () => {
-  await server.start();
-  server.applyMiddleware({ app });
-};
-
 const server = new ApolloServer({
   typeDefs,
   resolvers,
   context: authMiddleware,
   cache: "bounded"
-  // context: ({ req }) => {
-  //   // get the authorization token from the headers
-  //   const token = req.headers.authorization || '';
-  //   // return the token in an object
-  //   return { token };
-  // },
 });
 
-server.listen({ port: parseInt(process.env.PORT || 4000, 10) }).then(({ url }) => {
-  console.log(`🚀  Server ready at ${url}`);
-});
+const port = Number.parseInt(process.env.PORT || 4000);
+const { url } = await startStandaloneServer(server, { listen: port })
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
