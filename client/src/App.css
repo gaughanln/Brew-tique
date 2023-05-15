@@ -325,23 +325,10 @@ border-radius: 5%;
   color: var(--green);
 }
 
-
-
-/* why is this floating? */
-/* want it cream on the home page - is that possible? */
 footer {
-  /* background-color: var(--green) !important; */
   margin-top: 2%;
   bottom: 0;
   position: fixed;
   min-width: 100%;
-
-/* align-items: center; */
+  color: var(--light-Brown)
 }
-
-/* .about {
-  padding-left: 5%;
-} */
-
-
-
