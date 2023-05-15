@@ -25,3 +25,13 @@ export const QUERY_ME = gql`
     }
   }
 `;
+
+export const GET_USERS = gql`
+query getUser($filter: UserFilterInput) {
+  users(filter: $filter) {
+    firstName
+    lastName
+    email
+  }
+}
+`;

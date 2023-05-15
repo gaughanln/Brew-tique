@@ -6,12 +6,10 @@ import edit from "../assets/edit.png";
 import save from "../assets/save.png";
 import oopsUser from "../assets/oopsUser.png";
 import myaccount from "../assets/myaccount.png";
-
 import Auth from "../utils/auth";
 
 import { DELETE_USER, UPDATE_USER } from "../utils/mutations";
 import { QUERY_ME } from "../utils/queries";
-// import { UPDATE_USER } from "../utils/actions";
 
 function User() {
 
@@ -19,13 +17,23 @@ function User() {
   const [imageSrc, setImageSrc] = useState(edit);
   const { email: userParam } = useParams();
   const [confirmOpen, setConfirmOpen] = useState(false);
+
 // Mutations + Queries
   const { loading, data } = useQuery(QUERY_ME);
   const [deleteUser] = useMutation(DELETE_USER);
   const [updateUser] = useMutation(UPDATE_USER);
 
-// loading
+  // const [updateUser, { updating, error }] = useMutation(UPDATE_USER, {
+  //   update: (cache, { data }) => {
+  //     cache.modify({
+  //       fields: {
+  //         user: () => data.updateUser,
+  //       },
+  //     });
+  //   },
+  // });
 
+// loading
   if (loading)
     return (
       <div class="preloader-wrapper big active">
@@ -44,6 +52,7 @@ function User() {
     );
 
   const user = data?.me || {};
+
 // initializing login
   if (Auth.loggedIn() && Auth.getProfile().data.email === userParam) {
     return <Navigate to="/myaccount" />;
@@ -78,6 +87,7 @@ function User() {
       </div>
     );
   }
+
 // deleting the user profile
   const deleteUserBtn = async (event) => {
     event.preventDefault();
@@ -96,25 +106,22 @@ function User() {
       }
     }
   };
+
 // confirming deletion
   const showConfirm = () => {
     setConfirmOpen(true);
   };
 
 // editing the user information
-
   const editSaveClick = async () => {
     const image = document.getElementById("edit-save");
     if (imageSrc === edit) {
       setImageSrc(save);
-
       document.getElementById("firstName").disabled = false;
       document.getElementById("lastName").disabled = false;
       document.getElementById("email").disabled = false;
-
     } else {
       setImageSrc(edit);
-
       document.getElementById("firstName").disabled = true;
       document.getElementById("lastName").disabled = true;
       document.getElementById("email").disabled = true;
@@ -159,7 +166,6 @@ function User() {
 
             {/* first name */}
             <div className="input-field col s6">
-
               <h3 className="user-text"> First Name </h3>
               <input
                 id="firstName"
@@ -233,7 +239,6 @@ function User() {
                 >
                   Cancel
                 </button>
-
                 <button
                   className="
                   btn-large
