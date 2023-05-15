@@ -58,6 +58,13 @@ height: 42px;
 margin-top: 8px;
 }
 
+.mobile {
+  background-color: var(--clay);
+}
+
+
+
+
 
 
 /* TEXTS  */

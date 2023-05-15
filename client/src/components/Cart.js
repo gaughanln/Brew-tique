@@ -3,18 +3,30 @@ import { Link } from "react-router-dom";
 import oops from "../assets/oops.png";
 import carttext from '../assets/carttext.png'
 
-function Cart({ cart, props }) {
+function Cart({ cart, setCart  }) {
   const totalPrice = cart.reduce((acc, item) => acc + item.price, 0);
+
+  const handleDelete = (itemToDelete) => {
+    const updatedCart = cartItems.filter((item) => item.id !== itemToDelete.id);
+    setCartItems(updatedCart);
+    setCart(updatedCart);
+  };
+  
+
 
   const token = localStorage.getItem("token"); // get the token from a cookie
   const [cartItems, setCartItems] = useState(() => {
     const cartData = sessionStorage.getItem(`cart-${token}`);
-    return cartData ? JSON.parse(cartData) : props.cart;
+    return cartData ? JSON.parse(cartData) : cart;
   });
+
 
   useEffect(() => {
     sessionStorage.setItem(`cart-${token}`, JSON.stringify(cartItems));
+    localStorage.setItem(`cart-${token}`, JSON.stringify(cartItems));
   }, [cartItems, token]);
+
+ 
 
   return (
     <div className="container">
@@ -37,8 +49,8 @@ function Cart({ cart, props }) {
         <div>
           <img src={carttext} className="cart-header" alt="You've got great taste" />
           <div className="row  cards valign-wrapper center-align">
-            {cart.map((item, index) => (
-              <a key={index}>
+            {cart.map((item) => (
+              <a key={item.id}>
                 <div className="col s6 center-align">
                   {/*  image */}
                   <img
@@ -53,7 +65,10 @@ function Cart({ cart, props }) {
                 <div className="col s6 center-align">
                   <p className="cart-text">
                     {item.name} <br /> $ {item.price}
+                  
                   </p>
+                  <button onClick={() => handleDelete(item)}>delete</button>
+
                 </div>
               </a>
             ))}

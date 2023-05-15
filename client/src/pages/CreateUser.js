@@ -1,18 +1,22 @@
-import React, { useState } from 'react';
-import signup from "../assets/signup.png";
-import {  useMutation } from "@apollo/client";
+import React, { useState } from "react";
+import { useMutation } from "@apollo/client";
 import { useNavigate } from "react-router-dom";
 import Auth from "../utils/auth";
-import {ADD_USER} from '../utils/mutations'
+import { ADD_USER } from "../utils/mutations";
+
+// images
+import signup from "../assets/signup.png";
+
+
 
 function CreateUser() {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-const [addUser, {error, data}] = useMutation(ADD_USER);
-const navigate = useNavigate()
+  const [addUser] = useMutation(ADD_USER);
+  const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -24,23 +28,20 @@ const navigate = useNavigate()
       email,
       password,
     };
-
-try {
-  const {data} = await addUser({
-    variables: {...requestBody}
-  })
-  Auth.login(data.addUser.token);
-  console.log("Login successful!");
-  navigate("/");
-} catch (error) {
-  console.error(error)
-  
-}
+    try {
+      const { data } = await addUser({
+        variables: { ...requestBody },
+      });
+      Auth.login(data.addUser.token);
+      console.log("Login successful!");
+      navigate("/");
+    } catch (error) {
+      console.error(error);
+    }
   };
- 
+
   return (
     <div className=" row login center-align">
-
       <img src={signup} className="signup" alt="Signup" />
 
       <form onSubmit={handleSubmit}>
@@ -71,11 +72,12 @@ try {
             id="email"
             value={email}
             class="validate"
-            
             onChange={(event) => setEmail(event.target.value)}
           />
-                    <span class="helper-text" data-error="Not a valid email address" ></span>
-
+          <span
+            class="helper-text"
+            data-error="Not a valid email address"
+          ></span>
         </div>
         <div className="input-field col s12">
           <label htmlFor="password">Password:</label>
@@ -88,8 +90,9 @@ try {
         </div>
         <br />
 
-        {/* TODO this button needs to push to another page */}
-        <button type="submit" className="btn-large waves-effect green-btn">Create User</button>
+        <button type="submit" className="btn-large waves-effect green-btn">
+          Create User
+        </button>
       </form>
     </div>
   );

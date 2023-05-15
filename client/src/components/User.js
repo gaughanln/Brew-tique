@@ -12,32 +12,21 @@ import { DELETE_USER, UPDATE_USER } from "../utils/mutations";
 import { QUERY_ME } from "../utils/queries";
 
 function User() {
-
   // useState + useParams
   const [imageSrc, setImageSrc] = useState(edit);
   const { email: userParam } = useParams();
   const [confirmOpen, setConfirmOpen] = useState(false);
 
-// Mutations + Queries
+  // Mutations + Queries
   const { loading, data } = useQuery(QUERY_ME);
   const [deleteUser] = useMutation(DELETE_USER);
   const [updateUser] = useMutation(UPDATE_USER);
 
-  // const [updateUser, { updating, error }] = useMutation(UPDATE_USER, {
-  //   update: (cache, { data }) => {
-  //     cache.modify({
-  //       fields: {
-  //         user: () => data.updateUser,
-  //       },
-  //     });
-  //   },
-  // });
-
-// loading
+  // loading
   if (loading)
     return (
       <div class="preloader-wrapper big active">
-        <div class="spinner-layer spinner-blue-only">
+        <div class="spinner-layer spinner-green-only">
           <div class="circle-clipper left">
             <div class="circle"></div>
           </div>
@@ -53,14 +42,14 @@ function User() {
 
   const user = data?.me || {};
 
-// initializing login
+  // initializing login
   if (Auth.loggedIn() && Auth.getProfile().data.email === userParam) {
     return <Navigate to="/myaccount" />;
   }
   if (loading) {
     return (
       <div class="preloader-wrapper big active">
-        <div class="spinner-layer spinner-blue-only">
+        <div class="spinner-layer spinner-green-only">
           <div class="circle-clipper left">
             <div class="circle"></div>
           </div>
@@ -76,7 +65,7 @@ function User() {
   }
   if (!user?.email) {
     return (
-      <div className="row  valign-wrapper ">
+      <div className="row valign-wrapper ">
         <div className="col center-align ">
           <img src={oopsUser} className="oops" alt="You're not logged in!" />
           <br />
@@ -88,7 +77,7 @@ function User() {
     );
   }
 
-// deleting the user profile
+  // deleting the user profile
   const deleteUserBtn = async (event) => {
     event.preventDefault();
     const confirmed = window.confirm(
@@ -107,12 +96,12 @@ function User() {
     }
   };
 
-// confirming deletion
+  // confirming deletion
   const showConfirm = () => {
     setConfirmOpen(true);
   };
 
-// editing the user information
+  // editing the user information
   const editSaveClick = async () => {
     const image = document.getElementById("edit-save");
     if (imageSrc === edit) {
@@ -139,8 +128,9 @@ function User() {
         console.log("User updated successfully!", data);
       } catch (error) {
         console.error(error);
+      }
     }
-  }};
+  };
 
   return (
     <>
@@ -205,12 +195,13 @@ function User() {
               />
             </div>
 
-            <br/>
+            <br />
 
             <div className="input-field col s6">
               <button
                 className="btn-large waves-effect brown-btn"
-                onClick={showConfirm}>
+                onClick={showConfirm}
+              >
                 Delete Account
               </button>
             </div>
@@ -221,12 +212,11 @@ function User() {
               </Link>
             </div>
 
-       
-
             {confirmOpen && (
               <div>
                 <p>Are you sure you want to delete your account?</p>
-                <button className ="
+                <button
+                  className="
                   btn-large
                   waves-effect
                   green-btn"
@@ -262,4 +252,3 @@ export default User;
 // FUTURE DEVELOPMENT
 
 // add address option that will then save to the users data?
-

@@ -7,6 +7,8 @@ import { useQuery } from "@apollo/client";
 
 function Products(props) {
   const { cart, setCart } = props;
+  console.log(props.cart);
+  console.log(props.setCart);
 
   const { loading, data } = useQuery(GET_PRODUCTS);
   if (loading) return <p>Loading...</p>;
@@ -19,7 +21,6 @@ function Products(props) {
     setCart([...cart, product]);
     toast.success("Added to your cart!")
   };
-
 
   
   return (

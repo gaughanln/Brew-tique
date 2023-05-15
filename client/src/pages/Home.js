@@ -1,12 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
+
+// images
 import homePhoto from "../assets/homePhoto.png";
 import brewtiqueLarge from "../assets/brewtiqueLarge.png";
-
-// TODO
-
-// CSS - want header cream color for this page only
-// handle page change needs updating - does it though?
 
 function Home() {
   return (
@@ -25,8 +22,7 @@ function Home() {
           </p>
 
           <Link className="btn-large waves-effect clay-btn" to="/products">
-            {" "}
-            Shop now!{" "}
+            Shop now!
           </Link>
         </div>
 
