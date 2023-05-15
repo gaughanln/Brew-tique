@@ -25,7 +25,6 @@ function Products(props) {
     if (itemIndex === -1) {
       setCart([...cart, { ...item, quantity: 1 }]);
     } else {
-      
       const updatedCart = [...cart];
       updatedCart[itemIndex].quantity += 1;
       setCart(updatedCart);
