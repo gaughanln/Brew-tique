@@ -4,6 +4,8 @@ import ontap from "../assets/ontap.png";
 import { toast } from "react-toastify";
 import { GET_PRODUCTS } from "../utils/queries";
 import { useQuery } from "@apollo/client";
+import { v4 as uuidv4 } from 'uuid';
+
 
 function Products(props) {
   const { cart, setCart } = props;
@@ -18,7 +20,8 @@ function Products(props) {
   const coffee = data?.getProducts || [];
 
   const addToCart = (product) => {
-    setCart([...cart, product]);
+    const item = { ...product, id: uuidv4() };
+    setCart([...cart, item]);
     toast.success("☕️ Added to your cart!", {
 position: "top-center",
 autoClose: 1000,
