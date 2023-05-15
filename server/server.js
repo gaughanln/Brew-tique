@@ -1,5 +1,6 @@
 const express = require('express');
-const { ApolloServer } = require('apollo-server-express');
+import { ApolloServer } from require('@apollo/server');
+import { startStandloneServer } from '@apollo/server/standalone';
 const path = require('path');
 const { authMiddleware } = require('./utils/auth');
 const { typeDefs, resolvers } = require('./schemas');
@@ -15,8 +16,9 @@ const server = new ApolloServer({
   cache: "bounded"
 });
 
-const port = Number.parseInt(process.env.PORT || "4000");
-const { url } = await startStandaloneServer(server, { listen: port })
+const { url } = await startStandloneServer(server, {
+  listen: { port: 4000 },
+});
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -29,6 +31,7 @@ db.once('open', () => {
   app.listen(PORT, () => {
     console.log(`API server running on port ${PORT}!`);
     console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
+    console.log(`Server ready at ${url}`);
   })
 });
 

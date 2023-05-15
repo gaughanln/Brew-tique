@@ -3,16 +3,17 @@
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
+  "type": "module",
   "scripts": {
     "start": "node server.js",
     "watch": "nodemon server.js",
-    "seed": "node seeds/seeds.js",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+    "seed": "node seeds/seeds.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@apollo/server": "^4.7.1",
     "apollo-server-express": "^3.6.2",
     "bcrypt": "^5.1.0",
     "dotenv": "^16.0.3",
