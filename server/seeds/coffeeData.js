@@ -42,7 +42,7 @@ const coffees = [
     price: 17.00,
   },
   {
-    name: "'Cookies N' Dreams'",
+    name: "Cookies N' Dreams",
     image: '../../client/src/assets/dreams.png',
     location: 'Florida',
     roast: 'Medium',

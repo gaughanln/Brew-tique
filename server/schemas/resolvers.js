@@ -64,15 +64,19 @@ const resolvers = {
             console.log('HELLO')
             return { token, user };
         },
-
-        updateUser: async (parent, { firstName, lastName, email, password }, context) => {
+        updateUser: async (parent, { input }, context) => {
             if (context.user) {
+                const { firstName, lastName, email } = input;
                 const update = {};
-                if (firstName) update.firstName = firstName;
-                if (lastName) update.lastName = lastName;
-                if (email) update.email = email;
-                if (password) update.password = password;
-
+                if (firstName) {
+                    update.firstName = firstName;
+                }
+                if (lastName) {
+                    update.lastName = lastName;
+                }
+                if (email) {
+                    update.email = email;
+                }   
                 const updatedUser = await User.findOneAndUpdate(
                     { _id: context.user._id },
                     { $set: update },
@@ -103,6 +107,17 @@ const resolvers = {
             }
             throw new AuthenticationError('Not logged in');
         },
+        deleteUser: async (parent, { userId }, context) => {
+            if (context.user) {
+                if (context.user._id === userId) {
+                    await User.findByIdAndDelete(userId);
+                    return true;
+                } else {
+                    throw new AuthenticationError('You can only delete your own account');
+                }
+            }
+            throw new AuthenticationError('Not logged in');
+        }
     },
 };
 

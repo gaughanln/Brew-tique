@@ -36,11 +36,12 @@ export const LOGOUT_USER = gql`
 
 export const UPDATE_USER = gql`
   mutation updateUser($_id: ID!, $firstName: String!, $lastName: String!, $email: String!) {
-    updateUser(_id: $_id, input: { firstName: $firstName, lastName: $lastName, email: $email }) {
+    updateUser(input: { _id: $_id, firstName: $firstName, lastName: $lastName, email: $email }) {
       _id
       firstName
       lastName
       email
+      password
     }
   }
 `;
@@ -58,4 +59,10 @@ mutation addAddress($userId: ID!, $street: String!, $city: String!, $state: Stri
     }
   }
 }
+`;
+
+export const DELETE_USER = gql`
+  mutation deleteUser($userId: ID!) {
+    deleteUser(userId: $userId)
+  }
 `;
