@@ -39,6 +39,10 @@ if (process.env.NODE_ENV === 'production') {
       console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
     })
   });
+
+  server.listen({ port: process.env.PORT || 4000 }).then(({ url }) => {
+    console.log(`🚀 Server ready at ${url}`);
+  });
   
 
   startApolloServer();
