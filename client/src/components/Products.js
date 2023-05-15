@@ -81,10 +81,3 @@ function Products(props) {
 
 export default Products;
 
-// add to cart linking to cart
-{/* <Link
-  className="waves-effect  btn-large brown-btn"
-  onClick={() => addToCart(coffee)} to="/cart"
->
-  Add to Cart
-</Link> */}

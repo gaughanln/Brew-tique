@@ -1,7 +1,6 @@
 import React from "react";
 import {  useLocation } from "react-router-dom";
 
-// TODO I commented out the code because it's covering the page and CSS isn't acting right. Once we get all data flowing we can bring it back to work on fine details.
 
 const Footer = () => {
           
