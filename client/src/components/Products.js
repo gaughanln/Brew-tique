@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import { Link } from "react-router-dom";
 import ontap from "../assets/ontap.png";
 import { toast } from "react-toastify";
@@ -21,10 +21,7 @@ function Products(props) {
       setCart([...cart, { ...product, quantity: 1 }]);
       toast.success("Added to your cart!");
     } else {
-      const updatedCartItem = {
-        ...existingCartItem,
-        quantity: existingCartItem.quantity + 1,
-      };
+      const updatedCartItem = { ...existingCartItem, quantity: existingCartItem.quantity + 1 };
       const updatedCart = cart.map((cartItem) => {
         if (cartItem.id === product.id) {
           return updatedCartItem;
@@ -36,6 +33,7 @@ function Products(props) {
       toast.success("Item was added to your cart!");
     }
   };
+  
 
   return (
     <div>
@@ -52,12 +50,7 @@ function Products(props) {
                     alt={coffee.name}
                     height="300"
                   />
-                  <h3 className="truncate product-title">{coffee.name}</h3>
-                  <p className="description">
-                    Sourced from {coffee.location}
-                    <br /> {coffee.description}
-                  </p>
-
+                  <h3 className="truncate">{coffee.name}</h3>
                   <p>${coffee.price}</p>
 
                   <button

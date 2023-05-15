@@ -88,15 +88,6 @@ h3 {
 .products-text {
   color: #282c34;  }
 
-  .product-title {
-    font-weight:bolder;
-  }
-/* 
-  .description {
-    width: 80%;
-    justify-content: space-between;
-  } */
-
 
 
 
@@ -211,9 +202,6 @@ padding-bottom: 2%;
 .ontap {
   max-width: 60%;
   margin-top: 5%;
-}
-.my-account {
-  width:60%;
 }
 
 
