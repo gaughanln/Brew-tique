@@ -26,6 +26,10 @@ const server = new ApolloServer({
   // },
 });
 
+server.listen({ port: parseInt(process.env.PORT || 4000, 10) }).then(({ url }) => {
+  console.log(`🚀  Server ready at ${url}`);
+});
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
@@ -38,10 +42,6 @@ db.once('open', () => {
     console.log(`API server running on port ${PORT}!`);
     console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
   })
-});
-
-server.listen({ port: parseInt(process.env.PORT || 4000, 10) }).then(({ url }) => {
-  console.log(`🚀  Server ready at ${url}`);
 });
 
 startApolloServer();
