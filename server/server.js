@@ -17,12 +17,6 @@ const server = new ApolloServer({
   typeDefs,
   resolvers,
   context: authMiddleware,
-  // context: ({ req }) => {
-  //   // get the authorization token from the headers
-  //   const token = req.headers.authorization || '';
-  //   // return the token in an object
-  //   return { token };
-  // },
 });
 
 app.use(express.urlencoded({ extended: true }));
@@ -36,14 +30,13 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
-  
-  db.once('open', () => {
-    app.listen(PORT, () => {
-      console.log(`API server running on port ${PORT}!`);
-      console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
-    })
-  });
-  
+db.once('open', () => {
+  app.listen(PORT, () => {
+    console.log(`API server running on port ${PORT}!`);
+    console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
+  })
+});
 
-  startApolloServer();
-  
+
+startApolloServer();
+
