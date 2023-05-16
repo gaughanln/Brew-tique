@@ -149,7 +149,7 @@ function Header() {
         {/* LOGOUT */}
         {Auth.loggedIn() && (
           <li>
-            <NavLink onClick={logout}>Logout</NavLink>
+            <NavLink to="/home" onClick={logout}>Logout</NavLink>
           </li>
         )}
 
