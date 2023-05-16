@@ -24,19 +24,17 @@ app.use(express.json());
 app.use(express.static("client/build"));
 
 if (process.env.NODE_ENV === "production") {
-  app.get('/*', function (req, res) {
-    const index = path.join(__dirname, 'index.html');
-    res.sendFile(index);
-  });
+  app.use(express.static(path.join(__dirname, "build")));
+  res.sendFile(index);
 }
 
-db.once('open', () => {
-  app.listen(PORT, () => {
-    console.log(`API server running on port ${PORT}!`);
-    console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
-  })
-});
+  db.once('open', () => {
+    app.listen(PORT, () => {
+      console.log(`API server running on port ${PORT}!`);
+      console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
+    })
+  });
 
 
-startApolloServer();
+  startApolloServer();
 
